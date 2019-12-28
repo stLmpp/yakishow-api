@@ -1,0 +1,38 @@
+import { Repository, EntityRepository } from 'typeorm';
+import { genSalt, hash } from 'bcryptjs';
+import { UnauthorizedException, NotFoundException } from '@nestjs/common';
+import { User } from './user.entity';
+import { RegisterDto } from './dto/register.dto';
+import { CredentialsDto } from './dto/credentials.dto';
+import { mySQLError } from '../../util/error/my-sql-error';
+
+@EntityRepository(User)
+export class UserRepository extends Repository<User> {
+  async register(dto: RegisterDto): Promise<User> {
+    const user = { ...dto, ...new User() };
+    user.salt = await genSalt();
+    user.password = await hash(dto.password, user.salt);
+    try {
+      const newUser = await this.save(user);
+      newUser.password = null;
+      newUser.salt = null;
+      return newUser;
+    } catch (err) {
+      throw mySQLError(err, 'Erro ao tentar registar o usuário');
+    }
+  }
+
+  async login(dto: CredentialsDto): Promise<User> {
+    const { username, password } = dto;
+    const user = await this.createQueryBuilder('user')
+      .andWhere('user.username = :username', { username })
+      .getOne();
+    if (!user) throw new NotFoundException('Usuário / Email não encontrado');
+    const isPasswordValid = await user.validatePassword(password);
+    if (!isPasswordValid)
+      throw new UnauthorizedException('Usuário / Email ou senha inválida');
+    user.password = null;
+    user.salt = null;
+    return user;
+  }
+}
