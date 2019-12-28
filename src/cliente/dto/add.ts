@@ -1,7 +1,7 @@
 import { IsDefined, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AddDto {
+export class ClienteAddDto {
   @IsNotEmpty()
   @IsDefined()
   @IsNotEmpty()

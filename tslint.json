@@ -5,12 +5,18 @@
     "no-unused-expression": true
   },
   "rules": {
-    "whitespace": [
+    "trailing-comma": [
       true,
-      "check-branch",
-      "check-operator",
-      "check-typecast",
-      "check-module"
+      {
+        "multiline": {
+          "objects": "always",
+          "arrays": "always",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        },
+        "esSpecCompliant": true,
+        "singleline": "never"
+      }
     ],
     "curly": [true, "as-needed"],
     "variable-name": [

@@ -1,4 +1,4 @@
-import { MySQLError, MySQLErrorResponse } from '../types/my-sql-error';
+import { MySQLError, MySQLErrorResponse } from './my-sql-error.model';
 import { ConflictException } from '@nestjs/common';
 
 export function mySQLError(err: MySQLError, message?: string): any {
@@ -13,7 +13,7 @@ export function mySQLError(err: MySQLError, message?: string): any {
 
 function formatMsg(
   { message, errno, code }: MySQLError,
-  msg?: string,
+  msg?: string
 ): MySQLErrorResponse {
   return {
     sqlCode: code,

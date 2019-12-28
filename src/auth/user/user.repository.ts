@@ -2,13 +2,13 @@ import { Repository, EntityRepository } from 'typeorm';
 import { genSalt, hash } from 'bcryptjs';
 import { UnauthorizedException, NotFoundException } from '@nestjs/common';
 import { User } from './user.entity';
-import { RegisterDto } from './dto/register.dto';
-import { CredentialsDto } from './dto/credentials.dto';
-import { mySQLError } from '../../util/error/my-sql-error';
+import { AuthRegisterDto } from './dto/register';
+import { AuthCredentialsDto } from './dto/credentials';
+import { mySQLError } from '../../shared/error/my-sql-error';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  async register(dto: RegisterDto): Promise<User> {
+  async register(dto: AuthRegisterDto): Promise<User> {
     const user = { ...dto, ...new User() };
     user.salt = await genSalt();
     user.password = await hash(dto.password, user.salt);
@@ -22,7 +22,7 @@ export class UserRepository extends Repository<User> {
     }
   }
 
-  async login(dto: CredentialsDto): Promise<User> {
+  async login(dto: AuthCredentialsDto): Promise<User> {
     const { username, password } = dto;
     const user = await this.createQueryBuilder('user')
       .andWhere('user.username = :username', { username })

@@ -1,27 +1,27 @@
-import { RegisterDto } from './user/dto/register.dto';
+import { AuthRegisterDto } from './user/dto/register';
 import { User } from './user/user.entity';
 import { UserRepository } from './user/user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { CredentialsDto } from './user/dto/credentials.dto';
+import { AuthCredentialsDto } from './user/dto/credentials';
 import { UserService } from './user/user.service';
-import { CommonHistory } from '../util/super-entities/common-history';
+import { CommonHistory } from '../shared/super-entities/common-history';
 
 export class AuthService {
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
     private jwtService: JwtService,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
-  async register(dto: RegisterDto): Promise<User> {
+  async register(dto: AuthRegisterDto): Promise<User> {
     const user = await this.userRepository.register(dto);
     user.token = await this.getToken(user.id);
     return user;
   }
 
-  async login(dto: CredentialsDto): Promise<User> {
+  async login(dto: AuthCredentialsDto): Promise<User> {
     const user = await this.userRepository.login(dto);
     user.token = await this.getToken(user.id);
     return user;

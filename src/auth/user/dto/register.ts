@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class RegisterDto {
+export class AuthRegisterDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(3)

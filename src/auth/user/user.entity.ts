@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { hash } from 'bcryptjs';
 import { ApiProperty } from '@nestjs/swagger';
-import { CommonHistory } from '../../util/super-entities/common-history';
+import { CommonHistory } from '../../shared/super-entities/common-history';
 
 @Entity()
 export class User extends CommonHistory {

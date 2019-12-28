@@ -1,7 +1,7 @@
 import { Contains, IsString, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdateDto {
+export class ClienteUpdateDto {
   @MaxLength(255)
   @IsString()
   @ApiProperty()

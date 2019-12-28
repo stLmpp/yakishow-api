@@ -1,7 +1,7 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { isArray, isObject } from 'lodash';
-import { CommonHistory } from '../util/super-entities/common-history';
+import { CommonHistory } from '../shared/super-entities/common-history';
 
 @Injectable()
 export class UpdateHistoryPipe<T extends CommonHistory>

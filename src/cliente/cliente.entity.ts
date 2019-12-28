@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { CommonHistory } from '../util/super-entities/common-history';
+import { CommonHistory } from '../shared/super-entities/common-history';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()

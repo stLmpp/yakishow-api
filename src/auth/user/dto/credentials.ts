@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString, IsDefined } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CredentialsDto {
+export class AuthCredentialsDto {
   @IsDefined()
   @IsNotEmpty()
   @IsString()
