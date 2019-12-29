@@ -32,7 +32,7 @@ export class PessoaAddDto {
 
   @ApiProperty()
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @MaxLength(500)
   @IsOptional()
   shortEndereco?: string;
@@ -41,41 +41,41 @@ export class PessoaAddDto {
   @ApiProperty()
   @MaxLength(255)
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   bairro?: string;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   rua?: string;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   numero?: number;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   complemento?: string;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   cep?: string;
 
   @IsString()
   @ApiProperty()
   @IsEmail()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   email?: string;
 

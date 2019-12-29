@@ -18,6 +18,7 @@ export class PedidoAddDto {
   @ApiProperty({
     type: String,
     description: 'Date',
+    required: false,
   })
   dataInicio?: Date;
 
@@ -25,6 +26,7 @@ export class PedidoAddDto {
   @IsOptional()
   @ApiProperty({
     enum: PedidoStatusEnum,
+    required: false,
   })
   status?: PedidoStatusEnum;
 
@@ -36,7 +38,7 @@ export class PedidoAddDto {
 
   @IsNumber()
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   entregadorId: number;
 
   @IsOptional()

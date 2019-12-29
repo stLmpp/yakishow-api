@@ -12,64 +12,63 @@ export class PessoaUpdateDto {
   @IsOptional()
   @MaxLength(255)
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   nome?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(12)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   telefone?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(500)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   shortEndereco?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   bairro?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   rua?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   numero?: number;
 
   @IsOptional()
   @IsString()
   @MaxLength(255)
-  @ApiProperty()
+  @ApiProperty({ required: false })
   complemento?: string;
 
   @IsOptional()
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @MaxLength(255)
-  @ApiProperty()
   cep?: string;
 
   @IsOptional()
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @MaxLength(255)
   @IsEmail()
-  @ApiProperty()
   email?: string;
 
   @IsOptional()
   @IsEnum(TipoPessoaEnum)
   @ApiProperty({
     enum: TipoPessoaEnum,
+    required: false,
   })
   tipo?: TipoPessoaEnum;
 }

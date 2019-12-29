@@ -1,26 +1,29 @@
 import { IsDefined, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PedidoItemAddDto {
-  @IsNumber()
+export class PedidoItemUpdateDto {
   @IsDefined()
   @IsNotEmpty()
-  @ApiProperty()
-  produtoId: number;
+  @IsNumber()
+  pedidoId: number;
 
   @IsOptional()
   @IsNumber()
   @ApiProperty({ required: false })
-  pedidoId?: number;
+  id?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @ApiProperty({ required: false })
+  produtoId?: number;
 
   @IsOptional()
   @IsNumber()
   @ApiProperty({ required: false })
   total?: number;
 
-  @IsDefined()
+  @IsOptional()
   @IsNumber()
-  @IsNotEmpty()
-  @ApiProperty()
-  quantidade: number;
+  @ApiProperty({ required: false })
+  quantidade?: number;
 }

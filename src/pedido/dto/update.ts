@@ -17,6 +17,7 @@ export class PedidoUpdateDto {
   @ApiProperty({
     type: String,
     description: 'Date',
+    required: false,
   })
   dataInicio?: Date;
 
@@ -26,16 +27,17 @@ export class PedidoUpdateDto {
   @ApiProperty({
     type: String,
     description: 'Date',
+    required: false,
   })
   dataFinalizado?: Date;
 
   @IsOptional()
   @IsNumber()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   clienteId?: number;
 
   @IsOptional()
   @IsNumber()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   entregadorId?: number;
 }
