@@ -13,7 +13,6 @@ export class AuthRegisterDto {
   @MinLength(3)
   @MaxLength(50)
   @ApiProperty({
-    required: true,
     minLength: 3,
     maxLength: 50,
   })
@@ -23,7 +22,6 @@ export class AuthRegisterDto {
   @IsNotEmpty()
   @MinLength(4)
   @ApiProperty({
-    required: true,
     minLength: 4,
   })
   password: string;

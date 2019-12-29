@@ -16,18 +16,15 @@ export class PedidoItem extends CommonHistory {
   @ApiProperty()
   id: number;
 
-  @Column({ unique: false, nullable: true })
+  @Column({ nullable: true })
   @ApiProperty()
   produtoId: number;
 
-  @ManyToOne(
-    () => Produto,
-    produto => produto.pedidoItems
-  )
+  @ManyToOne(() => Produto)
   @JoinColumn()
   produto: Produto;
 
-  @Column({ unique: false })
+  @Column()
   pedidoId: number;
 
   @ManyToOne(

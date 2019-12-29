@@ -2,7 +2,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { CommonHistory } from '../shared/super-entities/common-history';
 import { ApiProperty } from '@nestjs/swagger';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
-import { IsEmail } from 'class-validator';
 
 @Entity()
 export class Pessoa extends CommonHistory {
@@ -61,7 +60,6 @@ export class Pessoa extends CommonHistory {
   @Column({
     nullable: true,
   })
-  @IsEmail()
   @ApiProperty()
   email: string;
 

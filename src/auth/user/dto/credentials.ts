@@ -5,16 +5,12 @@ export class AuthCredentialsDto {
   @IsDefined()
   @IsNotEmpty()
   @IsString()
-  @ApiProperty({
-    required: true,
-  })
+  @ApiProperty()
   username: string;
 
   @IsDefined()
   @IsNotEmpty()
   @IsString()
-  @ApiProperty({
-    required: true,
-  })
+  @ApiProperty()
   password: string;
 }

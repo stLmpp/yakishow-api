@@ -8,7 +8,6 @@ import { AuthModule } from '../auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forFeature([PessoaRepository]), AuthModule],
   providers: [PessoaService],
-  exports: [PessoaService],
   controllers: [PessoaController],
 })
 export class PessoaModule {}

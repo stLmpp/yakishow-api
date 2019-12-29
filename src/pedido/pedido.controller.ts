@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Get,
   Param,
   ParseIntPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
@@ -15,7 +17,8 @@ import { PedidoAddDto } from './dto/add';
 import { UpdateHistoryPipe } from '../auth/update-history.pipe';
 import { UpdateResult } from 'typeorm';
 import { PedidoUpdateDto } from './dto/update';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { PedidoStatusEnum } from './pedido-status.enum';
 
 @Controller('pedido')
 @UseGuards(AuthGuard())
@@ -37,5 +40,14 @@ export class PedidoController {
     @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoUpdateDto
   ): Promise<UpdateResult> {
     return this.pedidoService.update(id, dto);
+  }
+
+  @Get('status')
+  @ApiResponse({ status: 200, type: Pedido, isArray: true })
+  @ApiQuery({ name: 'status', enum: PedidoStatusEnum })
+  async findByStatus(
+    @Query('status') status: PedidoStatusEnum
+  ): Promise<Pedido[]> {
+    return this.pedidoService.findByStatus(status);
   }
 }

@@ -1,7 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { CommonHistory } from '../shared/super-entities/common-history';
 import { ApiProperty } from '@nestjs/swagger';
-import { PedidoItem } from '../pedido/pedido-item/pedido-item.entity';
 
 @Entity()
 export class Produto extends CommonHistory {
@@ -22,11 +21,4 @@ export class Produto extends CommonHistory {
   @Column('decimal', { precision: 10, scale: 2 })
   @ApiProperty()
   valor: number;
-
-  @OneToMany(
-    () => PedidoItem,
-    pedidoItem => pedidoItem.produto,
-    { cascade: ['insert'] }
-  )
-  pedidoItems: PedidoItem[];
 }

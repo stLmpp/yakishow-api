@@ -53,4 +53,11 @@ export class PedidoService {
       throw mySQLError(err, 'Erro ao tentar atualizar o pedido');
     }
   }
+
+  async findByStatus(status: PedidoStatusEnum): Promise<Pedido[]> {
+    return await this.pedidoRepository.find({
+      relations: ['pedidoItems'],
+      where: { status },
+    });
+  }
 }
