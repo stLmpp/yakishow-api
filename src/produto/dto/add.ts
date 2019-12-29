@@ -1,24 +1,22 @@
-import {
-  IsDefined,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ProdutoAddDto {
-  @IsOptional()
+  @IsDefined()
   @IsNotEmpty()
   @IsString()
-  codigo?: string;
+  @ApiProperty()
+  codigo: string;
 
   @IsString()
   @IsDefined()
   @IsNotEmpty()
+  @ApiProperty()
   descricao: string;
 
   @IsDefined()
   @IsNotEmpty()
   @IsNumber()
+  @ApiProperty()
   valor: number;
 }

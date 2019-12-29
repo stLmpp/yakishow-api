@@ -5,6 +5,11 @@
     "no-unused-expression": true
   },
   "rules": {
+    "no-trailing-whitespace": [
+      true,
+      "ignore-comments",
+      "ignore-template-strings"
+    ],
     "trailing-comma": [
       true,
       {
@@ -18,7 +23,7 @@
         "singleline": "never"
       }
     ],
-    "curly": [true, "as-needed"],
+    "curly": [true, "ignore-same-line"],
     "variable-name": [
       true,
       "ban-keywords",

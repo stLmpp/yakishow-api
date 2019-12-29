@@ -1,7 +1,15 @@
-import { IsDefined, IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import {
+  IsDefined,
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { TipoPessoaEnum } from '../tipo-pessoa.enum';
 
-export class ClienteAddDto {
+export class PessoaAddDto {
   @IsNotEmpty()
   @IsDefined()
   @IsNotEmpty()
@@ -26,41 +34,55 @@ export class ClienteAddDto {
   @IsString()
   @ApiProperty()
   @MaxLength(500)
-  shortEndereco: string;
+  @IsOptional()
+  shortEndereco?: string;
+
+  @IsString()
+  @ApiProperty()
+  @MaxLength(255)
+  @IsOptional()
+  @ApiProperty()
+  bairro?: string;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
   @ApiProperty()
-  bairro: string;
+  @IsOptional()
+  rua?: string;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
   @ApiProperty()
-  rua: string;
+  @IsOptional()
+  numero?: number;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
   @ApiProperty()
-  numero: number;
+  @IsOptional()
+  complemento?: string;
 
   @IsString()
   @ApiProperty()
   @MaxLength(255)
   @ApiProperty()
-  complemento: string;
+  @IsOptional()
+  cep?: string;
 
   @IsString()
   @ApiProperty()
-  @MaxLength(255)
+  @IsEmail()
   @ApiProperty()
-  cep: string;
+  @IsOptional()
+  email?: string;
 
-  @IsString()
-  @ApiProperty()
-  @MaxLength(255)
-  @ApiProperty()
-  email: string;
+  @ApiProperty({
+    enum: TipoPessoaEnum,
+  })
+  @IsDefined()
+  @IsNotEmpty()
+  tipo: TipoPessoaEnum;
 }

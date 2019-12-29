@@ -10,25 +10,18 @@ export class User extends CommonHistory {
   id: number;
 
   @Column({
-    nullable: false,
     unique: true,
   })
   @ApiProperty()
   username: string;
 
-  @Column({
-    nullable: false,
-  })
+  @Column()
   password: string;
 
-  @Column({
-    nullable: false,
-  })
+  @Column()
   salt: string;
 
-  @Column({
-    nullable: false,
-  })
+  @Column()
   email: string;
 
   @ApiProperty()

@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -24,7 +25,7 @@ import { ProdutoUpdateDto } from './dto/update';
 export class ProdutoController {
   constructor(private produtoService: ProdutoService) {}
 
-  @Post('add')
+  @Post()
   @ApiResponse({ status: 200, type: Produto })
   async add(
     @Body(ValidationPipe, UpdateHistoryPipe) dto: ProdutoAddDto
@@ -58,6 +59,7 @@ export class ProdutoController {
   async findByDescricao(
     @Query('descricao') descricao: string
   ): Promise<Produto[]> {
+    if (!descricao) throw new BadRequestException('Descrição é obrigatória');
     return this.produtoService.findByDescricao(descricao);
   }
 }

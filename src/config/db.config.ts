@@ -1,6 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { getEnvVar, isProd } from '../util/env';
-import { NamingStrategy } from './naming.strategy';
 
 export const DB_TYPEORM_CONFIG: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -12,5 +11,4 @@ export const DB_TYPEORM_CONFIG: TypeOrmModuleOptions = {
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: getEnvVar('DB_SYNC'),
   logging: !isProd ? 'all' : false,
-  namingStrategy: new NamingStrategy(),
 };
