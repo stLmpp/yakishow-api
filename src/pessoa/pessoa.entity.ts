@@ -59,6 +59,7 @@ export class Pessoa extends CommonHistory {
 
   @Column({
     nullable: true,
+    unique: true,
   })
   @ApiProperty()
   email: string;

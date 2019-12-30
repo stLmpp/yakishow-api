@@ -10,7 +10,7 @@ export interface MyRequest extends Request {
 export class UserService {
   constructor(
     @Inject(REQUEST)
-    private request: MyRequest,
+    private request: MyRequest
   ) {}
 
   get user(): User {

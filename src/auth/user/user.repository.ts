@@ -29,8 +29,9 @@ export class UserRepository extends Repository<User> {
       .getOne();
     if (!user) throw new NotFoundException('Usuário / Email não encontrado');
     const isPasswordValid = await user.validatePassword(password);
-    if (!isPasswordValid)
+    if (!isPasswordValid) {
       throw new UnauthorizedException('Usuário / Email ou senha inválida');
+    }
     user.password = null;
     user.salt = null;
     return user;
