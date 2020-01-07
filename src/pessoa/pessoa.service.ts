@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateResult } from 'typeorm';
+import { UpdateResult, FindManyOptions } from 'typeorm';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
@@ -44,6 +44,12 @@ export class PessoaService {
   }
 
   async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {
-    return await this.pessoaRepository.find({ where: { tipo } });
+    let options: FindManyOptions<Pessoa> = {};
+    if (tipo !== TipoPessoaEnum.todos) options = { where: { tipo } };
+    return await this.pessoaRepository.find(options);
+  }
+
+  async existsByTelefone(telefone: string): Promise<boolean> {
+    return await this.pessoaRepository.exists({ telefone });
   }
 }

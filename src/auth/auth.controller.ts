@@ -20,7 +20,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('register')
-  @ApiResponse({ status: 200, type: User })
+  @ApiResponse({ status: 201, type: User })
   async register(
     @Body(ValidationPipe, UpdateHistoryPipe) dto: AuthRegisterDto
   ): Promise<User> {

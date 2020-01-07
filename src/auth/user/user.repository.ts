@@ -27,7 +27,7 @@ export class UserRepository extends Repository<User> {
     const user = await this.createQueryBuilder('user')
       .andWhere('user.username = :username', { username })
       .getOne();
-    if (!user) throw new NotFoundException('Usuário / Email não encontrado');
+    if (!user) throw new UnauthorizedException('Usuário / Email ou senha inválida');
     const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('Usuário / Email ou senha inválida');

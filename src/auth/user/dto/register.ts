@@ -29,5 +29,6 @@ export class AuthRegisterDto {
   @IsString()
   @IsNotEmpty()
   @IsEmail()
+  @ApiProperty()
   email: string;
 }

@@ -51,15 +51,25 @@ export class PessoaController {
   @ApiQuery({ name: 'tipo', enum: TipoPessoaEnum })
   async findByParams(
     @Query('term') term: string,
-    @Query('tipo') tipo?: TipoPessoaEnum
+    @Query('tipo', ParseIntPipe) tipo?: TipoPessoaEnum
   ): Promise<Pessoa[]> {
     return this.pessoaService.findByParams(term, tipo);
   }
 
   @Get('/tipo/:tipo')
-  @ApiResponse({ status: 2000, type: Pessoa, isArray: true })
+  @ApiResponse({ status: 200, type: Pessoa, isArray: true })
   @ApiParam({ name: 'tipo', enum: TipoPessoaEnum })
-  async findByTipo(@Param('tipo') tipo: TipoPessoaEnum): Promise<Pessoa[]> {
+  async findByTipo(
+    @Param('tipo', ParseIntPipe) tipo: TipoPessoaEnum
+  ): Promise<Pessoa[]> {
     return this.pessoaService.findByTipo(tipo);
+  }
+
+  @Get('/telefone/:telefone')
+  @ApiResponse({ status: 200, type: Boolean })
+  async existsByTelefone(
+    @Param('telefone') telefone: string
+  ): Promise<boolean> {
+    return this.pessoaService.existsByTelefone(telefone);
   }
 }
