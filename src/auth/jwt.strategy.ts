@@ -11,7 +11,7 @@ import { getEnvVar } from '../util/env';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @InjectRepository(UserRepository)
-    private userRepo: UserRepository,
+    private userRepo: UserRepository
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

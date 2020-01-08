@@ -17,7 +17,13 @@ export class PessoaUpdateDto {
 
   @IsOptional()
   @IsString()
-  @MaxLength(12)
+  @MaxLength(10)
+  @ApiProperty({ required: false })
+  celular?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(11)
   @ApiProperty({ required: false })
   telefone?: string;
 

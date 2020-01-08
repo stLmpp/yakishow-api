@@ -18,11 +18,11 @@ export class NamingStrategy extends DefaultNamingStrategy
   columnName(
     propertyName: string,
     customName: string,
-    embeddedPrefixes: string[],
+    embeddedPrefixes: string[]
   ): string {
     return this.transform(
       embeddedPrefixes.join('_') +
-        (customName ? customName : snakeCase(propertyName)),
+        (customName ? customName : snakeCase(propertyName))
     );
   }
 
@@ -37,14 +37,14 @@ export class NamingStrategy extends DefaultNamingStrategy
     type: ConstraintType,
     tableOrName: Table | string,
     columnsOrExpresion: string | string[],
-    add?: string,
+    add?: string
   ): string {
     const expresion = isArray(columnsOrExpresion)
       ? [...columnsOrExpresion].sort().join('_')
       : columnsOrExpresion;
     const table = tableOrName instanceof Table ? tableOrName.name : tableOrName;
     let name = this.transform(
-      `${type}_${table.replace('.', '_')}_${expresion}${add ? '_' + add : ''}`,
+      `${type}_${table.replace('.', '_')}_${expresion}${add ? '_' + add : ''}`
     );
     name += `_${sha1(name)}`;
     return name.substring(0, 128);
@@ -56,21 +56,21 @@ export class NamingStrategy extends DefaultNamingStrategy
 
   exclusionConstraintName(
     tableOrName: Table | string,
-    expression: string,
+    expression: string
   ): string {
     return this.constraint('XCL', tableOrName, expression);
   }
 
   uniqueConstraintName(
     tableOrName: Table | string,
-    columnNames: string[],
+    columnNames: string[]
   ): string {
     return this.constraint('UQ', tableOrName, columnNames);
   }
 
   defaultConstraintName(
     tableOrName: Table | string,
-    columnName: string,
+    columnName: string
   ): string {
     return this.constraint('DF', tableOrName, columnName);
   }
@@ -78,7 +78,7 @@ export class NamingStrategy extends DefaultNamingStrategy
   relationConstraintName(
     tableOrName: Table | string,
     columnNames: string[],
-    where?: string,
+    where?: string
   ): string {
     return this.constraint('REL', tableOrName, columnNames, where);
   }
@@ -91,7 +91,7 @@ export class NamingStrategy extends DefaultNamingStrategy
     tableOrName: Table | string,
     columnNames: string[],
     _referencedTablePath?: string,
-    _referencedColumnNames?: string[],
+    _referencedColumnNames?: string[]
   ): string {
     return this.constraint('FK', tableOrName, columnNames);
   }
@@ -99,7 +99,7 @@ export class NamingStrategy extends DefaultNamingStrategy
   indexName(
     tableOrName: Table | string,
     columnNames: string[],
-    where?: string,
+    where?: string
   ): string {
     return this.constraint('IDX', tableOrName, columnNames, where);
   }

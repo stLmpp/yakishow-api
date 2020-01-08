@@ -49,7 +49,11 @@ export class PessoaService {
     return await this.pessoaRepository.find(options);
   }
 
-  async existsByTelefone(telefone: string): Promise<boolean> {
-    return await this.pessoaRepository.exists({ telefone });
+  async existsByCelular(celular: string): Promise<boolean> {
+    return await this.pessoaRepository.exists({ celular });
+  }
+
+  async findSimilarBairro(bairro: string): Promise<string[]> {
+    return await this.pessoaRepository.findSimilarBairro(bairro);
   }
 }

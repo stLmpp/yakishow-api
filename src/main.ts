@@ -17,4 +17,12 @@ async function bootstrap(): Promise<void> {
   }
   await app.listen(3000);
 }
-bootstrap();
+bootstrap()
+  .then(() => {
+    // tslint:disable-next-line:no-console
+    console.log('Yakishow-api started!');
+  })
+  .catch(error => {
+    // tslint:disable-next-line:no-console
+    console.error(error);
+  });

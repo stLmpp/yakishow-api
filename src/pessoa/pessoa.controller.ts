@@ -65,11 +65,15 @@ export class PessoaController {
     return this.pessoaService.findByTipo(tipo);
   }
 
-  @Get('/telefone/:telefone')
+  @Get('/celular/:celular')
   @ApiResponse({ status: 200, type: Boolean })
-  async existsByTelefone(
-    @Param('telefone') telefone: string
-  ): Promise<boolean> {
-    return this.pessoaService.existsByTelefone(telefone);
+  async existsByTelefone(@Param('celular') celular: string): Promise<boolean> {
+    return this.pessoaService.existsByCelular(celular);
+  }
+
+  @Get('/similarity/bairro/:bairro')
+  @ApiResponse({ status: 200, type: String, isArray: true })
+  async findSimilarBairro(@Param('bairro') bairro: string): Promise<string[]> {
+    return this.pessoaService.findSimilarBairro(bairro);
   }
 }

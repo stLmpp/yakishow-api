@@ -14,10 +14,15 @@ export class Pessoa extends CommonHistory {
   nome: string;
 
   @Column({
-    length: 12,
+    length: 11,
     unique: true,
   })
   @ApiProperty()
+  celular: string;
+
+  @Column({
+    length: 10,
+  })
   telefone: string;
 
   @Column({

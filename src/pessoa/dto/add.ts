@@ -16,12 +16,15 @@ export class PessoaAddDto {
   @ApiProperty()
   nome: string;
 
-  @IsDefined()
-  @IsNotEmpty()
   @IsString()
-  @ApiProperty()
   @MaxLength(12)
-  telefone: string;
+  @ApiProperty({ required: false })
+  celular?: string;
+
+  @IsString()
+  @ApiProperty({ required: false })
+  @MaxLength(10)
+  telefone?: string;
 
   @IsString()
   @ApiProperty({ required: false })
