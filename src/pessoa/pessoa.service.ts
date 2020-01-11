@@ -45,7 +45,7 @@ export class PessoaService {
 
   async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {
     let options: FindManyOptions<Pessoa> = {};
-    if (tipo !== TipoPessoaEnum.todos) options = { where: { tipo } };
+    if (tipo !== TipoPessoaEnum.todos) options = { where: { tipo }, take: 15 };
     return await this.pessoaRepository.find(options);
   }
 

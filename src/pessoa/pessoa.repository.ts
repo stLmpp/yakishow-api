@@ -16,7 +16,7 @@ export class PessoaRepository extends RepositoryCustom<Pessoa> {
     if (tipo !== TipoPessoaEnum.todos) {
       queryBuilder.andWhere('pessoa.tipo = pessoa.tipo', { tipo });
     }
-    return queryBuilder.getMany();
+    return queryBuilder.limit(15).getMany();
   }
 
   async findSimilarBairro(bairro: string): Promise<string[]> {

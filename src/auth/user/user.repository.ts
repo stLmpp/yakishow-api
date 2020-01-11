@@ -1,6 +1,6 @@
 import { Repository, EntityRepository } from 'typeorm';
 import { genSalt, hash } from 'bcryptjs';
-import { UnauthorizedException, NotFoundException } from '@nestjs/common';
+import { UnauthorizedException } from '@nestjs/common';
 import { User } from './user.entity';
 import { AuthRegisterDto } from './dto/register';
 import { AuthCredentialsDto } from './dto/credentials';
@@ -27,7 +27,9 @@ export class UserRepository extends Repository<User> {
     const user = await this.createQueryBuilder('user')
       .andWhere('user.username = :username', { username })
       .getOne();
-    if (!user) throw new UnauthorizedException('Usuário / Email ou senha inválida');
+    if (!user) {
+      throw new UnauthorizedException('Usuário / Email ou senha inválida');
+    }
     const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('Usuário / Email ou senha inválida');
