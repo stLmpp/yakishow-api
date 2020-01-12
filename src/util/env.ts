@@ -13,7 +13,11 @@ type Env =
   | 'SECRET_CHAR';
 
 export function getEnvVar(property: Env): any {
-  return get(property);
+  try {
+    return get(property);
+  } catch (e) {
+    return process.env[property];
+  }
 }
 
 export const isProd = getEnvVar('NODE_ENV') === 'production';
