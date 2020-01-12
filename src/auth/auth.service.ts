@@ -37,6 +37,7 @@ export class AuthService {
 
   setHistory(entity: any): any {
     const user = this.getUser();
+    console.log(user);
     const id = user ? user.id : -1;
     if (!entity.createdBy) entity.createdBy = id;
     entity.lastUpdatedBy = id;

@@ -2,6 +2,7 @@ import {
   IsDefined,
   IsEmail,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
@@ -18,11 +19,13 @@ export class PessoaAddDto {
 
   @IsString()
   @MaxLength(12)
+  @IsOptional()
   @ApiProperty({ required: false })
   celular?: string;
 
   @IsString()
   @ApiProperty({ required: false })
+  @IsOptional()
   @MaxLength(10)
   telefone?: string;
 
@@ -42,7 +45,7 @@ export class PessoaAddDto {
   @IsOptional()
   rua?: string;
 
-  @IsString()
+  @IsNumber()
   @ApiProperty({ required: false })
   @IsOptional()
   numero?: number;

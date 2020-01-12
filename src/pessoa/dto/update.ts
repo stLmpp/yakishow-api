@@ -1,6 +1,7 @@
 import {
   IsEmail,
   IsEnum,
+  IsNumber,
   IsOptional,
   IsString,
   MaxLength,
@@ -17,13 +18,13 @@ export class PessoaUpdateDto {
 
   @IsOptional()
   @IsString()
-  @MaxLength(10)
+  @MaxLength(12)
   @ApiProperty({ required: false })
   celular?: string;
 
   @IsOptional()
   @IsString()
-  @MaxLength(11)
+  @MaxLength(10)
   @ApiProperty({ required: false })
   telefone?: string;
 
@@ -46,7 +47,7 @@ export class PessoaUpdateDto {
   rua?: string;
 
   @IsOptional()
-  @IsString()
+  @IsNumber()
   @MaxLength(255)
   @ApiProperty({ required: false })
   numero?: number;

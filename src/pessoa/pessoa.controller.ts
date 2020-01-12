@@ -67,8 +67,11 @@ export class PessoaController {
 
   @Get('/celular/:celular')
   @ApiResponse({ status: 200, type: Boolean })
-  async existsByTelefone(@Param('celular') celular: string): Promise<boolean> {
-    return this.pessoaService.existsByCelular(celular);
+  async existsByTelefone(
+    @Param('celular') celular: string,
+    @Query('id', ParseIntPipe) id: number
+  ): Promise<boolean> {
+    return this.pessoaService.existsByCelular(celular, id);
   }
 
   @Get('/similarity/bairro/:bairro')

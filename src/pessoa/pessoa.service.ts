@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateResult, FindManyOptions } from 'typeorm';
+import { UpdateResult, FindManyOptions, FindConditions, Not } from 'typeorm';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
@@ -49,8 +49,10 @@ export class PessoaService {
     return await this.pessoaRepository.find(options);
   }
 
-  async existsByCelular(celular: string): Promise<boolean> {
-    return await this.pessoaRepository.exists({ celular });
+  async existsByCelular(celular: string, id?: number): Promise<boolean> {
+    const findConditions: FindConditions<Pessoa> = { celular };
+    if (id) findConditions.id = Not(id);
+    return await this.pessoaRepository.exists(findConditions);
   }
 
   async findSimilarBairro(bairro: string): Promise<string[]> {
