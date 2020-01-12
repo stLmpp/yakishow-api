@@ -2,7 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("config");
 function getEnvVar(property) {
-    return config_1.get(property);
+    try {
+        return config_1.get(property);
+    }
+    catch (e) {
+        return process.env[property];
+    }
 }
 exports.getEnvVar = getEnvVar;
 exports.isProd = getEnvVar('NODE_ENV') === 'production';

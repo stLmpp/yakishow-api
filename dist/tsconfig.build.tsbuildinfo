@@ -2134,7 +2134,7 @@
         "signature": "a2841f04e5d6e69661720db979db826a07dd2c2c6b170fb5fb8ff2680692e922"
       },
       "../src/util/env.ts": {
-        "version": "1044a3c210a8ad08f10ad87382ed3ab2a8dde7ed758c3588ab0f20c83f41a42a",
+        "version": "1e6d89e94c704f3fc21207eb22755d6fe190de8d93b3fe92c7614f836592bad7",
         "signature": "57f209a69730ac568287219453634fe499a636c209e14b9661bd85593c45ca2a"
       },
       "../src/config/db.config.ts": {
