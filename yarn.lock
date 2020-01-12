@@ -406,6 +406,11 @@
     "@angular-devkit/schematics" "7.3.8"
     fs-extra "8.1.0"
 
+"@nestjs/serve-static@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/serve-static/-/serve-static-1.0.2.tgz#8baa1a20fa39457186be4ec3e29b446d83d3fcb0"
+  integrity sha512-PRTrmytKXGSDYJn8i0I/XiSV01tygh4L0SR5bq1/zxIT5HHK/edmlULKfHeeA2pHQV7YLxMH33al/TPlcn4tXQ==
+
 "@nestjs/swagger@^4.1.10":
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.1.10.tgz#1c85563e3c98c58017ec04aaed291c23a760de79"

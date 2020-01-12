@@ -5,7 +5,6 @@ const app_module_1 = require("./app.module");
 const env_1 = require("./util/env");
 const swagger_1 = require("@nestjs/swagger");
 const package_json_1 = require("../package.json");
-const path_1 = require("path");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     if (!env_1.isProd) {
@@ -16,9 +15,8 @@ async function bootstrap() {
             .build();
         const document = swagger_1.SwaggerModule.createDocument(app, options);
         swagger_1.SwaggerModule.setup('help', app, document);
-        app.setGlobalPrefix('api');
-        app.useStaticAssets(path_1.join(__dirname, '..', 'public'));
     }
+    app.setGlobalPrefix('api');
     await app.listen(3000);
 }
 bootstrap()

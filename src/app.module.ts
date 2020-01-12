@@ -6,9 +6,12 @@ import { ProdutoModule } from './produto/produto.module';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { PedidoModule } from './pedido/pedido.module';
 import { AppController } from './app.controller';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'public') }),
     TypeOrmModule.forRoot(DB_TYPEORM_CONFIG),
     AuthModule,
     ProdutoModule,
