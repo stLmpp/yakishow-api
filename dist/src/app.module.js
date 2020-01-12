@@ -14,11 +14,14 @@ const produto_module_1 = require("./produto/produto.module");
 const pessoa_module_1 = require("./pessoa/pessoa.module");
 const pedido_module_1 = require("./pedido/pedido.module");
 const app_controller_1 = require("./app.controller");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({ rootPath: path_1.join(__dirname, '..', 'public') }),
             typeorm_1.TypeOrmModule.forRoot(db_config_1.DB_TYPEORM_CONFIG),
             auth_module_1.AuthModule,
             produto_module_1.ProdutoModule,

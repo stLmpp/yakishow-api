@@ -24,6 +24,7 @@ export declare const dependencies: {
     "@nestjs/jwt": string;
     "@nestjs/passport": string;
     "@nestjs/platform-express": string;
+    "@nestjs/serve-static": string;
     "@nestjs/swagger": string;
     "@nestjs/typeorm": string;
     "bcryptjs": string;
