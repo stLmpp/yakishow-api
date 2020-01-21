@@ -1,6 +1,6 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { isArray, isObject } from 'lodash';
+import { isArray, isObject } from 'is-what';
 
 @Injectable()
 export class UpdateHistoryPipe implements PipeTransform {

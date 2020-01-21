@@ -21,6 +21,7 @@ const add_1 = require("./dto/add");
 const pessoa_entity_1 = require("./pessoa.entity");
 const update_1 = require("./dto/update");
 const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
+const parse_int_pipe_1 = require("../shared/pipe/parse-int-pipe");
 let PessoaController = class PessoaController {
     constructor(pessoaService) {
         this.pessoaService = pessoaService;
@@ -59,7 +60,7 @@ __decorate([
     common_1.Patch(':id'),
     swagger_1.ApiResponse({ status: 200, type: typeorm_1.UpdateResult }),
     __param(0, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
-    __param(1, common_1.Param('id', common_1.ParseIntPipe)),
+    __param(1, common_1.Param('id', parse_int_pipe_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [update_1.PessoaUpdateDto, Number]),
     __metadata("design:returntype", Promise)
@@ -67,7 +68,7 @@ __decorate([
 __decorate([
     common_1.Get('id/:id'),
     swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.Pessoa }),
-    __param(0, common_1.Param('id', common_1.ParseIntPipe)),
+    __param(0, common_1.Param('id', parse_int_pipe_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
@@ -77,7 +78,7 @@ __decorate([
     swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.Pessoa, isArray: true }),
     swagger_1.ApiQuery({ name: 'tipo', enum: tipo_pessoa_enum_1.TipoPessoaEnum }),
     __param(0, common_1.Query('term')),
-    __param(1, common_1.Query('tipo', common_1.ParseIntPipe)),
+    __param(1, common_1.Query('tipo', parse_int_pipe_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Number]),
     __metadata("design:returntype", Promise)
@@ -86,7 +87,7 @@ __decorate([
     common_1.Get('/tipo/:tipo'),
     swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.Pessoa, isArray: true }),
     swagger_1.ApiParam({ name: 'tipo', enum: tipo_pessoa_enum_1.TipoPessoaEnum }),
-    __param(0, common_1.Param('tipo', common_1.ParseIntPipe)),
+    __param(0, common_1.Param('tipo', parse_int_pipe_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
@@ -95,7 +96,7 @@ __decorate([
     common_1.Get('/celular/:celular'),
     swagger_1.ApiResponse({ status: 200, type: Boolean }),
     __param(0, common_1.Param('celular')),
-    __param(1, common_1.Query('id', common_1.ParseIntPipe)),
+    __param(1, common_1.Query('id', parse_int_pipe_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Number]),
     __metadata("design:returntype", Promise)

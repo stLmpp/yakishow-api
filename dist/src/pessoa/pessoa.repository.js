@@ -8,17 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const pessoa_entity_1 = require("./pessoa.entity");
-const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
 const repository_custom_1 = require("../shared/types/repository-custom");
 const my_sql_functions_1 = require("../shared/my-sql-functions");
 let PessoaRepository = class PessoaRepository extends repository_custom_1.RepositoryCustom {
-    async findByParams(term, tipo) {
-        const queryBuilder = this.createQueryBuilder('pessoa').andWhere('(pessoa.telefone like :term or upper(pessoa.nome) like upper(:term))', { term: term ? `%${term}%` : term });
-        if (tipo !== tipo_pessoa_enum_1.TipoPessoaEnum.todos) {
-            queryBuilder.andWhere('pessoa.tipo = pessoa.tipo', { tipo });
-        }
-        return queryBuilder.limit(15).getMany();
-    }
     async findSimilarBairro(bairro) {
         const queryBuilder = this.createQueryBuilder('pessoa')
             .distinct(true)

@@ -1,6 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateResult, FindManyOptions, FindConditions, Not } from 'typeorm';
+import {
+  FindConditions,
+  FindManyOptions,
+  Like,
+  Not,
+  UpdateResult,
+} from 'typeorm';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
@@ -40,7 +46,12 @@ export class PessoaService {
   }
 
   async findByParams(term: string, tipo?: TipoPessoaEnum): Promise<Pessoa[]> {
-    return await this.pessoaRepository.findByParams(term, tipo);
+    let _tipo = {};
+    if (tipo !== TipoPessoaEnum.todos) _tipo = { tipo };
+    term = `%${term}%`;
+    return await this.pessoaRepository.find({
+      where: [{ celular: Like(term), ..._tipo }, { nome: Like(term) }],
+    });
   }
 
   async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {

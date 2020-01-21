@@ -32,8 +32,7 @@ export declare const dependencies: {
     "class-validator": string;
     "config": string;
     "cross-env": string;
-    "hbs": string;
-    "lodash": string;
+    "is-what": string;
     "moment": string;
     "mysql": string;
     "passport": string;
@@ -52,7 +51,6 @@ export declare const devDependencies: {
     "@types/config": string;
     "@types/express": string;
     "@types/jest": string;
-    "@types/lodash": string;
     "@types/mysql": string;
     "@types/node": string;
     "@types/passport-jwt": string;

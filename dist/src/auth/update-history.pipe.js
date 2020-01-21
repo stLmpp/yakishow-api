@@ -11,15 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
-const lodash_1 = require("lodash");
+const is_what_1 = require("is-what");
 let UpdateHistoryPipe = class UpdateHistoryPipe {
     constructor(authService) {
         this.authService = authService;
     }
     transform(value, metadata) {
-        if (!lodash_1.isObject(value))
+        if (!is_what_1.isObject(value))
             return value;
-        return lodash_1.isArray(value)
+        return is_what_1.isArray(value)
             ? this.authService.setHistoryArray(value)
             : this.authService.setHistory(value);
     }

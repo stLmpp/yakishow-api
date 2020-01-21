@@ -1,29 +1,29 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const lodash_1 = require("lodash");
+const lodash_es_1 = require("lodash-es");
 const hash_1 = require("../util/hash");
 class NamingStrategy extends typeorm_1.DefaultNamingStrategy {
     transform(name) {
-        if (lodash_1.isArray(name))
+        if (lodash_es_1.isArray(name))
             name = name.join('_');
-        return lodash_1.snakeCase(name);
+        return lodash_es_1.snakeCase(name);
     }
     tableName(className, customName) {
-        return customName ? customName : lodash_1.snakeCase(className);
+        return customName ? customName : lodash_es_1.snakeCase(className);
     }
     columnName(propertyName, customName, embeddedPrefixes) {
         return this.transform(embeddedPrefixes.join('_') +
-            (customName ? customName : lodash_1.snakeCase(propertyName)));
+            (customName ? customName : lodash_es_1.snakeCase(propertyName)));
     }
     joinColumnName(relationName, referencedColumnName) {
         return this.transform([
-            lodash_1.snakeCase(relationName),
-            lodash_1.snakeCase(referencedColumnName),
+            lodash_es_1.snakeCase(relationName),
+            lodash_es_1.snakeCase(referencedColumnName),
         ]);
     }
     constraint(type, tableOrName, columnsOrExpresion, add) {
-        const expresion = lodash_1.isArray(columnsOrExpresion)
+        const expresion = lodash_es_1.isArray(columnsOrExpresion)
             ? [...columnsOrExpresion].sort().join('_')
             : columnsOrExpresion;
         const table = tableOrName instanceof typeorm_1.Table ? tableOrName.name : tableOrName;

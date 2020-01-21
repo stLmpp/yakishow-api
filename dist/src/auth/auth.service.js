@@ -16,7 +16,7 @@ const user_repository_1 = require("./user/user.repository");
 const typeorm_1 = require("@nestjs/typeorm");
 const jwt_1 = require("@nestjs/jwt");
 const user_service_1 = require("./user/user.service");
-const lodash_1 = require("lodash");
+const is_what_1 = require("is-what");
 let AuthService = class AuthService {
     constructor(userRepository, jwtService, userService) {
         this.userRepository = userRepository;
@@ -41,17 +41,16 @@ let AuthService = class AuthService {
     }
     setHistory(entity) {
         const user = this.getUser();
-        console.log(user);
         const id = user ? user.id : -1;
         if (!entity.createdBy)
             entity.createdBy = id;
         entity.lastUpdatedBy = id;
         for (const key in entity) {
             if (entity.hasOwnProperty(key) && entity[key]) {
-                if (lodash_1.isObject(entity[key])) {
+                if (is_what_1.isObject(entity[key])) {
                     entity[key] = this.setHistory(entity[key]);
                 }
-                else if (lodash_1.isArray(entity[key]) && entity[key].length) {
+                else if (is_what_1.isArray(entity[key]) && entity[key].length) {
                     entity[key] = this.setHistoryArray(entity[key]);
                 }
             }

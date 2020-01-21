@@ -6,19 +6,6 @@ import { levenshteinRatio } from '../shared/my-sql-functions';
 
 @EntityRepository(Pessoa)
 export class PessoaRepository extends RepositoryCustom<Pessoa> {
-  async findByParams(term: string, tipo?: TipoPessoaEnum): Promise<Pessoa[]> {
-    const queryBuilder = this.createQueryBuilder(
-      'pessoa'
-    ).andWhere(
-      '(pessoa.telefone like :term or upper(pessoa.nome) like upper(:term))',
-      { term: term ? `%${term}%` : term }
-    );
-    if (tipo !== TipoPessoaEnum.todos) {
-      queryBuilder.andWhere('pessoa.tipo = pessoa.tipo', { tipo });
-    }
-    return queryBuilder.limit(15).getMany();
-  }
-
   async findSimilarBairro(bairro: string): Promise<string[]> {
     const queryBuilder = this.createQueryBuilder('pessoa')
       .distinct(true)

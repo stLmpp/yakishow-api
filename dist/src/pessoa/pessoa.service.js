@@ -47,7 +47,13 @@ let PessoaService = class PessoaService {
         }
     }
     async findByParams(term, tipo) {
-        return await this.pessoaRepository.findByParams(term, tipo);
+        let _tipo = {};
+        if (tipo !== tipo_pessoa_enum_1.TipoPessoaEnum.todos)
+            _tipo = { tipo };
+        term = `%${term}%`;
+        return await this.pessoaRepository.find({
+            where: [Object.assign({ celular: typeorm_2.Like(term) }, _tipo), { nome: typeorm_2.Like(term) }],
+        });
     }
     async findByTipo(tipo) {
         let options = {};

@@ -3,7 +3,6 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -17,6 +16,7 @@ import { PessoaAddDto } from './dto/add';
 import { Pessoa } from './pessoa.entity';
 import { PessoaUpdateDto } from './dto/update';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
+import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
 
 @Controller('pessoa')
 export class PessoaController {
