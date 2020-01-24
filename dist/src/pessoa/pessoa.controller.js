@@ -22,6 +22,7 @@ const pessoa_entity_1 = require("./pessoa.entity");
 const update_1 = require("./dto/update");
 const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
 const parse_int_pipe_1 = require("../shared/pipe/parse-int-pipe");
+const passport_1 = require("@nestjs/passport");
 let PessoaController = class PessoaController {
     constructor(pessoaService) {
         this.pessoaService = pessoaService;
@@ -111,6 +112,7 @@ __decorate([
 ], PessoaController.prototype, "findSimilarBairro", null);
 PessoaController = __decorate([
     common_1.Controller('pessoa'),
+    common_1.UseGuards(passport_1.AuthGuard()),
     __metadata("design:paramtypes", [pessoa_service_1.PessoaService])
 ], PessoaController);
 exports.PessoaController = PessoaController;
