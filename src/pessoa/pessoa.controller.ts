@@ -6,6 +6,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
@@ -17,8 +18,10 @@ import { Pessoa } from './pessoa.entity';
 import { PessoaUpdateDto } from './dto/update';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('pessoa')
+@UseGuards(AuthGuard())
 export class PessoaController {
   constructor(private pessoaService: PessoaService) {}
 

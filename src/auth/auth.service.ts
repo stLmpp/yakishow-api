@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { AuthCredentialsDto } from './user/dto/credentials';
 import { UserService } from './user/user.service';
-import { isArray, isObject } from 'lodash';
+import { isArray, isObject } from 'is-what';
 
 export class AuthService {
   constructor(
@@ -37,7 +37,6 @@ export class AuthService {
 
   setHistory(entity: any): any {
     const user = this.getUser();
-    console.log(user);
     const id = user ? user.id : -1;
     if (!entity.createdBy) entity.createdBy = id;
     entity.lastUpdatedBy = id;
