@@ -21,7 +21,7 @@ async function bootstrap(): Promise<void> {
 bootstrap()
   .then(() => {
     // tslint:disable-next-line:no-console
-    console.log('Yakishow-api started!');
+    console.log(`Yakishow-api started! on ${getEnvVar('HOST') + ' - ' + getEnvVar('PORT')}`);
   })
   .catch(error => {
     // tslint:disable-next-line:no-console

@@ -21,7 +21,7 @@ async function bootstrap() {
 }
 bootstrap()
     .then(() => {
-    console.log('Yakishow-api started!');
+    console.log(`Yakishow-api started! on ${env_1.getEnvVar('HOST') + ' - ' + env_1.getEnvVar('PORT')}`);
 })
     .catch(error => {
     console.error(error);
