@@ -3,8 +3,6 @@ import { AppModule } from './app.module';
 import { isProd } from './util/env';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { version } from '../package.json';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -16,8 +14,8 @@ async function bootstrap(): Promise<void> {
       .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('help', app, document);
-    app.setGlobalPrefix('api');
   }
+  app.setGlobalPrefix('api');
   await app.listen(3000);
 }
 bootstrap()
