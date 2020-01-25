@@ -2826,12 +2826,12 @@
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
       "../src/app.module.ts": {
-        "version": "4f7d6d8d1d76672135fa1022e2c821aebc40390a5681e3940867b1e3d83a4da0",
+        "version": "657976e0639ca5ea3567f6e30d7f8fd40f579128ddb0963222792088857d9508",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../package.json": {
-        "version": "7225b921163a5ac4231368bd70bee129e180972cf5a26505eedc1093381b5814",
-        "signature": "1ffd535cf2307206a2e7eb98796fd6f8bcb5427644eb57c19241f1412677db34"
+        "version": "b1f5bc54ba240bf3232c5887a62b2f7683cc835005f860221569c4da63bc8db9",
+        "signature": "56ec6f98f676607c16b5a4d17b8650b4a11f4cfc34162d0ad96a8a4bac6387f3"
       },
       "../node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
         "version": "b87682ddc9e2c3714ca66991cdd86ff7e18cae6fd010742a93bd612a07d19697",
