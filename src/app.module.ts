@@ -11,7 +11,7 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'client', 'dist') }),
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', '..', '..', 'client', 'dist') }),
     TypeOrmModule.forRoot(DB_TYPEORM_CONFIG),
     AuthModule,
     ProdutoModule,
