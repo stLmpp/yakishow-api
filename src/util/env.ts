@@ -11,7 +11,8 @@ type Env =
   | 'JWT_SECRET'
   | 'JWT_EXPIRES_IN'
   | 'SECRET_CHAR'
-  | 'PORT';
+  | 'PORT'
+  | 'HOST';
 
 export function getEnvVar(property: Env): any {
   try {
