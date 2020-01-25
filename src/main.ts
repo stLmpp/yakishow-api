@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { isProd } from './util/env';
+import { getEnvVar, isProd } from './util/env';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { version } from '../package.json';
 
@@ -16,7 +16,7 @@ async function bootstrap(): Promise<void> {
     SwaggerModule.setup('help', app, document);
   }
   app.setGlobalPrefix('api');
-  await app.listen(3000);
+  await app.listen(getEnvVar('PORT') || 3000);
 }
 bootstrap()
   .then(() => {

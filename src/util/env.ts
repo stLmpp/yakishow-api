@@ -10,7 +10,8 @@ type Env =
   | 'DB_SYNC'
   | 'JWT_SECRET'
   | 'JWT_EXPIRES_IN'
-  | 'SECRET_CHAR';
+  | 'SECRET_CHAR'
+  | 'PORT';
 
 export function getEnvVar(property: Env): any {
   try {

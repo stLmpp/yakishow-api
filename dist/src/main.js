@@ -17,7 +17,7 @@ async function bootstrap() {
         swagger_1.SwaggerModule.setup('help', app, document);
     }
     app.setGlobalPrefix('api');
-    await app.listen(3000);
+    await app.listen(env_1.getEnvVar('PORT') || 3000);
 }
 bootstrap()
     .then(() => {

@@ -2134,8 +2134,8 @@
         "signature": "a2841f04e5d6e69661720db979db826a07dd2c2c6b170fb5fb8ff2680692e922"
       },
       "../src/util/env.ts": {
-        "version": "1e6d89e94c704f3fc21207eb22755d6fe190de8d93b3fe92c7614f836592bad7",
-        "signature": "57f209a69730ac568287219453634fe499a636c209e14b9661bd85593c45ca2a"
+        "version": "4a8b684626d06e0a66b487024972d3ffc841405b14b9e5b8cc298f583f275d32",
+        "signature": "2eaabeee72557f2fc36b90ab7efea499cb177d6fe5bcebe81fee4b75b3f3d5e0"
       },
       "../src/config/db.config.ts": {
         "version": "868862488004d93e2c25dfbff05426b257fe0b1ce6373e9693132be2faa5962d",
@@ -2834,7 +2834,7 @@
         "signature": "f02fa149a5d95e6fed563e7cae685785419ec1847ade8dc28003c98543cf8173"
       },
       "../src/main.ts": {
-        "version": "b95c956fab951839627bdfe0ed9a7834f76a786453aec8fe4a3aa8a45329cc48",
+        "version": "946be9ac25352ca3ee876c42fa1004a91b4e00f59858f5fe95941973bfa39508",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../src/shared/dto/search-term.ts": {
