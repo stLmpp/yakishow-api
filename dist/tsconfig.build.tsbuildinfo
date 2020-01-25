@@ -2826,7 +2826,7 @@
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
       "../src/app.module.ts": {
-        "version": "657976e0639ca5ea3567f6e30d7f8fd40f579128ddb0963222792088857d9508",
+        "version": "07e32b271dedcd3e0ef078d084f8cb94428107bb4e66454d365f8015b6d39a53",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../package.json": {

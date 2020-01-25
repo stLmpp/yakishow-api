@@ -21,7 +21,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     common_1.Module({
         imports: [
-            serve_static_1.ServeStaticModule.forRoot({ rootPath: path_1.join(__dirname, '..', 'client', 'dist') }),
+            serve_static_1.ServeStaticModule.forRoot({ rootPath: path_1.join(__dirname, '..', '..', '..', 'client', 'dist') }),
             typeorm_1.TypeOrmModule.forRoot(db_config_1.DB_TYPEORM_CONFIG),
             auth_module_1.AuthModule,
             produto_module_1.ProdutoModule,
