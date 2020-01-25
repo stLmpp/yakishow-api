@@ -14,7 +14,7 @@ type Env =
   | 'PORT'
   | 'HOST';
 
-export function getEnvVar(property: Env): any {
+export function getEnvVar(property: string): any {
   try {
     return get(property);
   } catch (e) {

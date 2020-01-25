@@ -16,12 +16,12 @@ async function bootstrap(): Promise<void> {
     SwaggerModule.setup('help', app, document);
   }
   app.setGlobalPrefix('api');
-  await app.listen(getEnvVar('PORT'),  getEnvVar('HOST'));
+  await app.listen(getEnvVar('PORT') || getEnvVar('$PORT'), getEnvVar('HOST'));
 }
 bootstrap()
   .then(() => {
     // tslint:disable-next-line:no-console
-    console.log(`Yakishow-api started! on ${getEnvVar('HOST') + ' - ' + getEnvVar('PORT')}`);
+    console.log(`Yakishow-api started! on ${getEnvVar('HOST') + ' - ' + (getEnvVar('PORT') || getEnvVar('$PORT'))}`);
   })
   .catch(error => {
     // tslint:disable-next-line:no-console
