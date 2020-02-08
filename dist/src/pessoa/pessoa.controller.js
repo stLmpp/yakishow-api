@@ -22,7 +22,7 @@ const pessoa_entity_1 = require("./pessoa.entity");
 const update_1 = require("./dto/update");
 const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
 const parse_int_pipe_1 = require("../shared/pipe/parse-int-pipe");
-const passport_1 = require("@nestjs/passport");
+const with_auth_guard_decorator_1 = require("../auth/with-auth-guard.decorator");
 let PessoaController = class PessoaController {
     constructor(pessoaService) {
         this.pessoaService = pessoaService;
@@ -47,6 +47,11 @@ let PessoaController = class PessoaController {
     }
     async findSimilarBairro(bairro) {
         return this.pessoaService.findSimilarBairro(bairro);
+    }
+    async findByPage(page, limit) {
+        if (!limit)
+            limit = 25;
+        return this.pessoaService.findByPage({ page, limit, route: '/page' });
     }
 };
 __decorate([
@@ -110,9 +115,18 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PessoaController.prototype, "findSimilarBairro", null);
+__decorate([
+    common_1.Get('/page'),
+    swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.PaginatedPessoa }),
+    __param(0, common_1.Query('page', parse_int_pipe_1.ParseIntPipe)),
+    __param(1, common_1.Query('limit', parse_int_pipe_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], PessoaController.prototype, "findByPage", null);
 PessoaController = __decorate([
     common_1.Controller('pessoa'),
-    common_1.UseGuards(passport_1.AuthGuard()),
+    with_auth_guard_decorator_1.WithAuthGuard(),
     __metadata("design:paramtypes", [pessoa_service_1.PessoaService])
 ], PessoaController);
 exports.PessoaController = PessoaController;

@@ -1,8 +1,8 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  BaseEntity,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 

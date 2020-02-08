@@ -19,8 +19,8 @@ const update_history_pipe_1 = require("../../auth/update-history.pipe");
 const add_1 = require("./dto/add");
 const typeorm_1 = require("typeorm");
 const update_1 = require("./dto/update");
-const passport_1 = require("@nestjs/passport");
 const swagger_1 = require("@nestjs/swagger");
+const with_auth_guard_decorator_1 = require("../../auth/with-auth-guard.decorator");
 let PedidoItemController = class PedidoItemController {
     constructor(pedidoItemService) {
         this.pedidoItemService = pedidoItemService;
@@ -77,7 +77,7 @@ __decorate([
 ], PedidoItemController.prototype, "update", null);
 PedidoItemController = __decorate([
     common_1.Controller(),
-    common_1.UseGuards(passport_1.AuthGuard()),
+    with_auth_guard_decorator_1.WithAuthGuard(),
     __metadata("design:paramtypes", [pedido_item_service_1.PedidoItemService])
 ], PedidoItemController);
 exports.PedidoItemController = PedidoItemController;

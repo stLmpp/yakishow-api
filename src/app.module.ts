@@ -8,6 +8,7 @@ import { PedidoModule } from './pedido/pedido.module';
 import { AppController } from './app.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ExternalModule } from './external/external.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { join } from 'path';
     ProdutoModule,
     PessoaModule,
     PedidoModule,
+    ExternalModule,
   ],
   controllers: [AppController],
   providers: [],

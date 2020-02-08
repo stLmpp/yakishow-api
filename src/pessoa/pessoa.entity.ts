@@ -2,6 +2,10 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { CommonHistory } from '../shared/super-entities/common-history';
 import { ApiProperty } from '@nestjs/swagger';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
+import {
+  PaginatedEntity,
+  PaginatedEntityItems,
+} from '../shared/types/paginated-entity';
 
 @Entity()
 export class Pessoa extends CommonHistory {
@@ -76,4 +80,10 @@ export class Pessoa extends CommonHistory {
     enum: TipoPessoaEnum,
   })
   tipo: TipoPessoaEnum;
+}
+
+export class PaginatedPessoa extends PaginatedEntity
+  implements PaginatedEntityItems<Pessoa> {
+  @ApiProperty({ isArray: true, type: Pessoa })
+  items: Pessoa[];
 }

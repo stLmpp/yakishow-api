@@ -5,6 +5,7 @@
     "no-unused-expression": true
   },
   "rules": {
+    "max-classes-per-file": [true, 2, "exclude-class-expressions"],
     "no-trailing-whitespace": [
       true,
       "ignore-comments",

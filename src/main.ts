@@ -3,9 +3,15 @@ import { AppModule } from './app.module';
 import { getEnvVar, isProd } from './util/env';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { version } from '../package.json';
+import { patchClassValidatorMessages } from './config/class-validator-messages';
+
+patchClassValidatorMessages();
+
+const PORT = getEnvVar('PORT') ?? getEnvVar('$PORT');
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
   if (!isProd) {
     app.enableCors();
     const options = new DocumentBuilder()
@@ -15,13 +21,12 @@ async function bootstrap(): Promise<void> {
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('help', app, document);
   }
-  app.setGlobalPrefix('api');
-  await app.listen(getEnvVar('PORT') || getEnvVar('$PORT'), getEnvVar('HOST'));
+  await app.listen(PORT, getEnvVar('HOST'));
 }
 bootstrap()
   .then(() => {
     // tslint:disable-next-line:no-console
-    console.log(`Yakishow-api started! on ${getEnvVar('HOST') + ' - ' + (getEnvVar('PORT') || getEnvVar('$PORT'))}`);
+    console.log(`Yakishow-api started! on ${getEnvVar('HOST') + ' - ' + PORT}`);
   })
   .catch(error => {
     // tslint:disable-next-line:no-console

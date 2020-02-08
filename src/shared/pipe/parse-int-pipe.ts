@@ -1,8 +1,8 @@
 import {
   ArgumentMetadata,
   Injectable,
-  PipeTransform,
   ParseIntPipe as NestParseIntPipe,
+  PipeTransform,
 } from '@nestjs/common';
 import { isUndefined } from 'is-what';
 

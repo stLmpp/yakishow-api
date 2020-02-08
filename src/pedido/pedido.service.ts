@@ -23,7 +23,7 @@ export class PedidoService {
     if (!dto.status) dto.status = PedidoStatusEnum.pendente;
     try {
       const pedido = await this.pedidoRepository.save(dto);
-      if (dto.pedidoItems && dto.pedidoItems.length) {
+      if (dto.pedidoItems?.length) {
         pedido.pedidoItems = await this.pedidoItemRepository.save(
           dto.pedidoItems.map(pedidoItem => {
             pedidoItem.pedidoId = pedido.id;

@@ -11,4 +11,5 @@ function getEnvVar(property) {
 }
 exports.getEnvVar = getEnvVar;
 exports.isProd = getEnvVar('NODE_ENV') === 'production';
+exports.LOCALE_ID = 'pt-BR';
 //# sourceMappingURL=env.js.map

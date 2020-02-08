@@ -24,13 +24,14 @@ let PedidoService = class PedidoService {
         this.pedidoItemRepository = pedidoItemRepository;
     }
     async add(dto) {
+        var _a;
         if (!dto.dataInicio)
             dto.dataInicio = new Date();
         if (!dto.status)
             dto.status = pedido_status_enum_1.PedidoStatusEnum.pendente;
         try {
             const pedido = await this.pedidoRepository.save(dto);
-            if (dto.pedidoItems && dto.pedidoItems.length) {
+            if ((_a = dto.pedidoItems) === null || _a === void 0 ? void 0 : _a.length) {
                 pedido.pedidoItems = await this.pedidoItemRepository.save(dto.pedidoItems.map(pedidoItem => {
                     pedidoItem.pedidoId = pedido.id;
                     return pedidoItem;

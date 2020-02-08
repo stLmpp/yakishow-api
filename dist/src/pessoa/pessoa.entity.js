@@ -13,6 +13,7 @@ const typeorm_1 = require("typeorm");
 const common_history_1 = require("../shared/super-entities/common-history");
 const swagger_1 = require("@nestjs/swagger");
 const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
+const paginated_entity_1 = require("../shared/types/paginated-entity");
 let Pessoa = class Pessoa extends common_history_1.CommonHistory {
 };
 __decorate([
@@ -103,4 +104,11 @@ Pessoa = __decorate([
     typeorm_1.Entity()
 ], Pessoa);
 exports.Pessoa = Pessoa;
+class PaginatedPessoa extends paginated_entity_1.PaginatedEntity {
+}
+__decorate([
+    swagger_1.ApiProperty({ isArray: true, type: Pessoa }),
+    __metadata("design:type", Array)
+], PaginatedPessoa.prototype, "items", void 0);
+exports.PaginatedPessoa = PaginatedPessoa;
 //# sourceMappingURL=pessoa.entity.js.map

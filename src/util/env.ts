@@ -23,3 +23,4 @@ export function getEnvVar(property: string): any {
 }
 
 export const isProd = getEnvVar('NODE_ENV') === 'production';
+export const LOCALE_ID = 'pt-BR';

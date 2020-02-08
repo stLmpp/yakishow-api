@@ -6,7 +6,6 @@ import {
   Patch,
   Post,
   Query,
-  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
@@ -14,14 +13,15 @@ import { UpdateHistoryPipe } from '../auth/update-history.pipe';
 import { UpdateResult } from 'typeorm';
 import { PessoaService } from './pessoa.service';
 import { PessoaAddDto } from './dto/add';
-import { Pessoa } from './pessoa.entity';
+import { PaginatedPessoa, Pessoa } from './pessoa.entity';
 import { PessoaUpdateDto } from './dto/update';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
-import { AuthGuard } from '@nestjs/passport';
+import { Pagination } from 'nestjs-typeorm-paginate';
+import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 
 @Controller('pessoa')
-@UseGuards(AuthGuard())
+@WithAuthGuard()
 export class PessoaController {
   constructor(private pessoaService: PessoaService) {}
 
@@ -81,5 +81,15 @@ export class PessoaController {
   @ApiResponse({ status: 200, type: String, isArray: true })
   async findSimilarBairro(@Param('bairro') bairro: string): Promise<string[]> {
     return this.pessoaService.findSimilarBairro(bairro);
+  }
+
+  @Get('/page')
+  @ApiResponse({ status: 200, type: PaginatedPessoa })
+  async findByPage(
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', ParseIntPipe) limit: number
+  ): Promise<Pagination<Pessoa>> {
+    if (!limit) limit = 25;
+    return this.pessoaService.findByPage({ page, limit, route: '/page' });
   }
 }

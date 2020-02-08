@@ -16,6 +16,7 @@ const pedido_module_1 = require("./pedido/pedido.module");
 const app_controller_1 = require("./app.controller");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const external_module_1 = require("./external/external.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -27,6 +28,7 @@ AppModule = __decorate([
             produto_module_1.ProdutoModule,
             pessoa_module_1.PessoaModule,
             pedido_module_1.PedidoModule,
+            external_module_1.ExternalModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [],

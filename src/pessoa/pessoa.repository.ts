@@ -1,6 +1,5 @@
 import { EntityRepository } from 'typeorm';
 import { Pessoa } from './pessoa.entity';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import { RepositoryCustom } from '../shared/types/repository-custom';
 import { levenshteinRatio } from '../shared/my-sql-functions';
 

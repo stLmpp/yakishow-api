@@ -1,4 +1,4 @@
-import { Repository, EntityRepository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { genSalt, hash } from 'bcryptjs';
 import { UnauthorizedException } from '@nestjs/common';
 import { User } from './user.entity';

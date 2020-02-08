@@ -7,21 +7,20 @@ import {
   Patch,
   Post,
   Query,
-  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { Pedido } from './pedido.entity';
-import { AuthGuard } from '@nestjs/passport';
 import { PedidoAddDto } from './dto/add';
 import { UpdateHistoryPipe } from '../auth/update-history.pipe';
 import { UpdateResult } from 'typeorm';
 import { PedidoUpdateDto } from './dto/update';
 import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { PedidoStatusEnum } from './pedido-status.enum';
+import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 
 @Controller('pedido')
-@UseGuards(AuthGuard())
+@WithAuthGuard()
 export class PedidoController {
   constructor(private pedidoService: PedidoService) {}
 

@@ -15,12 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const produto_service_1 = require("./produto.service");
 const produto_entity_1 = require("./produto.entity");
-const passport_1 = require("@nestjs/passport");
 const update_history_pipe_1 = require("../auth/update-history.pipe");
 const add_1 = require("./dto/add");
 const typeorm_1 = require("typeorm");
 const swagger_1 = require("@nestjs/swagger");
 const update_1 = require("./dto/update");
+const with_auth_guard_decorator_1 = require("../auth/with-auth-guard.decorator");
 let ProdutoController = class ProdutoController {
     constructor(produtoService) {
         this.produtoService = produtoService;
@@ -86,7 +86,7 @@ __decorate([
 ], ProdutoController.prototype, "findByDescricao", null);
 ProdutoController = __decorate([
     common_1.Controller('produto'),
-    common_1.UseGuards(passport_1.AuthGuard()),
+    with_auth_guard_decorator_1.WithAuthGuard(),
     __metadata("design:paramtypes", [produto_service_1.ProdutoService])
 ], ProdutoController);
 exports.ProdutoController = ProdutoController;

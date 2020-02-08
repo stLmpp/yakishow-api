@@ -18,6 +18,7 @@ const typeorm_2 = require("typeorm");
 const my_sql_error_1 = require("../shared/error/my-sql-error");
 const pessoa_repository_1 = require("./pessoa.repository");
 const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
+const nestjs_typeorm_paginate_1 = require("nestjs-typeorm-paginate");
 let PessoaService = class PessoaService {
     constructor(pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
@@ -52,13 +53,17 @@ let PessoaService = class PessoaService {
             _tipo = { tipo };
         term = `%${term}%`;
         return await this.pessoaRepository.find({
-            where: [Object.assign({ celular: typeorm_2.Like(term) }, _tipo), { nome: typeorm_2.Like(term) }],
+            where: [
+                Object.assign({ celular: typeorm_2.Raw(alias => `upper(${alias}) LIKE upper('${term}')`) }, _tipo),
+                { nome: typeorm_2.Raw(alias => `upper(${alias}) LIKE upper('${term}')`) },
+            ],
+            take: 25,
         });
     }
     async findByTipo(tipo) {
-        let options = {};
+        const options = { take: 25 };
         if (tipo !== tipo_pessoa_enum_1.TipoPessoaEnum.todos)
-            options = { where: { tipo }, take: 15 };
+            options.where = { tipo };
         return await this.pessoaRepository.find(options);
     }
     async existsByCelular(celular, id) {
@@ -69,6 +74,9 @@ let PessoaService = class PessoaService {
     }
     async findSimilarBairro(bairro) {
         return await this.pessoaRepository.findSimilarBairro(bairro);
+    }
+    async findByPage(options) {
+        return await nestjs_typeorm_paginate_1.paginate(this.pessoaRepository, options);
     }
 };
 PessoaService = __decorate([

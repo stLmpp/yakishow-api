@@ -5,7 +5,6 @@ import {
   ParseIntPipe,
   Patch,
   Post,
-  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { PedidoItemService } from './pedido-item.service';
@@ -14,11 +13,11 @@ import { UpdateHistoryPipe } from '../../auth/update-history.pipe';
 import { PedidoItemAddDto } from './dto/add';
 import { UpdateResult } from 'typeorm';
 import { PedidoItemUpdateDto } from './dto/update';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiBody, ApiResponse } from '@nestjs/swagger';
+import { WithAuthGuard } from '../../auth/with-auth-guard.decorator';
 
 @Controller()
-@UseGuards(AuthGuard())
+@WithAuthGuard()
 export class PedidoItemController {
   constructor(private pedidoItemService: PedidoItemService) {}
 

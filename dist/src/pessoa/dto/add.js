@@ -25,6 +25,7 @@ __decorate([
     class_validator_1.IsString(),
     class_validator_1.MaxLength(12),
     class_validator_1.IsOptional(),
+    class_validator_1.IsNumberString(),
     swagger_1.ApiProperty({ required: false }),
     __metadata("design:type", String)
 ], PessoaAddDto.prototype, "celular", void 0);
@@ -32,6 +33,7 @@ __decorate([
     class_validator_1.IsString(),
     swagger_1.ApiProperty({ required: false }),
     class_validator_1.IsOptional(),
+    class_validator_1.IsNumberString(),
     class_validator_1.MaxLength(10),
     __metadata("design:type", String)
 ], PessoaAddDto.prototype, "telefone", void 0);

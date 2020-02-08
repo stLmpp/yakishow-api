@@ -15,13 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const pedido_service_1 = require("./pedido.service");
 const pedido_entity_1 = require("./pedido.entity");
-const passport_1 = require("@nestjs/passport");
 const add_1 = require("./dto/add");
 const update_history_pipe_1 = require("../auth/update-history.pipe");
 const typeorm_1 = require("typeorm");
 const update_1 = require("./dto/update");
 const swagger_1 = require("@nestjs/swagger");
 const pedido_status_enum_1 = require("./pedido-status.enum");
+const with_auth_guard_decorator_1 = require("../auth/with-auth-guard.decorator");
 let PedidoController = class PedidoController {
     constructor(pedidoService) {
         this.pedidoService = pedidoService;
@@ -64,7 +64,7 @@ __decorate([
 ], PedidoController.prototype, "findByStatus", null);
 PedidoController = __decorate([
     common_1.Controller('pedido'),
-    common_1.UseGuards(passport_1.AuthGuard()),
+    with_auth_guard_decorator_1.WithAuthGuard(),
     __metadata("design:paramtypes", [pedido_service_1.PedidoService])
 ], PedidoController);
 exports.PedidoController = PedidoController;

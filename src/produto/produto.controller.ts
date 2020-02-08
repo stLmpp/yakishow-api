@@ -8,20 +8,19 @@ import {
   Patch,
   Post,
   Query,
-  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { ProdutoService } from './produto.service';
 import { Produto } from './produto.entity';
-import { AuthGuard } from '@nestjs/passport';
 import { UpdateHistoryPipe } from '../auth/update-history.pipe';
 import { ProdutoAddDto } from './dto/add';
 import { UpdateResult } from 'typeorm';
 import { ApiResponse } from '@nestjs/swagger';
 import { ProdutoUpdateDto } from './dto/update';
+import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 
 @Controller('produto')
-@UseGuards(AuthGuard())
+@WithAuthGuard()
 export class ProdutoController {
   constructor(private produtoService: ProdutoService) {}
 

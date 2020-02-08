@@ -4,6 +4,7 @@ import { PessoaAddDto } from './dto/add';
 import { Pessoa } from './pessoa.entity';
 import { PessoaUpdateDto } from './dto/update';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
+import { Pagination } from 'nestjs-typeorm-paginate';
 export declare class PessoaController {
     private pessoaService;
     constructor(pessoaService: PessoaService);
@@ -14,4 +15,5 @@ export declare class PessoaController {
     findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]>;
     existsByTelefone(celular: string, id: number): Promise<boolean>;
     findSimilarBairro(bairro: string): Promise<string[]>;
+    findByPage(page: number, limit: number): Promise<Pagination<Pessoa>>;
 }

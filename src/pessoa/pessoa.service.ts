@@ -5,6 +5,7 @@ import {
   FindManyOptions,
   Like,
   Not,
+  Raw,
   UpdateResult,
 } from 'typeorm';
 import { mySQLError } from '../shared/error/my-sql-error';
@@ -13,6 +14,11 @@ import { Pessoa } from './pessoa.entity';
 import { PessoaAddDto } from './dto/add';
 import { PessoaUpdateDto } from './dto/update';
 import { TipoPessoaEnum } from './tipo-pessoa.enum';
+import {
+  IPaginationOptions,
+  paginate,
+  Pagination,
+} from 'nestjs-typeorm-paginate';
 
 @Injectable()
 export class PessoaService {
@@ -50,13 +56,20 @@ export class PessoaService {
     if (tipo !== TipoPessoaEnum.todos) _tipo = { tipo };
     term = `%${term}%`;
     return await this.pessoaRepository.find({
-      where: [{ celular: Like(term), ..._tipo }, { nome: Like(term) }],
+      where: [
+        {
+          celular: Raw(alias => `upper(${alias}) LIKE upper('${term}')`),
+          ..._tipo,
+        },
+        { nome: Raw(alias => `upper(${alias}) LIKE upper('${term}')`) },
+      ],
+      take: 25,
     });
   }
 
   async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {
-    let options: FindManyOptions<Pessoa> = {};
-    if (tipo !== TipoPessoaEnum.todos) options = { where: { tipo }, take: 15 };
+    const options: FindManyOptions<Pessoa> = { take: 25 };
+    if (tipo !== TipoPessoaEnum.todos) options.where = { tipo };
     return await this.pessoaRepository.find(options);
   }
 
@@ -68,5 +81,9 @@ export class PessoaService {
 
   async findSimilarBairro(bairro: string): Promise<string[]> {
     return await this.pessoaRepository.findSimilarBairro(bairro);
+  }
+
+  async findByPage(options: IPaginationOptions): Promise<Pagination<Pessoa>> {
+    return await paginate<Pessoa>(this.pessoaRepository, options);
   }
 }
