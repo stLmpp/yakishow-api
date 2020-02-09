@@ -11,4 +11,11 @@ export class RepositoryCustom<T> extends Repository<T> {
   ): Promise<boolean> {
     return !!(await this.findOne({ where }));
   }
+
+  async findRandom(length: number = 20): Promise<T[]> {
+    return this.createQueryBuilder()
+      .orderBy('rand()')
+      .limit(length)
+      .getMany();
+  }
 }

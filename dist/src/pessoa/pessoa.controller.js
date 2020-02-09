@@ -45,18 +45,21 @@ let PessoaController = class PessoaController {
     async existsByTelefone(celular, id) {
         return this.pessoaService.existsByCelular(celular, id);
     }
-    async findSimilarBairro(bairro) {
-        return this.pessoaService.findSimilarBairro(bairro);
-    }
     async findByPage(page, limit) {
         if (!limit)
             limit = 25;
         return this.pessoaService.findByPage({ page, limit, route: '/page' });
     }
+    async findAll() {
+        return this.pessoaService.findAll();
+    }
+    async findRandom15(length) {
+        return this.pessoaService.findRandom(length);
+    }
 };
 __decorate([
     common_1.Post(),
-    swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.Pessoa }),
+    swagger_1.ApiResponse({ status: 201, type: pessoa_entity_1.Pessoa }),
     __param(0, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [add_1.PessoaAddDto]),
@@ -108,14 +111,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PessoaController.prototype, "existsByTelefone", null);
 __decorate([
-    common_1.Get('/similarity/bairro/:bairro'),
-    swagger_1.ApiResponse({ status: 200, type: String, isArray: true }),
-    __param(0, common_1.Param('bairro')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], PessoaController.prototype, "findSimilarBairro", null);
-__decorate([
     common_1.Get('/page'),
     swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.PaginatedPessoa }),
     __param(0, common_1.Query('page', parse_int_pipe_1.ParseIntPipe)),
@@ -124,6 +119,21 @@ __decorate([
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
 ], PessoaController.prototype, "findByPage", null);
+__decorate([
+    common_1.Get('/all'),
+    swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.Pessoa, isArray: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PessoaController.prototype, "findAll", null);
+__decorate([
+    common_1.Get('/random'),
+    swagger_1.ApiResponse({ status: 200, type: pessoa_entity_1.Pessoa, isArray: true }),
+    __param(0, common_1.Query('length', parse_int_pipe_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], PessoaController.prototype, "findRandom15", null);
 PessoaController = __decorate([
     common_1.Controller('pessoa'),
     with_auth_guard_decorator_1.WithAuthGuard(),

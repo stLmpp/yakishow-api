@@ -14,6 +14,7 @@ export declare class PessoaController {
     findByParams(term: string, tipo?: TipoPessoaEnum): Promise<Pessoa[]>;
     findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]>;
     existsByTelefone(celular: string, id: number): Promise<boolean>;
-    findSimilarBairro(bairro: string): Promise<string[]>;
     findByPage(page: number, limit: number): Promise<Pagination<Pessoa>>;
+    findAll(): Promise<Pessoa[]>;
+    findRandom15(length: number): Promise<Pessoa[]>;
 }

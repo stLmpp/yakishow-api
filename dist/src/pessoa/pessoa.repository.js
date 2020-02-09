@@ -9,19 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const pessoa_entity_1 = require("./pessoa.entity");
 const repository_custom_1 = require("../shared/types/repository-custom");
-const my_sql_functions_1 = require("../shared/my-sql-functions");
 let PessoaRepository = class PessoaRepository extends repository_custom_1.RepositoryCustom {
-    async findSimilarBairro(bairro) {
-        const queryBuilder = this.createQueryBuilder('pessoa')
-            .distinct(true)
-            .select('bairro')
-            .andWhere(`${my_sql_functions_1.levenshteinRatio(':bairro', 'pessoa.bairro')} >= 70`, {
-            bairro,
-        })
-            .limit(8);
-        const pessoas = await queryBuilder.getMany();
-        return pessoas.map(pessoa => pessoa.bairro);
-    }
 };
 PessoaRepository = __decorate([
     typeorm_1.EntityRepository(pessoa_entity_1.Pessoa)

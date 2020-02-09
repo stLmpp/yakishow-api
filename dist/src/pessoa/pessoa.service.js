@@ -57,11 +57,11 @@ let PessoaService = class PessoaService {
                 Object.assign({ celular: typeorm_2.Raw(alias => `upper(${alias}) LIKE upper('${term}')`) }, _tipo),
                 { nome: typeorm_2.Raw(alias => `upper(${alias}) LIKE upper('${term}')`) },
             ],
-            take: 25,
+            take: 20,
         });
     }
     async findByTipo(tipo) {
-        const options = { take: 25 };
+        const options = { take: 20 };
         if (tipo !== tipo_pessoa_enum_1.TipoPessoaEnum.todos)
             options.where = { tipo };
         return await this.pessoaRepository.find(options);
@@ -72,11 +72,14 @@ let PessoaService = class PessoaService {
             findConditions.id = typeorm_2.Not(id);
         return await this.pessoaRepository.exists(findConditions);
     }
-    async findSimilarBairro(bairro) {
-        return await this.pessoaRepository.findSimilarBairro(bairro);
-    }
     async findByPage(options) {
         return await nestjs_typeorm_paginate_1.paginate(this.pessoaRepository, options);
+    }
+    async findAll() {
+        return await this.pessoaRepository.find();
+    }
+    async findRandom(length) {
+        return await this.pessoaRepository.findRandom(length);
     }
 };
 PessoaService = __decorate([

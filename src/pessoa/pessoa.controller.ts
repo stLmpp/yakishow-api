@@ -26,7 +26,7 @@ export class PessoaController {
   constructor(private pessoaService: PessoaService) {}
 
   @Post()
-  @ApiResponse({ status: 200, type: Pessoa })
+  @ApiResponse({ status: 201, type: Pessoa })
   async add(
     @Body(ValidationPipe, UpdateHistoryPipe) dto: PessoaAddDto
   ): Promise<Pessoa> {
@@ -77,12 +77,6 @@ export class PessoaController {
     return this.pessoaService.existsByCelular(celular, id);
   }
 
-  @Get('/similarity/bairro/:bairro')
-  @ApiResponse({ status: 200, type: String, isArray: true })
-  async findSimilarBairro(@Param('bairro') bairro: string): Promise<string[]> {
-    return this.pessoaService.findSimilarBairro(bairro);
-  }
-
   @Get('/page')
   @ApiResponse({ status: 200, type: PaginatedPessoa })
   async findByPage(
@@ -91,5 +85,19 @@ export class PessoaController {
   ): Promise<Pagination<Pessoa>> {
     if (!limit) limit = 25;
     return this.pessoaService.findByPage({ page, limit, route: '/page' });
+  }
+
+  @Get('/all')
+  @ApiResponse({ status: 200, type: Pessoa, isArray: true })
+  async findAll(): Promise<Pessoa[]> {
+    return this.pessoaService.findAll();
+  }
+
+  @Get('/random')
+  @ApiResponse({ status: 200, type: Pessoa, isArray: true })
+  async findRandom15(
+    @Query('length', ParseIntPipe) length: number
+  ): Promise<Pessoa[]> {
+    return this.pessoaService.findRandom(length);
   }
 }

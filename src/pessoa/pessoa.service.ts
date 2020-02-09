@@ -63,12 +63,12 @@ export class PessoaService {
         },
         { nome: Raw(alias => `upper(${alias}) LIKE upper('${term}')`) },
       ],
-      take: 25,
+      take: 20,
     });
   }
 
   async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {
-    const options: FindManyOptions<Pessoa> = { take: 25 };
+    const options: FindManyOptions<Pessoa> = { take: 20 };
     if (tipo !== TipoPessoaEnum.todos) options.where = { tipo };
     return await this.pessoaRepository.find(options);
   }
@@ -79,11 +79,15 @@ export class PessoaService {
     return await this.pessoaRepository.exists(findConditions);
   }
 
-  async findSimilarBairro(bairro: string): Promise<string[]> {
-    return await this.pessoaRepository.findSimilarBairro(bairro);
-  }
-
   async findByPage(options: IPaginationOptions): Promise<Pagination<Pessoa>> {
     return await paginate<Pessoa>(this.pessoaRepository, options);
+  }
+
+  async findAll(): Promise<Pessoa[]> {
+    return await this.pessoaRepository.find();
+  }
+
+  async findRandom(length: number): Promise<Pessoa[]> {
+    return await this.pessoaRepository.findRandom(length);
   }
 }
