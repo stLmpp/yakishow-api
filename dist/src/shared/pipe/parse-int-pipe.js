@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const is_what_1 = require("is-what");
 let ParseIntPipe = class ParseIntPipe {
-    async transform(value, metadata) {
+    transform(value, metadata) {
         if (is_what_1.isUndefined(value))
             return value;
         return new common_1.ParseIntPipe().transform(value, metadata);

@@ -12,9 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const common_history_1 = require("../shared/super-entities/common-history");
 const swagger_1 = require("@nestjs/swagger");
-const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
 const paginated_entity_1 = require("../shared/types/paginated-entity");
+const pessoa_tipo_entity_1 = require("./pessoa-tipo/pessoa-tipo.entity");
 let Pessoa = class Pessoa extends common_history_1.CommonHistory {
+    constructor(partial) {
+        super();
+        Object.assign(this, partial);
+    }
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
@@ -94,14 +98,14 @@ __decorate([
     __metadata("design:type", String)
 ], Pessoa.prototype, "email", void 0);
 __decorate([
-    typeorm_1.Column(),
-    swagger_1.ApiProperty({
-        enum: tipo_pessoa_enum_1.TipoPessoaEnum,
-    }),
-    __metadata("design:type", Number)
-], Pessoa.prototype, "tipo", void 0);
+    typeorm_1.OneToMany(() => pessoa_tipo_entity_1.PessoaTipo, tipo => tipo.pessoa, { cascade: true }),
+    typeorm_1.JoinColumn(),
+    swagger_1.ApiProperty({ isArray: true, type: pessoa_tipo_entity_1.PessoaTipo }),
+    __metadata("design:type", Array)
+], Pessoa.prototype, "tipos", void 0);
 Pessoa = __decorate([
-    typeorm_1.Entity()
+    typeorm_1.Entity(),
+    __metadata("design:paramtypes", [Object])
 ], Pessoa);
 exports.Pessoa = Pessoa;
 class PaginatedPessoa extends paginated_entity_1.PaginatedEntity {

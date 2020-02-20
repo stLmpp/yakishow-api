@@ -1,4 +1,6 @@
 import {
+  ArrayNotEmpty,
+  IsArray,
   IsDefined,
   IsEmail,
   IsNotEmpty,
@@ -7,9 +9,10 @@ import {
   IsOptional,
   IsString,
   MaxLength,
+  ValidateNested,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { TipoPessoaEnum } from '../tipo-pessoa.enum';
+import { PessoaTipoUpdateDto } from '../pessoa-tipo/dto/update';
 
 export class PessoaAddDto {
   @IsDefined()
@@ -69,8 +72,10 @@ export class PessoaAddDto {
   @IsOptional()
   email?: string;
 
-  @ApiProperty({ enum: TipoPessoaEnum })
   @IsDefined()
-  @IsNotEmpty()
-  tipo: TipoPessoaEnum;
+  @IsArray()
+  @ApiProperty({ type: PessoaTipoUpdateDto, isArray: true })
+  @ArrayNotEmpty()
+  @ValidateNested({ each: true })
+  tipos: PessoaTipoUpdateDto[];
 }

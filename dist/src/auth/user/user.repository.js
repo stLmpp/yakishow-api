@@ -28,15 +28,16 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
     }
     async login(dto) {
         const { username, password } = dto;
-        const user = await this.createQueryBuilder('user')
-            .andWhere('user.username = :username', { username })
-            .getOne();
+        const user = await this.findOne({
+            where: [{ username }, { email: username }],
+        });
+        const errorMessage = 'Login ou senha inválidos';
         if (!user) {
-            throw new common_1.UnauthorizedException('Usuário / Email ou senha inválida');
+            throw new common_1.UnauthorizedException(errorMessage);
         }
         const isPasswordValid = await user.validatePassword(password);
         if (!isPasswordValid) {
-            throw new common_1.UnauthorizedException('Usuário / Email ou senha inválida');
+            throw new common_1.UnauthorizedException(errorMessage);
         }
         user.password = null;
         user.salt = null;

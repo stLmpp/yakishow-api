@@ -1,15 +1,20 @@
 import {
+  IsArray,
   IsEmail,
-  IsEnum,
   IsNumber,
   IsOptional,
   IsString,
   MaxLength,
+  ValidateNested,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { TipoPessoaEnum } from '../tipo-pessoa.enum';
+import { PessoaTipoUpdateDto } from '../pessoa-tipo/dto/update';
 
 export class PessoaUpdateDto {
+  @IsOptional()
+  @IsNumber()
+  id?: number;
+
   @IsOptional()
   @MaxLength(255)
   @IsString()
@@ -72,10 +77,8 @@ export class PessoaUpdateDto {
   email?: string;
 
   @IsOptional()
-  @IsEnum(TipoPessoaEnum)
-  @ApiProperty({
-    enum: TipoPessoaEnum,
-    required: false,
-  })
-  tipo?: TipoPessoaEnum;
+  @IsArray()
+  @ApiProperty({ required: false, type: PessoaTipoUpdateDto, isArray: true })
+  @ValidateNested({ each: true })
+  tipos?: PessoaTipoUpdateDto[];
 }

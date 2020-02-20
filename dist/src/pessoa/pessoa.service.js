@@ -17,11 +17,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const my_sql_error_1 = require("../shared/error/my-sql-error");
 const pessoa_repository_1 = require("./pessoa.repository");
-const tipo_pessoa_enum_1 = require("./tipo-pessoa.enum");
 const nestjs_typeorm_paginate_1 = require("nestjs-typeorm-paginate");
+const pessoa_tipo_service_1 = require("./pessoa-tipo/pessoa-tipo.service");
 let PessoaService = class PessoaService {
-    constructor(pessoaRepository) {
+    constructor(pessoaRepository, pessoaTipoService) {
         this.pessoaRepository = pessoaRepository;
+        this.pessoaTipoService = pessoaTipoService;
     }
     async add(dto) {
         try {
@@ -32,39 +33,41 @@ let PessoaService = class PessoaService {
         }
     }
     async update(id, dto) {
+        var _a, _b, _c;
         try {
-            return await this.pessoaRepository.update(id, dto);
+            dto.id = id;
+            if ((_a = dto.tipos) === null || _a === void 0 ? void 0 : _a.length) {
+                dto.tipos = dto.tipos.map(tipo => (Object.assign(Object.assign({}, tipo), { pessoaId: id })));
+                const removeTipos = (_c = (_b = (await this.pessoaTipoService.findByPessoaId(id, dto.tipos.map(o => o.tipoPessoaId)))) === null || _b === void 0 ? void 0 : _b.map(o => o.id), (_c !== null && _c !== void 0 ? _c : []));
+                if (removeTipos.length) {
+                    await this.pessoaTipoService.remove(removeTipos);
+                }
+            }
+            return await this.pessoaRepository.save(dto);
         }
         catch (err) {
-            throw my_sql_error_1.mySQLError(err, 'Erro ao tentar atualziar a pessoa');
+            throw my_sql_error_1.mySQLError(err, 'Erro ao tentar atualizar a pessoa');
         }
     }
     async findById(id) {
         try {
-            return await this.pessoaRepository.findOneOrFail(id);
+            return await this.pessoaRepository.findOneOrFail(id, {
+                relations: ['tipos'],
+            });
         }
         catch (err) {
-            throw new common_1.NotFoundException('Pessoa não encontrado!');
+            throw my_sql_error_1.mySQLError(err, 'Pessoa não encontrado!');
         }
     }
-    async findByParams(term, tipo) {
-        let _tipo = {};
-        if (tipo !== tipo_pessoa_enum_1.TipoPessoaEnum.todos)
-            _tipo = { tipo };
-        term = `%${term}%`;
-        return await this.pessoaRepository.find({
-            where: [
-                Object.assign({ celular: typeorm_2.Raw(alias => `upper(${alias}) LIKE upper('${term}')`) }, _tipo),
-                { nome: typeorm_2.Raw(alias => `upper(${alias}) LIKE upper('${term}')`) },
-            ],
-            take: 20,
-        });
+    async findByParams(term, tipos) {
+        return await this.pessoaRepository.findByParams(term, tipos);
     }
-    async findByTipo(tipo) {
-        const options = { take: 20 };
-        if (tipo !== tipo_pessoa_enum_1.TipoPessoaEnum.todos)
-            options.where = { tipo };
-        return await this.pessoaRepository.find(options);
+    async findByTipos(tipos) {
+        return await this.pessoaRepository.find({
+            take: 20,
+            where: { tipos: typeorm_2.In(tipos) },
+            relations: ['tipos'],
+        });
     }
     async existsByCelular(celular, id) {
         const findConditions = { celular };
@@ -81,11 +84,18 @@ let PessoaService = class PessoaService {
     async findRandom(length) {
         return await this.pessoaRepository.findRandom(length);
     }
+    async existsByEmail(email, id) {
+        const findConditions = { email };
+        if (id)
+            findConditions.id = id;
+        return await this.pessoaRepository.exists(findConditions);
+    }
 };
 PessoaService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(pessoa_repository_1.PessoaRepository)),
-    __metadata("design:paramtypes", [pessoa_repository_1.PessoaRepository])
+    __metadata("design:paramtypes", [pessoa_repository_1.PessoaRepository,
+        pessoa_tipo_service_1.PessoaTipoService])
 ], PessoaService);
 exports.PessoaService = PessoaService;
 //# sourceMappingURL=pessoa.service.js.map

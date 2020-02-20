@@ -17,12 +17,17 @@ const app_controller_1 = require("./app.controller");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const external_module_1 = require("./external/external.module");
+const core_1 = require("@nestjs/core");
+const create_instance_pipe_1 = require("./shared/pipe/create-instance.pipe");
+const destroy_instance_interceptor_1 = require("./shared/interceptors/destroy-instance.interceptor");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [
-            serve_static_1.ServeStaticModule.forRoot({ rootPath: path_1.join(__dirname, '..', '..', '..', 'client', 'dist') }),
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: path_1.join(__dirname, '..', '..', '..', 'client', 'dist'),
+            }),
             typeorm_1.TypeOrmModule.forRoot(db_config_1.DB_TYPEORM_CONFIG),
             auth_module_1.AuthModule,
             produto_module_1.ProdutoModule,
@@ -31,7 +36,16 @@ AppModule = __decorate([
             external_module_1.ExternalModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [],
+        providers: [
+            {
+                provide: core_1.APP_PIPE,
+                useClass: create_instance_pipe_1.CreateInstancePipe,
+            },
+            {
+                provide: core_1.APP_INTERCEPTOR,
+                useClass: destroy_instance_interceptor_1.DestroyInstanceInterceptor,
+            },
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;

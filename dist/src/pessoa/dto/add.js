@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
-const tipo_pessoa_enum_1 = require("../tipo-pessoa.enum");
+const update_1 = require("../pessoa-tipo/dto/update");
 class PessoaAddDto {
 }
 __decorate([
@@ -82,10 +82,12 @@ __decorate([
     __metadata("design:type", String)
 ], PessoaAddDto.prototype, "email", void 0);
 __decorate([
-    swagger_1.ApiProperty({ enum: tipo_pessoa_enum_1.TipoPessoaEnum }),
     class_validator_1.IsDefined(),
-    class_validator_1.IsNotEmpty(),
-    __metadata("design:type", Number)
-], PessoaAddDto.prototype, "tipo", void 0);
+    class_validator_1.IsArray(),
+    swagger_1.ApiProperty({ type: update_1.PessoaTipoUpdateDto, isArray: true }),
+    class_validator_1.ArrayNotEmpty(),
+    class_validator_1.ValidateNested({ each: true }),
+    __metadata("design:type", Array)
+], PessoaAddDto.prototype, "tipos", void 0);
 exports.PessoaAddDto = PessoaAddDto;
 //# sourceMappingURL=add.js.map

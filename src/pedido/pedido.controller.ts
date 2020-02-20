@@ -12,7 +12,6 @@ import {
 import { PedidoService } from './pedido.service';
 import { Pedido } from './pedido.entity';
 import { PedidoAddDto } from './dto/add';
-import { UpdateHistoryPipe } from '../auth/update-history.pipe';
 import { UpdateResult } from 'typeorm';
 import { PedidoUpdateDto } from './dto/update';
 import { ApiQuery, ApiResponse } from '@nestjs/swagger';
@@ -26,9 +25,7 @@ export class PedidoController {
 
   @Post()
   @ApiResponse({ status: 200, type: Pedido })
-  async add(
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoAddDto
-  ): Promise<Pedido> {
+  async add(@Body(ValidationPipe) dto: PedidoAddDto): Promise<Pedido> {
     return this.pedidoService.add(dto);
   }
 
@@ -36,7 +33,7 @@ export class PedidoController {
   @ApiResponse({ status: 200, type: UpdateResult })
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoUpdateDto
+    @Body(ValidationPipe) dto: PedidoUpdateDto
   ): Promise<UpdateResult> {
     return this.pedidoService.update(id, dto);
   }

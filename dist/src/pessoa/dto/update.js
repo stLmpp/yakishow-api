@@ -11,9 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
-const tipo_pessoa_enum_1 = require("../tipo-pessoa.enum");
+const update_1 = require("../pessoa-tipo/dto/update");
 class PessoaUpdateDto {
 }
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsNumber(),
+    __metadata("design:type", Number)
+], PessoaUpdateDto.prototype, "id", void 0);
 __decorate([
     class_validator_1.IsOptional(),
     class_validator_1.MaxLength(255),
@@ -87,12 +92,10 @@ __decorate([
 ], PessoaUpdateDto.prototype, "email", void 0);
 __decorate([
     class_validator_1.IsOptional(),
-    class_validator_1.IsEnum(tipo_pessoa_enum_1.TipoPessoaEnum),
-    swagger_1.ApiProperty({
-        enum: tipo_pessoa_enum_1.TipoPessoaEnum,
-        required: false,
-    }),
-    __metadata("design:type", Number)
-], PessoaUpdateDto.prototype, "tipo", void 0);
+    class_validator_1.IsArray(),
+    swagger_1.ApiProperty({ required: false, type: update_1.PessoaTipoUpdateDto, isArray: true }),
+    class_validator_1.ValidateNested({ each: true }),
+    __metadata("design:type", Array)
+], PessoaUpdateDto.prototype, "tipos", void 0);
 exports.PessoaUpdateDto = PessoaUpdateDto;
 //# sourceMappingURL=update.js.map

@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const pedido_item_service_1 = require("./pedido-item.service");
 const pedido_item_entity_1 = require("./pedido-item.entity");
-const update_history_pipe_1 = require("../../auth/update-history.pipe");
 const add_1 = require("./dto/add");
 const typeorm_1 = require("typeorm");
 const update_1 = require("./dto/update");
@@ -43,7 +42,7 @@ __decorate([
     swagger_1.ApiResponse({ status: 200, type: pedido_item_entity_1.PedidoItem, isArray: true }),
     swagger_1.ApiBody({ isArray: true, type: add_1.PedidoItemAddDto }),
     __param(0, common_1.Param('idPedido', common_1.ParseIntPipe)),
-    __param(1, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(1, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Array]),
     __metadata("design:returntype", Promise)
@@ -52,7 +51,7 @@ __decorate([
     common_1.Post('pedido/:idPedido/pedido-item'),
     swagger_1.ApiResponse({ status: 200, type: pedido_item_entity_1.PedidoItem }),
     __param(0, common_1.Param('idPedido', common_1.ParseIntPipe)),
-    __param(1, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(1, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, add_1.PedidoItemAddDto]),
     __metadata("design:returntype", Promise)
@@ -61,7 +60,7 @@ __decorate([
     common_1.Patch('pedido-item/batch'),
     swagger_1.ApiResponse({ status: 200, type: typeorm_1.UpdateResult, isArray: true }),
     swagger_1.ApiBody({ isArray: true, type: update_1.PedidoItemUpdateDto }),
-    __param(0, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(0, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Array]),
     __metadata("design:returntype", Promise)
@@ -70,7 +69,7 @@ __decorate([
     common_1.Patch('pedido-item/:id'),
     swagger_1.ApiResponse({ status: 200, type: typeorm_1.UpdateResult }),
     __param(0, common_1.Param('id', common_1.ParseIntPipe)),
-    __param(1, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(1, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, update_1.PedidoItemUpdateDto]),
     __metadata("design:returntype", Promise)

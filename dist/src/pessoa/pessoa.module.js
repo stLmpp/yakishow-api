@@ -12,13 +12,26 @@ const pessoa_repository_1 = require("./pessoa.repository");
 const pessoa_service_1 = require("./pessoa.service");
 const pessoa_controller_1 = require("./pessoa.controller");
 const auth_module_1 = require("../auth/auth.module");
+const tipo_pessoa_repository_1 = require("./tipo-pessoa/tipo-pessoa.repository");
+const tipo_pessoa_service_1 = require("./tipo-pessoa/tipo-pessoa.service");
+const tipo_pessoa_controller_1 = require("./tipo-pessoa/tipo-pessoa.controller");
+const pessoa_tipo_controller_1 = require("./pessoa-tipo/pessoa-tipo.controller");
+const pessoa_tipo_service_1 = require("./pessoa-tipo/pessoa-tipo.service");
+const pessoa_tipo_repository_1 = require("./pessoa-tipo/pessoa-tipo.repository");
 let PessoaModule = class PessoaModule {
 };
 PessoaModule = __decorate([
     common_1.Module({
-        imports: [typeorm_1.TypeOrmModule.forFeature([pessoa_repository_1.PessoaRepository]), auth_module_1.AuthModule],
-        providers: [pessoa_service_1.PessoaService],
-        controllers: [pessoa_controller_1.PessoaController],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([
+                pessoa_repository_1.PessoaRepository,
+                tipo_pessoa_repository_1.TipoPessoaRepository,
+                pessoa_tipo_repository_1.PessoaTipoRepository,
+            ]),
+            auth_module_1.AuthModule,
+        ],
+        providers: [pessoa_service_1.PessoaService, tipo_pessoa_service_1.TipoPessoaService, pessoa_tipo_service_1.PessoaTipoService],
+        controllers: [pessoa_controller_1.PessoaController, tipo_pessoa_controller_1.TipoPessoaController, pessoa_tipo_controller_1.PessoaTipoController],
     })
 ], PessoaModule);
 exports.PessoaModule = PessoaModule;

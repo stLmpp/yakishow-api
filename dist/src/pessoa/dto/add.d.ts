@@ -1,4 +1,4 @@
-import { TipoPessoaEnum } from '../tipo-pessoa.enum';
+import { PessoaTipoUpdateDto } from '../pessoa-tipo/dto/update';
 export declare class PessoaAddDto {
     nome: string;
     celular?: string;
@@ -10,5 +10,5 @@ export declare class PessoaAddDto {
     complemento?: string;
     cep?: string;
     email?: string;
-    tipo: TipoPessoaEnum;
+    tipos: PessoaTipoUpdateDto[];
 }

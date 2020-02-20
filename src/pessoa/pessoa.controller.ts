@@ -8,17 +8,15 @@ import {
   Query,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
-import { UpdateHistoryPipe } from '../auth/update-history.pipe';
-import { UpdateResult } from 'typeorm';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { PessoaService } from './pessoa.service';
 import { PessoaAddDto } from './dto/add';
 import { PaginatedPessoa, Pessoa } from './pessoa.entity';
 import { PessoaUpdateDto } from './dto/update';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
+import { ParseArrayPipe } from '../shared/pipe/parse-array.pipe';
 
 @Controller('pessoa')
 @WithAuthGuard()
@@ -27,19 +25,17 @@ export class PessoaController {
 
   @Post()
   @ApiResponse({ status: 201, type: Pessoa })
-  async add(
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PessoaAddDto
-  ): Promise<Pessoa> {
+  async add(@Body(ValidationPipe) dto: PessoaAddDto): Promise<Pessoa> {
     return this.pessoaService.add(dto);
   }
 
   @Patch(':id')
-  @ApiResponse({ status: 200, type: UpdateResult })
+  @ApiResponse({ status: 200, type: Pessoa })
   async update(
-    @Body(ValidationPipe, UpdateHistoryPipe)
+    @Body(ValidationPipe)
     dto: PessoaUpdateDto,
     @Param('id', ParseIntPipe) id: number
-  ): Promise<UpdateResult> {
+  ): Promise<Pessoa> {
     return this.pessoaService.update(id, dto);
   }
 
@@ -49,35 +45,36 @@ export class PessoaController {
     return this.pessoaService.findById(id);
   }
 
-  @Get('/search')
+  @Get('search')
   @ApiResponse({ status: 200, type: Pessoa, isArray: true })
-  @ApiQuery({ name: 'tipo', enum: TipoPessoaEnum })
+  @ApiQuery({ name: 'tipos', type: Number, isArray: true, required: false })
+  @ApiQuery({ name: 'term', type: String, required: false })
   async findByParams(
-    @Query('term') term: string,
-    @Query('tipo', ParseIntPipe) tipo?: TipoPessoaEnum
+    @Query('term') term?: string,
+    @Query('tipos', new ParseArrayPipe('number')) tipos?: number[]
   ): Promise<Pessoa[]> {
-    return this.pessoaService.findByParams(term, tipo);
+    return this.pessoaService.findByParams(term, tipos);
   }
 
-  @Get('/tipo/:tipo')
+  @Get('tipo')
   @ApiResponse({ status: 200, type: Pessoa, isArray: true })
-  @ApiParam({ name: 'tipo', enum: TipoPessoaEnum })
+  @ApiQuery({ name: 'tipos', type: Number, isArray: true })
   async findByTipo(
-    @Param('tipo', ParseIntPipe) tipo: TipoPessoaEnum
+    @Query('tipos', new ParseArrayPipe('number')) tipos: number[]
   ): Promise<Pessoa[]> {
-    return this.pessoaService.findByTipo(tipo);
+    return this.pessoaService.findByTipos(tipos);
   }
 
-  @Get('/celular/:celular')
+  @Get('exists/celular/:celular')
   @ApiResponse({ status: 200, type: Boolean })
-  async existsByTelefone(
+  async existsByCelular(
     @Param('celular') celular: string,
-    @Query('id', ParseIntPipe) id: number
+    @Query('id', ParseIntPipe) id?: number
   ): Promise<boolean> {
     return this.pessoaService.existsByCelular(celular, id);
   }
 
-  @Get('/page')
+  @Get('page')
   @ApiResponse({ status: 200, type: PaginatedPessoa })
   async findByPage(
     @Query('page', ParseIntPipe) page: number,
@@ -87,17 +84,26 @@ export class PessoaController {
     return this.pessoaService.findByPage({ page, limit, route: '/page' });
   }
 
-  @Get('/all')
+  @Get('all')
   @ApiResponse({ status: 200, type: Pessoa, isArray: true })
   async findAll(): Promise<Pessoa[]> {
     return this.pessoaService.findAll();
   }
 
-  @Get('/random')
+  @Get('random')
   @ApiResponse({ status: 200, type: Pessoa, isArray: true })
   async findRandom15(
     @Query('length', ParseIntPipe) length: number
   ): Promise<Pessoa[]> {
     return this.pessoaService.findRandom(length);
+  }
+
+  @Get('exists/email/:email')
+  @ApiResponse({ status: 200, type: Boolean })
+  async existsByEmail(
+    @Param('email') email: string,
+    @Query('id', ParseIntPipe) id?: number
+  ): Promise<boolean> {
+    return this.pessoaService.existsByEmail(email, id);
   }
 }

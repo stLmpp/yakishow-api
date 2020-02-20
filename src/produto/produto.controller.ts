@@ -12,7 +12,6 @@ import {
 } from '@nestjs/common';
 import { ProdutoService } from './produto.service';
 import { Produto } from './produto.entity';
-import { UpdateHistoryPipe } from '../auth/update-history.pipe';
 import { ProdutoAddDto } from './dto/add';
 import { UpdateResult } from 'typeorm';
 import { ApiResponse } from '@nestjs/swagger';
@@ -26,9 +25,7 @@ export class ProdutoController {
 
   @Post()
   @ApiResponse({ status: 200, type: Produto })
-  async add(
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: ProdutoAddDto
-  ): Promise<Produto> {
+  async add(@Body(ValidationPipe) dto: ProdutoAddDto): Promise<Produto> {
     return this.produtoService.add(dto);
   }
 
@@ -36,7 +33,7 @@ export class ProdutoController {
   @ApiResponse({ status: 200, type: UpdateResult })
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: ProdutoUpdateDto
+    @Body(ValidationPipe) dto: ProdutoUpdateDto
   ): Promise<UpdateResult> {
     return this.produtoService.update(id, dto);
   }

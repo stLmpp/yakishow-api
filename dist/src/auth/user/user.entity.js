@@ -42,6 +42,7 @@ __decorate([
     typeorm_1.Column({
         unique: true,
     }),
+    swagger_1.ApiProperty(),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([

@@ -1,14 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { CommonHistory } from '../shared/super-entities/common-history';
 import { ApiProperty } from '@nestjs/swagger';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import {
   PaginatedEntity,
   PaginatedEntityItems,
 } from '../shared/types/paginated-entity';
+import { PessoaTipo } from './pessoa-tipo/pessoa-tipo.entity';
 
 @Entity()
 export class Pessoa extends CommonHistory {
+  constructor(partial?: Partial<Pessoa>) {
+    super();
+    Object.assign(this, partial);
+  }
+
   @PrimaryGeneratedColumn()
   @ApiProperty()
   id: number;
@@ -75,11 +86,14 @@ export class Pessoa extends CommonHistory {
   @ApiProperty()
   email: string;
 
-  @Column()
-  @ApiProperty({
-    enum: TipoPessoaEnum,
-  })
-  tipo: TipoPessoaEnum;
+  @OneToMany(
+    () => PessoaTipo,
+    tipo => tipo.pessoa,
+    { cascade: true }
+  )
+  @JoinColumn()
+  @ApiProperty({ isArray: true, type: PessoaTipo })
+  tipos: PessoaTipo[];
 }
 
 export class PaginatedPessoa extends PaginatedEntity

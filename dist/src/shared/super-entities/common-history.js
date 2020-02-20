@@ -15,29 +15,13 @@ class CommonHistory extends typeorm_1.BaseEntity {
 }
 __decorate([
     typeorm_1.CreateDateColumn(),
-    swagger_1.ApiProperty({
-        type: String,
-        description: 'Date',
-    }),
+    swagger_1.ApiProperty(),
     __metadata("design:type", Date)
 ], CommonHistory.prototype, "creationDate", void 0);
 __decorate([
     typeorm_1.UpdateDateColumn(),
-    swagger_1.ApiProperty({
-        type: String,
-        description: 'Date',
-    }),
+    swagger_1.ApiProperty(),
     __metadata("design:type", Date)
 ], CommonHistory.prototype, "lastUpdateDate", void 0);
-__decorate([
-    typeorm_1.Column({ nullable: true }),
-    swagger_1.ApiProperty(),
-    __metadata("design:type", Number)
-], CommonHistory.prototype, "createdBy", void 0);
-__decorate([
-    typeorm_1.Column({ nullable: true }),
-    swagger_1.ApiProperty(),
-    __metadata("design:type", Number)
-], CommonHistory.prototype, "lastUpdatedBy", void 0);
 exports.CommonHistory = CommonHistory;
 //# sourceMappingURL=common-history.js.map

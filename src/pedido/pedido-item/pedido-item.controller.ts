@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { PedidoItemService } from './pedido-item.service';
 import { PedidoItem } from './pedido-item.entity';
-import { UpdateHistoryPipe } from '../../auth/update-history.pipe';
 import { PedidoItemAddDto } from './dto/add';
 import { UpdateResult } from 'typeorm';
 import { PedidoItemUpdateDto } from './dto/update';
@@ -26,7 +25,7 @@ export class PedidoItemController {
   @ApiBody({ isArray: true, type: PedidoItemAddDto })
   async addBatch(
     @Param('idPedido', ParseIntPipe) idPedido: number,
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoItemAddDto[]
+    @Body(ValidationPipe) dto: PedidoItemAddDto[]
   ): Promise<PedidoItem[]> {
     return this.pedidoItemService.addBatch(idPedido, dto);
   }
@@ -35,7 +34,7 @@ export class PedidoItemController {
   @ApiResponse({ status: 200, type: PedidoItem })
   async add(
     @Param('idPedido', ParseIntPipe) idPedido: number,
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoItemAddDto
+    @Body(ValidationPipe) dto: PedidoItemAddDto
   ): Promise<PedidoItem> {
     return this.pedidoItemService.add(idPedido, dto);
   }
@@ -44,7 +43,7 @@ export class PedidoItemController {
   @ApiResponse({ status: 200, type: UpdateResult, isArray: true })
   @ApiBody({ isArray: true, type: PedidoItemUpdateDto })
   async updateBatch(
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoItemUpdateDto[]
+    @Body(ValidationPipe) dto: PedidoItemUpdateDto[]
   ): Promise<UpdateResult[]> {
     return this.pedidoItemService.updateBatch(dto);
   }
@@ -53,7 +52,7 @@ export class PedidoItemController {
   @ApiResponse({ status: 200, type: UpdateResult })
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PedidoItemUpdateDto
+    @Body(ValidationPipe) dto: PedidoItemUpdateDto
   ): Promise<UpdateResult> {
     return this.pedidoItemService.update(id, dto);
   }

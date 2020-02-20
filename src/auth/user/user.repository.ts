@@ -24,15 +24,16 @@ export class UserRepository extends Repository<User> {
 
   async login(dto: AuthCredentialsDto): Promise<User> {
     const { username, password } = dto;
-    const user = await this.createQueryBuilder('user')
-      .andWhere('user.username = :username', { username })
-      .getOne();
+    const user = await this.findOne({
+      where: [{ username }, { email: username }],
+    });
+    const errorMessage = 'Login ou senha inválidos';
     if (!user) {
-      throw new UnauthorizedException('Usuário / Email ou senha inválida');
+      throw new UnauthorizedException(errorMessage);
     }
     const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Usuário / Email ou senha inválida');
+      throw new UnauthorizedException(errorMessage);
     }
     user.password = null;
     user.salt = null;

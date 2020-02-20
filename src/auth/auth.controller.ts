@@ -11,7 +11,6 @@ import { AuthRegisterDto } from './user/dto/register';
 import { User } from './user/user.entity';
 import { AuthCredentialsDto } from './user/dto/credentials';
 import { ApiResponse } from '@nestjs/swagger';
-import { UpdateHistoryPipe } from './update-history.pipe';
 import { GetUser } from './get-user.decorator';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -21,9 +20,7 @@ export class AuthController {
 
   @Post('register')
   @ApiResponse({ status: 201, type: User })
-  async register(
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: AuthRegisterDto
-  ): Promise<User> {
+  async register(@Body(ValidationPipe) dto: AuthRegisterDto): Promise<User> {
     return this.authService.register(dto);
   }
 

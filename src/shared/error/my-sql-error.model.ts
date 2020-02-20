@@ -1,4 +1,7 @@
-export interface MySQLError {
+export class MySQLError {
+  constructor(error?: Partial<MySQLError>) {
+    Object.assign(this, error);
+  }
   message: string;
   code: string;
   errno: number;

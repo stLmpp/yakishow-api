@@ -1,4 +1,5 @@
-export interface MySQLError {
+export declare class MySQLError {
+    constructor(error?: Partial<MySQLError>);
     message: string;
     code: string;
     errno: number;

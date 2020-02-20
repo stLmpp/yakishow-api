@@ -1,30 +1,24 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  FindConditions,
-  FindManyOptions,
-  Like,
-  Not,
-  Raw,
-  UpdateResult,
-} from 'typeorm';
+import { FindConditions, In, Not } from 'typeorm';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
 import { PessoaAddDto } from './dto/add';
 import { PessoaUpdateDto } from './dto/update';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import {
   IPaginationOptions,
   paginate,
   Pagination,
 } from 'nestjs-typeorm-paginate';
+import { PessoaTipoService } from './pessoa-tipo/pessoa-tipo.service';
 
 @Injectable()
 export class PessoaService {
   constructor(
     @InjectRepository(PessoaRepository)
-    private pessoaRepository: PessoaRepository
+    private pessoaRepository: PessoaRepository,
+    private pessoaTipoService: PessoaTipoService
   ) {}
 
   async add(dto: PessoaAddDto): Promise<Pessoa> {
@@ -35,42 +29,48 @@ export class PessoaService {
     }
   }
 
-  async update(id: number, dto: PessoaUpdateDto): Promise<UpdateResult> {
+  async update(id: number, dto: PessoaUpdateDto): Promise<Pessoa> {
     try {
-      return await this.pessoaRepository.update(id, dto);
+      dto.id = id;
+      if (dto.tipos?.length) {
+        dto.tipos = dto.tipos.map(tipo => ({ ...tipo, pessoaId: id }));
+        const removeTipos =
+          (
+            await this.pessoaTipoService.findByPessoaId(
+              id,
+              dto.tipos.map(o => o.tipoPessoaId)
+            )
+          )?.map(o => o.id) ?? [];
+        if (removeTipos.length) {
+          await this.pessoaTipoService.remove(removeTipos);
+        }
+      }
+      return await this.pessoaRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualziar a pessoa');
+      throw mySQLError(err, 'Erro ao tentar atualizar a pessoa');
     }
   }
 
   async findById(id: number): Promise<Pessoa> {
     try {
-      return await this.pessoaRepository.findOneOrFail(id);
+      return await this.pessoaRepository.findOneOrFail(id, {
+        relations: ['tipos'],
+      });
     } catch (err) {
-      throw new NotFoundException('Pessoa não encontrado!');
+      throw mySQLError(err, 'Pessoa não encontrado!');
     }
   }
 
-  async findByParams(term: string, tipo?: TipoPessoaEnum): Promise<Pessoa[]> {
-    let _tipo = {};
-    if (tipo !== TipoPessoaEnum.todos) _tipo = { tipo };
-    term = `%${term}%`;
-    return await this.pessoaRepository.find({
-      where: [
-        {
-          celular: Raw(alias => `upper(${alias}) LIKE upper('${term}')`),
-          ..._tipo,
-        },
-        { nome: Raw(alias => `upper(${alias}) LIKE upper('${term}')`) },
-      ],
-      take: 20,
-    });
+  async findByParams(term?: string, tipos?: number[]): Promise<Pessoa[]> {
+    return await this.pessoaRepository.findByParams(term, tipos);
   }
 
-  async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {
-    const options: FindManyOptions<Pessoa> = { take: 20 };
-    if (tipo !== TipoPessoaEnum.todos) options.where = { tipo };
-    return await this.pessoaRepository.find(options);
+  async findByTipos(tipos: number[]): Promise<Pessoa[]> {
+    return await this.pessoaRepository.find({
+      take: 20,
+      where: { tipos: In(tipos) },
+      relations: ['tipos'],
+    });
   }
 
   async existsByCelular(celular: string, id?: number): Promise<boolean> {
@@ -89,5 +89,11 @@ export class PessoaService {
 
   async findRandom(length: number): Promise<Pessoa[]> {
     return await this.pessoaRepository.findRandom(length);
+  }
+
+  async existsByEmail(email: string, id?: number): Promise<boolean> {
+    const findConditions: FindConditions<Pessoa> = { email };
+    if (id) findConditions.id = id;
+    return await this.pessoaRepository.exists(findConditions);
   }
 }

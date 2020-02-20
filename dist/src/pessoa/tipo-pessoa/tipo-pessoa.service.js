@@ -8,25 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const auth_service_1 = require("./auth.service");
-const is_what_1 = require("is-what");
-let UpdateHistoryPipe = class UpdateHistoryPipe {
-    constructor(authService) {
-        this.authService = authService;
+const tipo_pessoa_repository_1 = require("./tipo-pessoa.repository");
+const typeorm_1 = require("@nestjs/typeorm");
+let TipoPessoaService = class TipoPessoaService {
+    constructor(tipoPessoaRepository) {
+        this.tipoPessoaRepository = tipoPessoaRepository;
     }
-    transform(value, metadata) {
-        if (!is_what_1.isObject(value))
-            return value;
-        return is_what_1.isArray(value)
-            ? this.authService.setHistoryArray(value)
-            : this.authService.setHistory(value);
+    async findAll() {
+        return await this.tipoPessoaRepository.find();
+    }
+    async add(dto) {
+        return await this.tipoPessoaRepository.save(dto);
     }
 };
-UpdateHistoryPipe = __decorate([
+TipoPessoaService = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
-], UpdateHistoryPipe);
-exports.UpdateHistoryPipe = UpdateHistoryPipe;
-//# sourceMappingURL=update-history.pipe.js.map
+    __param(0, typeorm_1.InjectRepository(tipo_pessoa_repository_1.TipoPessoaRepository)),
+    __metadata("design:paramtypes", [tipo_pessoa_repository_1.TipoPessoaRepository])
+], TipoPessoaService);
+exports.TipoPessoaService = TipoPessoaService;
+//# sourceMappingURL=tipo-pessoa.service.js.map

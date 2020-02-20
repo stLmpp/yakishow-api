@@ -24,6 +24,7 @@ export class User extends CommonHistory {
   @Column({
     unique: true,
   })
+  @ApiProperty()
   email: string;
 
   @ApiProperty()

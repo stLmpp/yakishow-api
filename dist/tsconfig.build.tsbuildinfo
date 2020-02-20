@@ -558,8 +558,8 @@
         "signature": "adc6974bb6588dfecba07e0384031c4b6569871db22597e3bd2e2caf8c0501db"
       },
       "../node_modules/@types/node/globals.d.ts": {
-        "version": "05c42320698cb6eb4052d68ef35a0f3b88291b9275f13e9a188b96119844c5b6",
-        "signature": "05c42320698cb6eb4052d68ef35a0f3b88291b9275f13e9a188b96119844c5b6"
+        "version": "81d222182d93f8c4dd7bec5aa9f821fc38c3ebc9d56d6844aaabb4103115f0bb",
+        "signature": "81d222182d93f8c4dd7bec5aa9f821fc38c3ebc9d56d6844aaabb4103115f0bb"
       },
       "../node_modules/@types/node/assert.d.ts": {
         "version": "7860312f33f0cf2c93500787d02c4cc43ea3d0c080d4781095ac7715d5da3316",
@@ -1006,8 +1006,8 @@
         "signature": "bd87a42591eea27ab1332d2e8c01a2a6c21641df3304d88037f32fa2d15643f4"
       },
       "../node_modules/@nestjs/common/exceptions/service-unavailable.exception.d.ts": {
-        "version": "3c726f2a43e36f9fd489f56675925088d89902239d2e132bc9e0ac8ddff2a2b4",
-        "signature": "3c726f2a43e36f9fd489f56675925088d89902239d2e132bc9e0ac8ddff2a2b4"
+        "version": "9a8c677780cf034ff7ceb60e11883168f8554cdb5b25d45a385ea72c740af630",
+        "signature": "9a8c677780cf034ff7ceb60e11883168f8554cdb5b25d45a385ea72c740af630"
       },
       "../node_modules/@nestjs/common/exceptions/gateway-timeout.exception.d.ts": {
         "version": "16909a5592adcf26ea6d4e370f97c9b2ed11a6aa3103f4ee908882569d88779b",
@@ -2098,8 +2098,8 @@
         "signature": "c22b4c00503c6c77dbad4efeb054b7d2a606c8e30b22377a701cf4045a522c5c"
       },
       "../node_modules/@nestjs/typeorm/dist/common/typeorm.decorators.d.ts": {
-        "version": "41070599270ea1295c8855556f36c89af04d02c41c50f602870fd55dd988c83d",
-        "signature": "41070599270ea1295c8855556f36c89af04d02c41c50f602870fd55dd988c83d"
+        "version": "d7c96b1fc407d8fb5e973d594bd93771677bcacc0298f00dae5e642b0a30ad27",
+        "signature": "d7c96b1fc407d8fb5e973d594bd93771677bcacc0298f00dae5e642b0a30ad27"
       },
       "../node_modules/@nestjs/typeorm/dist/common/typeorm.utils.d.ts": {
         "version": "51dbabe71c84fd06b659ea96be3c6d547611e04395f41aa22e6476e6d77f3003",
@@ -2110,8 +2110,8 @@
         "signature": "9a7638d62db8cfa1466093d7d413fdf85c5e4a7c663ed76f2bfc8739c8e01505"
       },
       "../node_modules/@nestjs/typeorm/dist/interfaces/typeorm-options.interface.d.ts": {
-        "version": "4c0c506e17553583e683663de4097c4a9071462ffcdaa1545a258932ffed75d1",
-        "signature": "4c0c506e17553583e683663de4097c4a9071462ffcdaa1545a258932ffed75d1"
+        "version": "d3bd992bcb5c75b46701c89194bbece1927c2f83805bdf544def33dccb8e2923",
+        "signature": "d3bd992bcb5c75b46701c89194bbece1927c2f83805bdf544def33dccb8e2923"
       },
       "../node_modules/@nestjs/typeorm/dist/interfaces/index.d.ts": {
         "version": "c338859b98f8a11f80e3e47e33767299e7a4facdf0870c01c8694fa8fa048d16",
@@ -2266,11 +2266,11 @@
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
       "../src/shared/super-entities/common-history.ts": {
-        "version": "14bc9a03892a89d65666bc7cd98dc3042b0914645d90c19f6cbae110bbd68116",
-        "signature": "1245e66dc24895be5b56313a5da8253b13e52bd4f661dac4a39256eba03e1832"
+        "version": "65a919188fcce809f937250c94c6170a606315b6c4bc2b49370994b3d8fbeea0",
+        "signature": "0a67c6b1641517a1548a1b47d10f109a0f16b2210cc7c9c8ea2be8a49f191f56"
       },
       "../src/auth/user/user.entity.ts": {
-        "version": "23ec115e21e516fbf84970b9156874d26ad1ffec8af52bd2b76d10799f821ea2",
+        "version": "15dc4c663d4f2b8bc1723c92de4a21dfd9cad7f78a7904b1eb41e6efc3848dc0",
         "signature": "a6362b40d579e6be9792bdb76318ea67dc66eed390dd6c0e5b01750e2f7363d6"
       },
       "../node_modules/class-validator/validation/validationerror.d.ts": {
@@ -2354,15 +2354,15 @@
         "signature": "7ccdb2e640465be4a5da5981da1af54c8fc78fb54200505e31c09bc658299df8"
       },
       "../src/shared/error/my-sql-error.model.ts": {
-        "version": "8da2e92966bcef4224bef1f2a52c1fba17b9231a24d9671fad7505835a13053b",
-        "signature": "f82a4b3cb2c21b361ada50b75038c3ba42775dbc1187e5cdcd9b3bdb2da91cda"
+        "version": "67b376e0ffcbfb62f4dbcd67f6dded4efe33850c469986f7632da3d91c3cddab",
+        "signature": "a28bae625c1df2d7c97d89bc4057c097f83a78be0a081e790cd6f64cfac229e1"
       },
       "../src/shared/error/my-sql-error.ts": {
-        "version": "3c2500fdca7ad6129d3e51d348240cf7368830efdf114c16e92b66ed44c58ba4",
-        "signature": "215212f6dedab3e0d7218a872d64769513f153f609279a1bdc1b982cc87fd222"
+        "version": "ba89386121614204670d344fd3aa8c6af5460feae121d153c61a2bfd44f89208",
+        "signature": "738b03eb9bcf0d2ff2ef13d45ecc4e8be53fb1e1bbc5bbf5701f8ba2c4f5c5ac"
       },
       "../src/auth/user/user.repository.ts": {
-        "version": "e515350a1b7b1296d91f7595b524d360fc86414585909d963307b54f8cfe0ee6",
+        "version": "a65cc1e5aeb760085c938183b5b6808fa7eeaa09f5dcbd555098f08fbe0945c3",
         "signature": "bf4e801b9563f5a395164ea4a6d95f049ae72539895f565aaab88dfb30eef58a"
       },
       "../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": {
@@ -2433,6 +2433,10 @@
         "version": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078",
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
+      "../src/auth/auth.service.ts": {
+        "version": "72c5555a912bd81e1c084a4100d8394196c5ce476af0c8f03b56ef4e4c22abbb",
+        "signature": "75f45abeafcca829da104bad0c99eba5d8691ac4bb21f0b67fd138ca768951c7"
+      },
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
         "version": "71cc7da1ef9d96f44a214a43017535538b47988d4bc9dedbf7592d2f9fe10da9",
         "signature": "71cc7da1ef9d96f44a214a43017535538b47988d4bc9dedbf7592d2f9fe10da9"
@@ -2470,12 +2474,12 @@
         "signature": "f23601713615719b1a1394deae884fb9f507de819a086d5a019c63793da9efc6"
       },
       "../node_modules/@nestjs/core/discovery/discovery-module.d.ts": {
-        "version": "2a257c46325e88329c85de7042ff253482139c8ac465845a2cbfbc0c93894fda",
-        "signature": "2a257c46325e88329c85de7042ff253482139c8ac465845a2cbfbc0c93894fda"
+        "version": "50fd11b764194f06977c162c37e5a70bcf0d3579bf82dd4de4eee3ac68d0f82f",
+        "signature": "50fd11b764194f06977c162c37e5a70bcf0d3579bf82dd4de4eee3ac68d0f82f"
       },
       "../node_modules/@nestjs/core/discovery/discovery-service.d.ts": {
-        "version": "355b379fb612950e89920a254d30e5b93189f98a4c9d9967b516dc211d854970",
-        "signature": "355b379fb612950e89920a254d30e5b93189f98a4c9d9967b516dc211d854970"
+        "version": "ad5ad568f2f537a43dcc1588b2379f9dc79539ae36b8821b13a5d03625211eb2",
+        "signature": "ad5ad568f2f537a43dcc1588b2379f9dc79539ae36b8821b13a5d03625211eb2"
       },
       "../node_modules/@nestjs/core/discovery/index.d.ts": {
         "version": "99579aa074ed298e7a3d6a47e68f0cd099e92411212d5081ce88344a5b1b528d",
@@ -2538,8 +2542,8 @@
         "signature": "396c4702dd84b150a1b5f8ab066eacf27e2f44e3a4fab17df09a7db555b0b7a4"
       },
       "../node_modules/@nestjs/core/nest-application-context.d.ts": {
-        "version": "bad66d77f0e67746170056ece56a479d74cf98f9dc8dc008562af4b2b41beb9e",
-        "signature": "bad66d77f0e67746170056ece56a479d74cf98f9dc8dc008562af4b2b41beb9e"
+        "version": "dd13522f1b5ec38de025252fa4c6fab6f88aafded33e0339f72fc75f44092c23",
+        "signature": "dd13522f1b5ec38de025252fa4c6fab6f88aafded33e0339f72fc75f44092c23"
       },
       "../node_modules/@nestjs/core/nest-application.d.ts": {
         "version": "5288688d801a30401b794c3af649a310f0c29c6a21445b93e1bfd029849bf49f",
@@ -2581,24 +2585,12 @@
         "version": "0fddb30a8f32aa110e1722ff2a77481bc5805464249f48fb4e8c9133e9f91ff4",
         "signature": "ae4be77112079643c40f5029d1c751ba4e6d9d813ae766f271452fd0db53f6ce"
       },
-      "../node_modules/is-what/types/index.d.ts": {
-        "version": "4312191f46ab386caf8a5e5d75b77c1fb931ac336abbc1e12d15610fc375fbca",
-        "signature": "4312191f46ab386caf8a5e5d75b77c1fb931ac336abbc1e12d15610fc375fbca"
-      },
-      "../src/auth/auth.service.ts": {
-        "version": "01247f698f10fd1f2c513c9c6be84e9c71187b2dbe8587ebba06a6113d264f99",
-        "signature": "dd57ae40df5b85ed012c6de49aa44c857a948a9900b6a5cfdd3708f6fcc62737"
-      },
-      "../src/auth/update-history.pipe.ts": {
-        "version": "8e919b717012c2ee2c67615b9e1dc3c64adaaeeeca8c19479e3a9512a1e85630",
-        "signature": "3b61367e64e02782f69dd4e506fc9430c2b7d66782186ca0b71eff31e56976ba"
-      },
       "../src/auth/get-user.decorator.ts": {
         "version": "91af9b565ef9e3cf5091a36721b71da361d6ad4e165798293f74b78978af7675",
         "signature": "9c0e831c191af5cb4a765fa287f20b4abef8bdabb757c5e5fface4e843a857f9"
       },
       "../src/auth/auth.controller.ts": {
-        "version": "3d6040dd4a6c2e0bed3d0268474233d95f492fe37c807b7d98755f7c69f1df12",
+        "version": "28d4fc4e9aef39b1a9e7709ff78f8cc12ae2e15ac881c6b277670199113d89c5",
         "signature": "4b90f538a07c5497a1a078a054e04c8ed8bb8300d5485d23ce5fefd2a44df4ef"
       },
       "../node_modules/@types/range-parser/index.d.ts": {
@@ -2674,7 +2666,7 @@
         "signature": "8a8b21332c54ba59a72c696a7efb99270a06791b27386dba5d64453057e7d5d8"
       },
       "../src/produto/produto.service.ts": {
-        "version": "70f72e72e2b8f3ca3af5262d6c8e2b93561dd1f4ac213fa7512b4fd1a04ac4e1",
+        "version": "502b848f75e24832f90057c65fc0b7e49642d11fc5ec58f987923e05d7ff7ef1",
         "signature": "0a6d7827425b5e3a26d4da32fd8dea4f68038a52ffb115b81a19ad700bc283e4"
       },
       "../src/auth/with-auth-guard.decorator.ts": {
@@ -2682,40 +2674,48 @@
         "signature": "48e65dca9f265acef0fe3dcefabbbd75a533a86df7a4684a7149deb4dc6edce5"
       },
       "../src/produto/produto.controller.ts": {
-        "version": "8d812f8fc0303c290dc98033d8646a48946f92089b0d12c316d8d706f8d0b53d",
+        "version": "3e37f0c4860a9dbb8957e7ce286151ea487a91436420209f9289b6356b2fc20d",
         "signature": "330ea25fbe0ceb701c8b98a8162a40fc45d9f61cd4832f695a734f6cf694f8a3"
       },
       "../src/produto/produto.module.ts": {
         "version": "d4b0af1b3329316ce7985ef0764a2e6a3c4458a902124148e600cf34a80ac19f",
         "signature": "a4d23a1b83d3dfd0222c92f127f7e077066185d89434cdcac240d62e4c1b3ca5"
       },
-      "../src/pessoa/tipo-pessoa.enum.ts": {
-        "version": "c88ec89e9ed0173b0ce1ac5368447d5d22d972ada1be697a49025f199b8723a2",
-        "signature": "abc5834a03c73c310e73c8027ff42dfa0abd006d3436d81e708285fd1a80c2c5"
-      },
       "../src/shared/types/paginated-entity.ts": {
         "version": "53ddabfa58b3904e40322aeb93148c22882aa2ab98532d435ce77197ef0b1191",
         "signature": "869a68308e7c528cd83b259d6cd980ffc53d458f0fe1da8cd458e1aced0de2d1"
       },
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts": {
+        "version": "a4ceab8e23b1d3c014ff0aebeaadb220b362aa2c6becf7cbd9b488af61c96135",
+        "signature": "766037370303f123dcaef03ae71f2e4f7f9025876e96d13521516d32bf1e7dab"
+      },
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts": {
+        "version": "011a933c22a42819e4ac2f0d63a0ca5d1bbc34ff915a74d5fed1c099da8c58ec",
+        "signature": "b96d5640c18854353469dfa3ad219d9584c91a885b25c7de16045d0b74cc3eb2"
+      },
       "../src/pessoa/pessoa.entity.ts": {
-        "version": "57356b99719ad9b0391cd06cd0aee1c9bfa2cdb4647052945a1f05b5ddc88010",
-        "signature": "353591f188de4b3eacf22b9f1753453af0a559ba328d84644d2ee60ac37d8cfb"
+        "version": "d887e5811096e39c29cce2c7c532234c2dcc3380c25c434574fcabdd80cb1ada",
+        "signature": "0756c05e0c54c66af75dbe4c86286f8eeec9bdf9352dc2ee3f260b56481561ba"
       },
       "../src/shared/types/repository-custom.ts": {
-        "version": "0ff650d86aae7add479ab206426c7800f8a78cb2c655d1c52eb4d8b43d0cbced",
-        "signature": "be260026fb2097519027fa386ee804a5dcabc9b0339d3995c53727613989c969"
+        "version": "46409fcb29073f52060276d12bfe66a05d0d749357c846d0aa1cba38eca9a839",
+        "signature": "4a6c1d94e3da8ab30d8091184fcf00e7544f60e3504fe643f4faa8094f0c1349"
       },
       "../src/pessoa/pessoa.repository.ts": {
-        "version": "79058848e2f7de5684aa1dd531222535e47957793ecaf5618177f6e812aacf19",
-        "signature": "7352bc14bd02cfb2cc64271622cfce8b08ce69a85eea7338df8dc7c7166fcb92"
+        "version": "730a098cd78d7b60d5d89057ef16cf2c8d85feb3e6d334e3b201542367aa447a",
+        "signature": "a1f0b7a24b7f1601a47195744816b946e75d3506ccb68ca8b8960e49461f1f29"
+      },
+      "../src/pessoa/pessoa-tipo/dto/update.ts": {
+        "version": "2292e21088106d433f88bede8082ece5a8d709d23dd4af0df2daf596325d9676",
+        "signature": "4bc60b5eb020481d7f77f4f193cbacd79b8e898e5cc4001ca2d325e00f1423a7"
       },
       "../src/pessoa/dto/add.ts": {
-        "version": "a96e2652e4bca80afcf9ff1148a9af9ad5d7aaeb632eaf81cd354fafa5afd715",
-        "signature": "d5e7ee7578ff7efbbcfce0caee1765f749b2626be017ef8438a8c383db9c2c03"
+        "version": "af04d8f3fb60ba8ab5dcdf96307be5a2051c90589910928c3ea80a9e27e38098",
+        "signature": "d97604223c3df7dc48c1808dca33ac9d75fb2837e7b43943aad08c50ca080895"
       },
       "../src/pessoa/dto/update.ts": {
-        "version": "74513f2824ef731432a2876e061e18cfba0309ddb8b0f36fcebba70bfd272173",
-        "signature": "830ca98f887ed7cfef68e2ac23b773ce8af40ac29317d20481c6831ec37a0eeb"
+        "version": "ae82da98772122c0ef78f8102b76de9c78d3f973edb0d1e3972b40a381515951",
+        "signature": "1949d22cd7c738d55a450a7e99b5517bebb8025bc490e7734e53348b0817a726"
       },
       "../node_modules/nestjs-typeorm-paginate/dist/interfaces/index.d.ts": {
         "version": "d5bd7a05e8b75ee176936f863ab01048e3e79798830157820e69403332733bc2",
@@ -2733,20 +2733,60 @@
         "version": "50e754966781e43f8bbd74da18a6d660b644751e19a002ae43d6dd4df852284c",
         "signature": "50e754966781e43f8bbd74da18a6d660b644751e19a002ae43d6dd4df852284c"
       },
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.repository.ts": {
+        "version": "5d85c4301eb9658351448f501c1769842d7b138fc9630634d487843b3d979a91",
+        "signature": "c2b2302d81f28f9341eea3e9693655a778533fa6f32cff14e58acb8d88b180d7"
+      },
+      "../src/pessoa/pessoa-tipo/dto/add.ts": {
+        "version": "2cbd1ca0e1270dbdc8505edf21d0d315daeb846cb5b779011c8aec44a831a098",
+        "signature": "4c9cc93db0ef6ace1ef61917f2545d760c7f04553325502fe2acd5c65f985a48"
+      },
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts": {
+        "version": "b44a4974b2880ba7fa02d1712256032e64ab3f73fc8271de1b05ca9766c97bc0",
+        "signature": "aafa92d4ab76815bfac63bbc4fbae6be6fcf271c32fee3a6934576143e3cc3a0"
+      },
       "../src/pessoa/pessoa.service.ts": {
-        "version": "30374cfcb80605268298b001af3e698b952be786aad1ae0ac4b5f011942dc148",
-        "signature": "5327a10f50df8bec5e66fe063ca59c02258d92960b40fa2f71821341673e9f67"
+        "version": "fdaf994418d455b3ea89f04f5f507235135a2655f84685d6b7b7f7aa7333d269",
+        "signature": "34b80c84a589ef93be215140fa261a4a5ca3a96a537b4c7f3abf29b1b9fbd3cd"
+      },
+      "../node_modules/is-what/types/index.d.ts": {
+        "version": "1f7e3c581644edf57d9e72e14cb667d70f1e9269a351cdc43571b96d8e6c844f",
+        "signature": "1f7e3c581644edf57d9e72e14cb667d70f1e9269a351cdc43571b96d8e6c844f"
       },
       "../src/shared/pipe/parse-int-pipe.ts": {
-        "version": "202c27591e31ea764f0f45605ad46cd3e557564fd8accbc8cab2307daa3578a4",
+        "version": "69bac61c005e71e197c8785c7427e00ced88d05e3c2ee7f0786e0514e679a1ad",
         "signature": "7d70859e6205a624a9ba813690299d9fa123512559fc58bd414d263a89b238ec"
       },
+      "../src/shared/pipe/parse-array.pipe.ts": {
+        "version": "bb8db7a5cb35bab11824212ac03bd13f1a29b112b922dd818da59229dac27a32",
+        "signature": "0734e2f6b3c3493baabb2f888dfdaa5e0aca3cff41d9fe9f5d491399febbe912"
+      },
       "../src/pessoa/pessoa.controller.ts": {
-        "version": "11f98da5dbdb595082e540691d21d3768df9ee3e355684bc7d7430e21ce3f823",
-        "signature": "1128a77004da744e08240875752e1d43bec73f8452971f1936502008a92d6450"
+        "version": "6d3f636737c5a600424bb4257577decce3fd8a3c885735ee24e7114230e0ff1d",
+        "signature": "e3dd6c3a194af66da1b0edf7d68bdea897c051989b5d68cbc8147bc4814bd4bf"
+      },
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.repository.ts": {
+        "version": "1f8ff5692f0f52c78daad5284ecc946bd5c598e3014db2e09d2e00f04253fee9",
+        "signature": "103d08df182557f2eee05c4ffd82e4e2d7d614232d63ec8841e05e544d02b0ba"
+      },
+      "../src/pessoa/tipo-pessoa/dto/add.ts": {
+        "version": "243d50e0a33c73d8d313cd26c8ff3b7ef9240b154b56f5dc4ff293d05112f03e",
+        "signature": "67590092977a2f73882df0161fe8c24d4b892768d6422cbcb48d0bf00ac11ded"
+      },
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.service.ts": {
+        "version": "59772db225630e5abf0645625207fe2ca682354eb285c690cbb1807e914819b5",
+        "signature": "eaafa86886713509b0f1c897773a1694d3e8b5bdb140b9854b10279fc6b77366"
+      },
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.controller.ts": {
+        "version": "2f44648888b58553ffdeae08800425c1c9706a03d7f7082febb7bc4c9d49ddb4",
+        "signature": "580fd6972a475c555b0f8a8108fe0aacec4c04c3fb9f3fe704394f475c79aca3"
+      },
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.controller.ts": {
+        "version": "1b1ed2c5fb88551c0ff2e4625b31cd36e0c888bcdeee3afcab9f9f416b6166b6",
+        "signature": "f84ff908d8d7eec9ee57e3d5c2dd9d314df5d54c0ef36e99b01caf3b08b7e867"
       },
       "../src/pessoa/pessoa.module.ts": {
-        "version": "a9aca1016a79da41492972cae0ce00317bb8957e53b3af1336055ca23703dcd8",
+        "version": "15551d1dbbe35895eb548bae43ca83cde963da87743119071cdb86673dd038ed",
         "signature": "2672d4386493c7064df626478a000bf37496cb504c578d26e6e2a757d0c5c995"
       },
       "../src/pedido/pedido-status.enum.ts": {
@@ -2790,7 +2830,7 @@
         "signature": "364b39304e1b0ccec24867e465aba7cb38bde65e387efa8cf559e3398b111e83"
       },
       "../src/pedido/pedido.controller.ts": {
-        "version": "825161d90bacb4e0fcbc76b538ac4a15cb6b95e3cb6ad00d788bff2dc602c949",
+        "version": "529f5f3ccf4e37d2bd55638dfe41e4e60a6ae0c369a23e291ce46c64038240cf",
         "signature": "28c7a175b7ccaa898ab1b9caab884676259e497efad50981f126e696e0c31273"
       },
       "../src/pedido/pedido-item/dto/update.ts": {
@@ -2802,7 +2842,7 @@
         "signature": "216a30175ddea7a32cf8a887b0addbb3120f96bac3603982601de69b4d5c5862"
       },
       "../src/pedido/pedido-item/pedido-item.controller.ts": {
-        "version": "1ae684b324ada0813ee782c843c0b25109a8da9bb27e1ef1702ffe9926606308",
+        "version": "3e0ae0377ababaccb67e72ff9270b8bb64d41dae5927d0e48df8bdfb59a1cd8d",
         "signature": "8a923f2d69765f0c28613bf8e42c83da76df2864dd4fe942d8cafe883f1e88a0"
       },
       "../src/pedido/pedido.module.ts": {
@@ -3277,13 +3317,49 @@
         "version": "b48d2dcbd2ec7ee7576d51b0c351266f4f14db0e10681bb241f2ce0d0022b95e",
         "signature": "8be01ab0b93471478c28dbb6222de7a9620e3fd8b76143a2c0fbe0700212d301"
       },
+      "../node_modules/class-transformer/classtransformoptions.d.ts": {
+        "version": "d89af0c250e1424959162beae79f2c2745c729d6ab8028503d322395d96d3a2b",
+        "signature": "d89af0c250e1424959162beae79f2c2745c729d6ab8028503d322395d96d3a2b"
+      },
+      "../node_modules/class-transformer/classtransformer.d.ts": {
+        "version": "96589ead67dc132731ddb531c3c7de2e66156df7154b1136d1abd92bdaa27e79",
+        "signature": "96589ead67dc132731ddb531c3c7de2e66156df7154b1136d1abd92bdaa27e79"
+      },
+      "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts": {
+        "version": "1aed251ab92dfd0e4901b3b9ad5eccdeb4d3603d57af947ae5f1de967f5ffa6e",
+        "signature": "1aed251ab92dfd0e4901b3b9ad5eccdeb4d3603d57af947ae5f1de967f5ffa6e"
+      },
+      "../node_modules/class-transformer/metadata/typemetadata.d.ts": {
+        "version": "fc14f591b59444c787440f6d8d4df6d96a2eafd8dcb8f3d9773d2d52a88db64f",
+        "signature": "fc14f591b59444c787440f6d8d4df6d96a2eafd8dcb8f3d9773d2d52a88db64f"
+      },
+      "../node_modules/class-transformer/transformoperationexecutor.d.ts": {
+        "version": "1fa98f06f8163fef61071f77e47ad2b7dd26064a43e219a4468df563e911caf3",
+        "signature": "1fa98f06f8163fef61071f77e47ad2b7dd26064a43e219a4468df563e911caf3"
+      },
+      "../node_modules/class-transformer/decorators.d.ts": {
+        "version": "cc8aa0870a0defda3818676ecb8123b2d8b15dc40cdc130834bc81b01a58f2e4",
+        "signature": "cc8aa0870a0defda3818676ecb8123b2d8b15dc40cdc130834bc81b01a58f2e4"
+      },
+      "../node_modules/class-transformer/index.d.ts": {
+        "version": "097d4bf3331df1e138ffdcf92e1117f6841bc8337170d927fd955d5ee8a1674b",
+        "signature": "097d4bf3331df1e138ffdcf92e1117f6841bc8337170d927fd955d5ee8a1674b"
+      },
+      "../src/shared/pipe/create-instance.pipe.ts": {
+        "version": "d630c3de9ff43e24b4a29c4beba6e79ab35e64bbd6d219534eb5a2b359729314",
+        "signature": "d3de16e9f411a52f5a47d48e2e52b6ec4f798b63c6831152098a9fe854cdd551"
+      },
+      "../src/shared/interceptors/destroy-instance.interceptor.ts": {
+        "version": "5d2a95432f82d47789e05709fae87933c92be89d358318417cce8f5819c07cff",
+        "signature": "58121eebe4533efca7bc61da6e35da43479f867d5bcc86e5e0d166b4c80dab61"
+      },
       "../src/app.module.ts": {
-        "version": "6e2515c73b0acfc957167ed6e91e50df6fab50228e827b368e3a071b107f68ff",
+        "version": "fc1faaf33837d2816399d8dca8731213fefc0f5cbfc121e6cbae90173871a026",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../package.json": {
-        "version": "a6000ff2b1b7e45fc4e2c3f6db52a9d3b94a0fb7de326ca5a53507e26b751aab",
-        "signature": "508a581217f1e54d60d08b245f48fd1b88f77b4c8d99b141d6c52400cf643c26"
+        "version": "a125585f2dbf5e481d55a7df971408b766315495ac6868fdc0c46beb1926cd9c",
+        "signature": "c8a593e23f04272dcc08353468da1dfa98ef56b7869ebe0c4c019e86a4744cca"
       },
       "../src/config/class-validator-messages.ts": {
         "version": "4b2b0d6cd218472d793f6c4030208795d318011f3dc70148f7a15e3c603734f1",
@@ -3292,6 +3368,10 @@
       "../src/main.ts": {
         "version": "c788c6ed33337ec0d4a20f852dc484ace4db5cfb92ab842f14afb16987b26d94",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
+      },
+      "../src/pessoa/tipo-pessoa.enum.ts": {
+        "version": "c88ec89e9ed0173b0ce1ac5368447d5d22d972ada1be697a49025f199b8723a2",
+        "signature": "abc5834a03c73c310e73c8027ff42dfa0abd006d3436d81e708285fd1a80c2c5"
       },
       "../src/shared/my-sql-functions.ts": {
         "version": "83cbab35694af50664f8bf3903edb0eb2bbe0f3a1f9da24226c88a14878c8c5e",
@@ -3304,6 +3384,10 @@
       "../src/util/hash.ts": {
         "version": "383e81c2bf682dae76ee91f66d87ba8927eca7509261530f4830ed7d868d1f9e",
         "signature": "9d9ddb34cc4af2fc3772c255e9eed27d1afe04893e373210951be22e29e3f6d3"
+      },
+      "../src/util/types.ts": {
+        "version": "a1f3b4285dda80d86f32a352d3bc1da79ad730469381d1471c78822f584e6758",
+        "signature": "e8ff1d211a9cff3bdb818d54eb3340f47ef590ad3d3761385f8b0510018add5c"
       },
       "../node_modules/@types/anymatch/index.d.ts": {
         "version": "48b52264fa193879a074197839dbb4796fa07e86350ff888e5361e06aa46df76",
@@ -8470,6 +8554,18 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/auth/auth.service.ts": [
+        "../src/auth/user/dto/register.ts",
+        "../src/auth/user/user.entity.ts",
+        "../src/auth/user/user.repository.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../node_modules/@nestjs/jwt/index.d.ts",
+        "../src/auth/user/dto/credentials.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/common/interfaces/index.d.ts",
@@ -8797,35 +8893,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/is-what/types/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../src/auth/auth.service.ts": [
-        "../src/auth/user/dto/register.ts",
-        "../src/auth/user/user.entity.ts",
-        "../src/auth/user/user.repository.ts",
-        "../node_modules/@nestjs/typeorm/index.d.ts",
-        "../node_modules/@nestjs/jwt/index.d.ts",
-        "../src/auth/user/dto/credentials.ts",
-        "../src/auth/user/user.service.ts",
-        "../node_modules/is-what/types/index.d.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../src/auth/update-history.pipe.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/auth/auth.service.ts",
-        "../node_modules/is-what/types/index.d.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../src/auth/get-user.decorator.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/auth/user/user.entity.ts",
@@ -8841,7 +8908,6 @@
         "../src/auth/user/user.entity.ts",
         "../src/auth/user/dto/credentials.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
-        "../src/auth/update-history.pipe.ts",
         "../src/auth/get-user.decorator.ts",
         "../node_modules/@nestjs/passport/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
@@ -9034,7 +9100,6 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/produto/produto.service.ts",
         "../src/produto/produto.entity.ts",
-        "../src/auth/update-history.pipe.ts",
         "../src/produto/dto/add.ts",
         "../node_modules/typeorm/index.d.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
@@ -9057,14 +9122,28 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/pessoa/tipo-pessoa.enum.ts": [
+      "../src/shared/types/paginated-entity.ts": [
+        "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/shared/types/paginated-entity.ts": [
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/shared/super-entities/common-history.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts": [
+        "../src/shared/super-entities/common-history.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../src/pessoa/pessoa.entity.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9074,8 +9153,8 @@
         "../node_modules/typeorm/index.d.ts",
         "../src/shared/super-entities/common-history.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
         "../src/shared/types/paginated-entity.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9093,6 +9172,15 @@
         "../node_modules/typeorm/index.d.ts",
         "../src/pessoa/pessoa.entity.ts",
         "../src/shared/types/repository-custom.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/dto/update.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9101,7 +9189,7 @@
       "../src/pessoa/dto/add.ts": [
         "../node_modules/class-validator/index.d.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
+        "../src/pessoa/pessoa-tipo/dto/update.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9110,7 +9198,7 @@
       "../src/pessoa/dto/update.ts": [
         "../node_modules/class-validator/index.d.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
+        "../src/pessoa/pessoa-tipo/dto/update.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9146,6 +9234,36 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.repository.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
+        "../src/shared/types/repository-custom.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/dto/add.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.repository.ts",
+        "../src/pessoa/pessoa-tipo/dto/add.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../src/shared/error/my-sql-error.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/pessoa/pessoa.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
@@ -9155,8 +9273,14 @@
         "../src/pessoa/pessoa.entity.ts",
         "../src/pessoa/dto/add.ts",
         "../src/pessoa/dto/update.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
         "../node_modules/nestjs-typeorm-paginate/dist/index.d.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/is-what/types/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9170,19 +9294,78 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/pipe/parse-array.pipe.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/is-what/types/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/pessoa/pessoa.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
-        "../src/auth/update-history.pipe.ts",
-        "../node_modules/typeorm/index.d.ts",
         "../src/pessoa/pessoa.service.ts",
         "../src/pessoa/dto/add.ts",
         "../src/pessoa/pessoa.entity.ts",
         "../src/pessoa/dto/update.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
         "../src/shared/pipe/parse-int-pipe.ts",
         "../node_modules/nestjs-typeorm-paginate/dist/index.d.ts",
         "../src/auth/with-auth-guard.decorator.ts",
+        "../src/shared/pipe/parse-array.pipe.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.repository.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
+        "../src/shared/types/repository-custom.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/dto/add.ts": [
+        "../node_modules/class-validator/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.repository.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
+        "../src/pessoa/tipo-pessoa/dto/add.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.service.ts",
+        "../src/pessoa/tipo-pessoa/dto/add.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../node_modules/@nestjs/swagger/index.d.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts",
+        "../src/pessoa/pessoa-tipo/dto/add.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
+        "../src/shared/pipe/parse-int-pipe.ts",
+        "../src/shared/pipe/parse-array.pipe.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9195,6 +9378,12 @@
         "../src/pessoa/pessoa.service.ts",
         "../src/pessoa/pessoa.controller.ts",
         "../src/auth/auth.module.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.repository.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.service.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.controller.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.controller.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.repository.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -9301,7 +9490,6 @@
         "../src/pedido/pedido.service.ts",
         "../src/pedido/pedido.entity.ts",
         "../src/pedido/dto/add.ts",
-        "../src/auth/update-history.pipe.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/pedido/dto/update.ts",
         "../node_modules/@nestjs/swagger/index.d.ts",
@@ -9338,7 +9526,6 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/pedido/pedido-item/pedido-item.service.ts",
         "../src/pedido/pedido-item/pedido-item.entity.ts",
-        "../src/auth/update-history.pipe.ts",
         "../src/pedido/pedido-item/dto/add.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/pedido/pedido-item/dto/update.ts",
@@ -10377,6 +10564,77 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/class-transformer/classtransformoptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/classtransformer.d.ts": [
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/metadata/typemetadata.d.ts": [
+        "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/transformoperationexecutor.d.ts": [
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/class-transformer/metadata/typemetadata.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/decorators.d.ts": [
+        "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts",
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/class-transformer/transformoperationexecutor.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/index.d.ts": [
+        "../node_modules/class-transformer/classtransformer.d.ts",
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts",
+        "../node_modules/class-transformer/decorators.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/shared/pipe/create-instance.pipe.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/class-transformer/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/shared/interceptors/destroy-instance.interceptor.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/rxjs/index.d.ts",
+        "../node_modules/rxjs/operators/index.d.ts",
+        "../node_modules/class-transformer/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/app.module.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
@@ -10389,6 +10647,9 @@
         "../node_modules/@nestjs/serve-static/index.d.ts",
         "../node_modules/@types/node/path.d.ts",
         "../src/external/external.module.ts",
+        "../node_modules/@nestjs/core/index.d.ts",
+        "../src/shared/pipe/create-instance.pipe.ts",
+        "../src/shared/interceptors/destroy-instance.interceptor.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -10419,6 +10680,12 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/pessoa/tipo-pessoa.enum.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/shared/my-sql-functions.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -10435,6 +10702,12 @@
       ],
       "../src/util/hash.ts": [
         "../node_modules/@types/node/crypto.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/util/types.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -10883,6 +11156,13 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/shared/interceptors/destroy-instance.interceptor.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/rxjs/index.d.ts"
+      ],
+      "../src/shared/pipe/create-instance.pipe.ts": [
+        "../node_modules/@nestjs/common/index.d.ts"
+      ],
       "../src/external/external.controller.ts": [
         "../node_modules/rxjs/index.d.ts",
         "../src/external/models/via-cep.ts",
@@ -10962,26 +11242,48 @@
         "../src/pedido/dto/update.ts",
         "../node_modules/typeorm/index.d.ts"
       ],
-      "../src/pessoa/pessoa.controller.ts": [
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.controller.ts": [
         "../node_modules/typeorm/index.d.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts",
+        "../src/pessoa/pessoa-tipo/dto/add.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.controller.ts": [
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.service.ts",
+        "../src/pessoa/tipo-pessoa/dto/add.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.service.ts": [
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.repository.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
+        "../src/pessoa/tipo-pessoa/dto/add.ts"
+      ],
+      "../src/pessoa/pessoa.controller.ts": [
         "../src/pessoa/pessoa.service.ts",
         "../src/pessoa/dto/add.ts",
         "../src/pessoa/pessoa.entity.ts",
         "../src/pessoa/dto/update.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
         "../node_modules/nestjs-typeorm-paginate/dist/index.d.ts"
+      ],
+      "../src/shared/pipe/parse-array.pipe.ts": [
+        "../node_modules/@nestjs/common/index.d.ts"
       ],
       "../src/shared/pipe/parse-int-pipe.ts": [
         "../node_modules/@nestjs/common/index.d.ts"
       ],
       "../src/pessoa/pessoa.service.ts": [
-        "../node_modules/typeorm/index.d.ts",
         "../src/pessoa/pessoa.repository.ts",
         "../src/pessoa/pessoa.entity.ts",
         "../src/pessoa/dto/add.ts",
         "../src/pessoa/dto/update.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
-        "../node_modules/nestjs-typeorm-paginate/dist/index.d.ts"
+        "../node_modules/nestjs-typeorm-paginate/dist/index.d.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.service.ts": [
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.repository.ts",
+        "../src/pessoa/pessoa-tipo/dto/add.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
+        "../node_modules/typeorm/index.d.ts"
       ],
       "../src/produto/produto.controller.ts": [
         "../src/produto/produto.service.ts",
@@ -11012,20 +11314,8 @@
         "../src/auth/user/user.entity.ts",
         "../src/auth/user/dto/credentials.ts"
       ],
-      "../src/auth/update-history.pipe.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/auth/auth.service.ts"
-      ],
       "../src/auth/user/user.service.ts": [
         "../src/auth/user/user.entity.ts"
-      ],
-      "../src/auth/auth.service.ts": [
-        "../src/auth/user/dto/register.ts",
-        "../src/auth/user/user.entity.ts",
-        "../src/auth/user/user.repository.ts",
-        "../node_modules/@nestjs/jwt/index.d.ts",
-        "../src/auth/user/dto/credentials.ts",
-        "../src/auth/user/user.service.ts"
       ],
       "../node_modules/@nestjs/core/services/reflector.service.d.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -11345,6 +11635,13 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/auth/auth.service.ts": [
+        "../src/auth/user/dto/register.ts",
+        "../src/auth/user/user.entity.ts",
+        "../src/auth/user/user.repository.ts",
+        "../node_modules/@nestjs/jwt/index.d.ts",
+        "../src/auth/user/dto/credentials.ts"
+      ],
       "../node_modules/@nestjs/passport/dist/passport.module.d.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
@@ -11443,18 +11740,34 @@
         "../src/pedido/pedido-item/pedido-item.entity.ts"
       ],
       "../src/pessoa/dto/update.ts": [
-        "../src/pessoa/tipo-pessoa.enum.ts"
+        "../src/pessoa/pessoa-tipo/dto/update.ts"
       ],
       "../src/pessoa/dto/add.ts": [
-        "../src/pessoa/tipo-pessoa.enum.ts"
+        "../src/pessoa/pessoa-tipo/dto/update.ts"
       ],
       "../src/pessoa/pessoa.entity.ts": [
         "../src/shared/super-entities/common-history.ts",
-        "../src/pessoa/tipo-pessoa.enum.ts",
-        "../src/shared/types/paginated-entity.ts"
+        "../src/shared/types/paginated-entity.ts",
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts"
       ],
       "../src/pessoa/pessoa.repository.ts": [
         "../src/pessoa/pessoa.entity.ts",
+        "../src/shared/types/repository-custom.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts": [
+        "../src/shared/super-entities/common-history.ts",
+        "../src/pessoa/pessoa.entity.ts",
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts"
+      ],
+      "../src/pessoa/pessoa-tipo/pessoa-tipo.repository.ts": [
+        "../src/pessoa/pessoa-tipo/pessoa-tipo.entity.ts",
+        "../src/shared/types/repository-custom.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts": [
+        "../src/shared/super-entities/common-history.ts"
+      ],
+      "../src/pessoa/tipo-pessoa/tipo-pessoa.repository.ts": [
+        "../src/pessoa/tipo-pessoa/tipo-pessoa.entity.ts",
         "../src/shared/types/repository-custom.ts"
       ],
       "../src/produto/produto.entity.ts": [
@@ -15886,6 +16199,59 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/class-transformer/index.d.ts": [
+        "../node_modules/class-transformer/classtransformer.d.ts",
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts",
+        "../node_modules/class-transformer/decorators.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/decorators.d.ts": [
+        "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts",
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/class-transformer/transformoperationexecutor.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/transformoperationexecutor.d.ts": [
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/class-transformer/metadata/typemetadata.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/metadata/typemetadata.d.ts": [
+        "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/metadata/exposeexcludeoptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/classtransformer.d.ts": [
+        "../node_modules/class-transformer/classtransformoptions.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/class-transformer/classtransformoptions.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/@nestjs/serve-static/dist/serve-static.constants.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -15900,6 +16266,12 @@
       ],
       "../src/shared/validators/greater-than.ts": [
         "../node_modules/class-validator/index.d.ts"
+      ],
+      "../node_modules/is-what/types/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../node_modules/nestjs-typeorm-paginate/dist/pagination.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
@@ -15920,12 +16292,6 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../node_modules/@types/range-parser/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/is-what/types/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",

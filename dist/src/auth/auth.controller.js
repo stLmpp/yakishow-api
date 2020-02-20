@@ -18,7 +18,6 @@ const register_1 = require("./user/dto/register");
 const user_entity_1 = require("./user/user.entity");
 const credentials_1 = require("./user/dto/credentials");
 const swagger_1 = require("@nestjs/swagger");
-const update_history_pipe_1 = require("./update-history.pipe");
 const get_user_decorator_1 = require("./get-user.decorator");
 const passport_1 = require("@nestjs/passport");
 let AuthController = class AuthController {
@@ -40,7 +39,7 @@ let AuthController = class AuthController {
 __decorate([
     common_1.Post('register'),
     swagger_1.ApiResponse({ status: 201, type: user_entity_1.User }),
-    __param(0, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(0, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [register_1.AuthRegisterDto]),
     __metadata("design:returntype", Promise)

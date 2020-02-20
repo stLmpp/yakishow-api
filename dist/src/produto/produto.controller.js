@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const produto_service_1 = require("./produto.service");
 const produto_entity_1 = require("./produto.entity");
-const update_history_pipe_1 = require("../auth/update-history.pipe");
 const add_1 = require("./dto/add");
 const typeorm_1 = require("typeorm");
 const swagger_1 = require("@nestjs/swagger");
@@ -46,7 +45,7 @@ let ProdutoController = class ProdutoController {
 __decorate([
     common_1.Post(),
     swagger_1.ApiResponse({ status: 200, type: produto_entity_1.Produto }),
-    __param(0, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(0, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [add_1.ProdutoAddDto]),
     __metadata("design:returntype", Promise)
@@ -55,7 +54,7 @@ __decorate([
     common_1.Patch(':id'),
     swagger_1.ApiResponse({ status: 200, type: typeorm_1.UpdateResult }),
     __param(0, common_1.Param('id', common_1.ParseIntPipe)),
-    __param(1, common_1.Body(common_1.ValidationPipe, update_history_pipe_1.UpdateHistoryPipe)),
+    __param(1, common_1.Body(common_1.ValidationPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, update_1.ProdutoUpdateDto]),
     __metadata("design:returntype", Promise)

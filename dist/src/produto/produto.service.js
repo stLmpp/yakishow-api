@@ -41,7 +41,7 @@ let ProdutoService = class ProdutoService {
             return await this.produtoRepository.findOneOrFail(id);
         }
         catch (err) {
-            throw new common_1.NotFoundException('Produto não encontrado');
+            throw my_sql_error_1.mySQLError(err, 'Produto não encontrado');
         }
     }
     async findByCodigo(codigo) {
@@ -49,7 +49,7 @@ let ProdutoService = class ProdutoService {
             return await this.produtoRepository.findOneOrFail({ codigo });
         }
         catch (err) {
-            throw new common_1.NotFoundException('Produto não encontrado');
+            throw my_sql_error_1.mySQLError(err, 'Produto não encontrado');
         }
     }
     async findByDescricao(descricao) {

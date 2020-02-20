@@ -1,7 +1,8 @@
 import { CommonHistory } from '../shared/super-entities/common-history';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
 import { PaginatedEntity, PaginatedEntityItems } from '../shared/types/paginated-entity';
+import { PessoaTipo } from './pessoa-tipo/pessoa-tipo.entity';
 export declare class Pessoa extends CommonHistory {
+    constructor(partial?: Partial<Pessoa>);
     id: number;
     nome: string;
     celular: string;
@@ -13,7 +14,7 @@ export declare class Pessoa extends CommonHistory {
     complemento: string;
     cep: string;
     email: string;
-    tipo: TipoPessoaEnum;
+    tipos: PessoaTipo[];
 }
 export declare class PaginatedPessoa extends PaginatedEntity implements PaginatedEntityItems<Pessoa> {
     items: Pessoa[];

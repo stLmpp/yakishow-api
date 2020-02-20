@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ProdutoRepository } from './produto.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Produto } from './produto.entity';
@@ -34,7 +34,7 @@ export class ProdutoService {
     try {
       return await this.produtoRepository.findOneOrFail(id);
     } catch (err) {
-      throw new NotFoundException('Produto não encontrado');
+      throw mySQLError(err, 'Produto não encontrado');
     }
   }
 
@@ -42,7 +42,7 @@ export class ProdutoService {
     try {
       return await this.produtoRepository.findOneOrFail({ codigo });
     } catch (err) {
-      throw new NotFoundException('Produto não encontrado');
+      throw mySQLError(err, 'Produto não encontrado');
     }
   }
 
