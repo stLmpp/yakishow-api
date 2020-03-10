@@ -22,6 +22,10 @@ export function mySQLError(
         mySqlError.code = err.name;
         mySqlError.message = err.message;
         break;
+      default: {
+        mySqlError = new MySQLError(err);
+        break;
+      }
     }
   } else {
     mySqlError = new MySQLError(err);

@@ -107,11 +107,11 @@ export function patchClassValidatorMessages(): void {
       case ValidationTypes.IS_BYTE_LENGTH:
         return `${eachPrefix}o tamanho dos bytes de $property deve estar entre $constraint1 e  $constraint2`;
       case ValidationTypes.IS_CREDIT_CARD:
-        return eachPrefix + '$property precisa ser um cartão de crédito';
+        return eachPrefix + '$property precisa ser um cartão de crédito válido';
       case ValidationTypes.IS_CURRENCY:
-        return eachPrefix + '$property precisa ser uma moeda';
+        return eachPrefix + '$property precisa ser uma moeda válida';
       case ValidationTypes.IS_EMAIL:
-        return eachPrefix + '$property precisa ser um e-mail';
+        return eachPrefix + '$property precisa ser um e-mail válido';
       case ValidationTypes.IS_FQDN:
         return eachPrefix + '$property precisa ser um nome de domínio válido';
       case ValidationTypes.IS_FULL_WIDTH:

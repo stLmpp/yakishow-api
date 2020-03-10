@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { getEnvVar, isProd } from './util/env';
+import { getEnvVar, getHost, isProd } from './util/env';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { version } from '../package.json';
 import { patchClassValidatorMessages } from './config/class-validator-messages';
@@ -8,6 +8,7 @@ import { patchClassValidatorMessages } from './config/class-validator-messages';
 patchClassValidatorMessages();
 
 const PORT = getEnvVar('PORT') ?? getEnvVar('$PORT');
+const HOST = getHost();
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -21,12 +22,12 @@ async function bootstrap(): Promise<void> {
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('help', app, document);
   }
-  await app.listen(PORT, getEnvVar('HOST'));
+  await app.listen(PORT, HOST);
 }
 bootstrap()
   .then(() => {
     // tslint:disable-next-line:no-console
-    console.log(`Yakishow-api started! on ${getEnvVar('HOST') + ' - ' + PORT}`);
+    console.log(`Yakishow-api started! on ${HOST} - ${PORT}`);
   })
   .catch(error => {
     // tslint:disable-next-line:no-console

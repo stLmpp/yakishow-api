@@ -1,6 +1,5 @@
 import {
   IsArray,
-  IsDate,
   IsDefined,
   IsEnum,
   IsNotEmpty,
@@ -13,15 +12,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { PedidoItemAddDto } from '../pedido-item/dto/add';
 
 export class PedidoAddDto {
-  @IsOptional()
-  @IsDate()
-  @ApiProperty({
-    type: String,
-    description: 'Date',
-    required: false,
-  })
-  dataInicio?: Date;
-
   @IsEnum(PedidoStatusEnum)
   @IsOptional()
   @ApiProperty({

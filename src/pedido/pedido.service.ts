@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PedidoRepository } from './pedido.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pedido } from './pedido.entity';
@@ -7,7 +7,8 @@ import { PedidoStatusEnum } from './pedido-status.enum';
 import { PedidoItemRepository } from './pedido-item/pedido-item.repository';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PedidoUpdateDto } from './dto/update';
-import { UpdateResult } from 'typeorm';
+import { Raw, UpdateResult } from 'typeorm';
+import { format } from 'date-fns';
 
 @Injectable()
 export class PedidoService {
@@ -19,9 +20,9 @@ export class PedidoService {
   ) {}
 
   async add(dto: PedidoAddDto): Promise<Pedido> {
-    if (!dto.dataInicio) dto.dataInicio = new Date();
     if (!dto.status) dto.status = PedidoStatusEnum.pendente;
     try {
+      if (!dto.status) dto.status = PedidoStatusEnum.pendente;
       const pedido = await this.pedidoRepository.save(dto);
       if (dto.pedidoItems?.length) {
         pedido.pedidoItems = await this.pedidoItemRepository.save(
@@ -38,15 +39,6 @@ export class PedidoService {
   }
 
   async update(id: number, dto: PedidoUpdateDto): Promise<UpdateResult> {
-    if (dto.dataFinalizado) {
-      const pedido = await this.pedidoRepository.findOne(id);
-      if (pedido.dataInicio && pedido.dataInicio < dto.dataFinalizado) {
-        throw new BadRequestException(
-          'Data finalizado deve ser maior que data de inicio'
-        );
-      }
-    }
-
     try {
       return await this.pedidoRepository.update(id, dto);
     } catch (err) {
@@ -58,6 +50,21 @@ export class PedidoService {
     return await this.pedidoRepository.find({
       relations: ['pedidoItems'],
       where: { status },
+    });
+  }
+
+  async findByDay(day?: Date): Promise<Pedido[]> {
+    return await this.pedidoRepository.find({
+      relations: ['pedidoItems', 'cliente'],
+      where: {
+        creationDate: Raw(
+          alias =>
+            `date_format(${alias}, '%d/%m/%Y') = '${format(
+              day ?? new Date(),
+              'dd/MM/yyyy'
+            )}'`
+        ),
+      },
     });
   }
 }

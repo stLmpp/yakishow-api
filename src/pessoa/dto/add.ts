@@ -4,7 +4,6 @@ import {
   IsDefined,
   IsEmail,
   IsNotEmpty,
-  IsNumber,
   IsNumberString,
   IsOptional,
   IsString,
@@ -30,31 +29,9 @@ export class PessoaAddDto {
 
   @IsString()
   @ApiProperty({ required: false })
-  @IsOptional()
-  @IsNumberString()
-  @MaxLength(10)
-  telefone?: string;
-
-  @IsString()
-  @ApiProperty({ required: false })
   @MaxLength(500)
   @IsOptional()
-  shortEndereco?: string;
-
-  @IsString()
-  @IsOptional()
-  @ApiProperty({ required: false })
-  bairro?: string;
-
-  @IsString()
-  @ApiProperty({ required: false })
-  @IsOptional()
-  rua?: string;
-
-  @IsNumber()
-  @ApiProperty({ required: false })
-  @IsOptional()
-  numero?: number;
+  endereco?: string;
 
   @IsString()
   @ApiProperty({ required: false })

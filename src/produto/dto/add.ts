@@ -1,4 +1,11 @@
-import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsDefined,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ProdutoAddDto {
@@ -6,12 +13,14 @@ export class ProdutoAddDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
+  @MaxLength(30)
   codigo: string;
 
   @IsString()
   @IsDefined()
   @IsNotEmpty()
   @ApiProperty()
+  @MaxLength(255)
   descricao: string;
 
   @IsDefined()
@@ -19,4 +28,8 @@ export class ProdutoAddDto {
   @IsNumber()
   @ApiProperty()
   valor: number;
+
+  @IsBoolean()
+  @ApiProperty()
+  ativo?: boolean;
 }

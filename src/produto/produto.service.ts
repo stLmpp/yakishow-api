@@ -5,7 +5,7 @@ import { Produto } from './produto.entity';
 import { ProdutoAddDto } from './dto/add';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { ProdutoUpdateDto } from './dto/update';
-import { UpdateResult } from 'typeorm';
+import { FindConditions, Not, Raw, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class ProdutoService {
@@ -48,5 +48,39 @@ export class ProdutoService {
 
   async findByDescricao(descricao: string): Promise<Produto[]> {
     return await this.produtoRepository.findByDescricao(descricao);
+  }
+
+  async findByParams(descricao: string, codigo: string): Promise<Produto[]> {
+    const rawFac = (value: any) =>
+      Raw(alias => `upper(${alias}) like upper('%${value}%')`);
+    return await this.produtoRepository.find({
+      where: [
+        {
+          codigo: rawFac(codigo),
+        },
+        {
+          descricao: rawFac(descricao),
+        },
+      ],
+    });
+  }
+
+  async existsByCodigo(codigo: string, id?: number): Promise<boolean> {
+    const findConditions: FindConditions<Produto> = { codigo };
+    if (id) findConditions.id = Not(id);
+    return await this.produtoRepository.exists(findConditions);
+  }
+
+  async findAll(): Promise<Produto[]> {
+    return await this.produtoRepository.find();
+  }
+
+  async findBySimilarityCodigo(codigo: string): Promise<Produto[]> {
+    return await this.produtoRepository.find({
+      where: {
+        codigo: Raw(alias => `upper(${alias}) like upper('%${codigo}%')`),
+      },
+      take: 5,
+    });
   }
 }

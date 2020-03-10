@@ -4,7 +4,6 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -17,6 +16,7 @@ import { UpdateResult } from 'typeorm';
 import { ApiResponse } from '@nestjs/swagger';
 import { ProdutoUpdateDto } from './dto/update';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
+import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
 
 @Controller('produto')
 @WithAuthGuard()
@@ -47,6 +47,7 @@ export class ProdutoController {
   @Get('codigo')
   @ApiResponse({ status: 200, type: Produto })
   async findByCodigo(@Query('codigo') codigo: string): Promise<Produto> {
+    if (!codigo) throw new BadRequestException('Código é obrigatório');
     return this.produtoService.findByCodigo(codigo);
   }
 
@@ -57,5 +58,37 @@ export class ProdutoController {
   ): Promise<Produto[]> {
     if (!descricao) throw new BadRequestException('Descrição é obrigatória');
     return this.produtoService.findByDescricao(descricao);
+  }
+
+  @Get('params')
+  @ApiResponse({ status: 200, type: Produto, isArray: true })
+  async findByParams(
+    @Query('descricao') descricao: string,
+    @Query('codigo') codigo: string
+  ): Promise<Produto[]> {
+    return this.produtoService.findByParams(descricao, codigo);
+  }
+
+  @Get('exists/codigo')
+  @ApiResponse({ status: 200, type: Boolean })
+  async existsByCodigo(
+    @Query('codigo') codigo: string,
+    @Query('id', ParseIntPipe) id?: number
+  ): Promise<boolean> {
+    return this.produtoService.existsByCodigo(codigo, id);
+  }
+
+  @Get('all')
+  @ApiResponse({ status: 200, type: Produto, isArray: true })
+  async findAll(): Promise<Produto[]> {
+    return this.produtoService.findAll();
+  }
+
+  @Get('similarity/codigo')
+  @ApiResponse({ status: 200, type: Produto, isArray: true })
+  async findBySimilarityCodigo(
+    @Query('codigo') codigo: string
+  ): Promise<Produto[]> {
+    return this.produtoService.findBySimilarityCodigo(codigo);
   }
 }

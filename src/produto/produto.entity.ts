@@ -10,6 +10,7 @@ export class Produto extends CommonHistory {
 
   @Column({
     unique: true,
+    length: 30,
   })
   @ApiProperty()
   codigo: string;
@@ -21,4 +22,8 @@ export class Produto extends CommonHistory {
   @Column('decimal', { precision: 10, scale: 2 })
   @ApiProperty()
   valor: number;
+
+  @Column()
+  @ApiProperty()
+  ativo: boolean;
 }

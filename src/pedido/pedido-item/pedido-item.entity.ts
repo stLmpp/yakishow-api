@@ -34,11 +34,15 @@ export class PedidoItem extends CommonHistory {
   @JoinColumn()
   pedido: Pedido;
 
+  @Column()
+  @ApiProperty()
+  quantidade: number;
+
   @Column('decimal', { precision: 10, scale: 2, nullable: true })
   @ApiProperty()
   total: number;
 
-  @Column()
+  @Column({ length: 500 })
   @ApiProperty()
-  quantidade: number;
+  observacao: string;
 }

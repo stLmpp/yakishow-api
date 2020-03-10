@@ -11,4 +11,5 @@ export const DB_TYPEORM_CONFIG: TypeOrmModuleOptions = {
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: getEnvVar('DB_SYNC'),
   logging: !isProd ? 'all' : false,
+  bigNumberStrings: false,
 };

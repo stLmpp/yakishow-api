@@ -1,4 +1,10 @@
-import { IsDefined, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import {
+  IsDefined,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class PedidoItemAddDto {
@@ -23,4 +29,9 @@ export class PedidoItemAddDto {
   @IsNotEmpty()
   @ApiProperty()
   quantidade: number;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty()
+  observacao?: string;
 }

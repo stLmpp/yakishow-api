@@ -11,10 +11,9 @@ import {
 import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { PessoaService } from './pessoa.service';
 import { PessoaAddDto } from './dto/add';
-import { PaginatedPessoa, Pessoa } from './pessoa.entity';
+import { Pessoa } from './pessoa.entity';
 import { PessoaUpdateDto } from './dto/update';
 import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
-import { Pagination } from 'nestjs-typeorm-paginate';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 import { ParseArrayPipe } from '../shared/pipe/parse-array.pipe';
 
@@ -65,23 +64,13 @@ export class PessoaController {
     return this.pessoaService.findByTipos(tipos);
   }
 
-  @Get('exists/celular/:celular')
+  @Get('exists/celular')
   @ApiResponse({ status: 200, type: Boolean })
   async existsByCelular(
-    @Param('celular') celular: string,
+    @Query('celular') celular: string,
     @Query('id', ParseIntPipe) id?: number
   ): Promise<boolean> {
     return this.pessoaService.existsByCelular(celular, id);
-  }
-
-  @Get('page')
-  @ApiResponse({ status: 200, type: PaginatedPessoa })
-  async findByPage(
-    @Query('page', ParseIntPipe) page: number,
-    @Query('limit', ParseIntPipe) limit: number
-  ): Promise<Pagination<Pessoa>> {
-    if (!limit) limit = 25;
-    return this.pessoaService.findByPage({ page, limit, route: '/page' });
   }
 
   @Get('all')
@@ -98,12 +87,18 @@ export class PessoaController {
     return this.pessoaService.findRandom(length);
   }
 
-  @Get('exists/email/:email')
+  @Get('exists/email')
   @ApiResponse({ status: 200, type: Boolean })
   async existsByEmail(
-    @Param('email') email: string,
+    @Query('email') email: string,
     @Query('id', ParseIntPipe) id?: number
   ): Promise<boolean> {
     return this.pessoaService.existsByEmail(email, id);
+  }
+
+  @Get('celular')
+  @ApiResponse({ status: 200, type: Pessoa })
+  async findByCelular(@Query('celular') celular: string): Promise<Pessoa> {
+    return this.pessoaService.findByCelular(celular);
   }
 }

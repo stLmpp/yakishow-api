@@ -16,7 +16,7 @@ import { DestroyInstanceInterceptor } from './shared/interceptors/destroy-instan
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', '..', 'client', 'dist'),
+      rootPath: join(__dirname, '..', '..', '..', 'client2', 'dist'),
     }),
     TypeOrmModule.forRoot(DB_TYPEORM_CONFIG),
     AuthModule,

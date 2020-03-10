@@ -6,11 +6,6 @@ import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
 import { PessoaAddDto } from './dto/add';
 import { PessoaUpdateDto } from './dto/update';
-import {
-  IPaginationOptions,
-  paginate,
-  Pagination,
-} from 'nestjs-typeorm-paginate';
 import { PessoaTipoService } from './pessoa-tipo/pessoa-tipo.service';
 
 @Injectable()
@@ -79,12 +74,8 @@ export class PessoaService {
     return await this.pessoaRepository.exists(findConditions);
   }
 
-  async findByPage(options: IPaginationOptions): Promise<Pagination<Pessoa>> {
-    return await paginate<Pessoa>(this.pessoaRepository, options);
-  }
-
   async findAll(): Promise<Pessoa[]> {
-    return await this.pessoaRepository.find();
+    return await this.pessoaRepository.find({ relations: ['tipos'] });
   }
 
   async findRandom(length: number): Promise<Pessoa[]> {
@@ -93,7 +84,18 @@ export class PessoaService {
 
   async existsByEmail(email: string, id?: number): Promise<boolean> {
     const findConditions: FindConditions<Pessoa> = { email };
-    if (id) findConditions.id = id;
+    if (id) findConditions.id = Not(id);
     return await this.pessoaRepository.exists(findConditions);
+  }
+
+  async findByCelular(celular: string): Promise<Pessoa> {
+    try {
+      return await this.pessoaRepository.findOneOrFail({
+        where: { celular },
+        relations: ['tipos'],
+      });
+    } catch (error) {
+      throw mySQLError(error, 'Erro ao tentar encontrar a pessoa');
+    }
   }
 }

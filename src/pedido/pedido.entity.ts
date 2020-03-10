@@ -18,17 +18,9 @@ export class Pedido extends CommonHistory {
   @ApiProperty()
   id: number;
 
-  @Column()
+  @Column({ type: 'enum', enum: PedidoStatusEnum })
   @ApiProperty({ enum: PedidoStatusEnum })
   status: PedidoStatusEnum;
-
-  @Column()
-  @ApiProperty({ type: String, description: 'Date' })
-  dataInicio: Date;
-
-  @Column({ nullable: true })
-  @ApiProperty({ type: String, description: 'Date' })
-  dataFinalizado: Date;
 
   @Column()
   @ApiProperty()
@@ -50,5 +42,9 @@ export class Pedido extends CommonHistory {
     () => PedidoItem,
     item => item.pedido
   )
+  @ApiProperty({
+    type: PedidoItem,
+    isArray: true,
+  })
   pedidoItems: PedidoItem[];
 }

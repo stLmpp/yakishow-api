@@ -1,4 +1,5 @@
 import { get } from 'config';
+import { networkInterfaces } from 'os';
 
 type Env =
   | 'NODE_ENV'
@@ -20,6 +21,16 @@ export function getEnvVar(property: string): any {
   } catch (e) {
     return process.env[property];
   }
+}
+
+export function getHost(): string {
+  return isProd
+    ? getEnvVar('HOST')
+    : (
+        networkInterfaces().WiFi ??
+        networkInterfaces().Ethernet ??
+        networkInterfaces()['Wi-Fi']
+      )?.find(o => o.family === 'IPv4').address ?? getEnvVar('HOST');
 }
 
 export const isProd = getEnvVar('NODE_ENV') === 'production';

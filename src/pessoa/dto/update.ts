@@ -25,37 +25,13 @@ export class PessoaUpdateDto {
   @IsString()
   @MaxLength(12)
   @ApiProperty({ required: false })
-  celular?: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(10)
-  @ApiProperty({ required: false })
-  telefone?: string;
+  celular: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(500)
   @ApiProperty({ required: false })
-  shortEndereco?: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(255)
-  @ApiProperty({ required: false })
-  bairro?: string;
-
-  @IsOptional()
-  @IsString()
-  @MaxLength(255)
-  @ApiProperty({ required: false })
-  rua?: string;
-
-  @IsOptional()
-  @IsNumber()
-  @MaxLength(255)
-  @ApiProperty({ required: false })
-  numero?: number;
+  endereco: string;
 
   @IsOptional()
   @IsString()
