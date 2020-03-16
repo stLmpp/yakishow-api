@@ -7,16 +7,14 @@ import {
   Patch,
   Post,
   Query,
-  ValidationPipe,
 } from '@nestjs/common';
 import { ProdutoService } from './produto.service';
 import { Produto } from './produto.entity';
-import { ProdutoAddDto } from './dto/add';
+import { ProdutoAddDto } from './dto/add.dto';
 import { UpdateResult } from 'typeorm';
-import { ApiResponse } from '@nestjs/swagger';
-import { ProdutoUpdateDto } from './dto/update';
+import { ProdutoUpdateDto } from './dto/update.dto';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
-import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('produto')
 @WithAuthGuard()
@@ -24,35 +22,30 @@ export class ProdutoController {
   constructor(private produtoService: ProdutoService) {}
 
   @Post()
-  @ApiResponse({ status: 200, type: Produto })
-  async add(@Body(ValidationPipe) dto: ProdutoAddDto): Promise<Produto> {
+  async add(@Body() dto: ProdutoAddDto): Promise<Produto> {
     return this.produtoService.add(dto);
   }
 
   @Patch(':id')
-  @ApiResponse({ status: 200, type: UpdateResult })
   async update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body(ValidationPipe) dto: ProdutoUpdateDto
+    @Param('id') id: number,
+    @Body() dto: ProdutoUpdateDto
   ): Promise<UpdateResult> {
     return this.produtoService.update(id, dto);
   }
 
   @Get('id/:id')
-  @ApiResponse({ status: 200, type: Produto })
-  async findById(@Param('id', ParseIntPipe) id: number): Promise<Produto> {
+  async findById(@Param('id') id: number): Promise<Produto> {
     return this.produtoService.findById(id);
   }
 
   @Get('codigo')
-  @ApiResponse({ status: 200, type: Produto })
   async findByCodigo(@Query('codigo') codigo: string): Promise<Produto> {
     if (!codigo) throw new BadRequestException('Código é obrigatório');
     return this.produtoService.findByCodigo(codigo);
   }
 
   @Get('descricao')
-  @ApiResponse({ status: 200, type: Produto, isArray: true })
   async findByDescricao(
     @Query('descricao') descricao: string
   ): Promise<Produto[]> {
@@ -61,7 +54,6 @@ export class ProdutoController {
   }
 
   @Get('params')
-  @ApiResponse({ status: 200, type: Produto, isArray: true })
   async findByParams(
     @Query('descricao') descricao: string,
     @Query('codigo') codigo: string
@@ -70,22 +62,20 @@ export class ProdutoController {
   }
 
   @Get('exists/codigo')
-  @ApiResponse({ status: 200, type: Boolean })
+  @ApiQuery({ name: 'id', required: false, type: Number })
   async existsByCodigo(
     @Query('codigo') codigo: string,
-    @Query('id', ParseIntPipe) id?: number
+    @Query('id') id?: number
   ): Promise<boolean> {
     return this.produtoService.existsByCodigo(codigo, id);
   }
 
   @Get('all')
-  @ApiResponse({ status: 200, type: Produto, isArray: true })
   async findAll(): Promise<Produto[]> {
     return this.produtoService.findAll();
   }
 
   @Get('similarity/codigo')
-  @ApiResponse({ status: 200, type: Produto, isArray: true })
   async findBySimilarityCodigo(
     @Query('codigo') codigo: string
   ): Promise<Produto[]> {

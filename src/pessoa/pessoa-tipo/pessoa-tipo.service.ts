@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PessoaTipoRepository } from './pessoa-tipo.repository';
-import { PessoaTipoAddDto } from './dto/add';
+import { PessoaTipoAddDto } from './dto/add.dto';
 import { PessoaTipo } from './pessoa-tipo.entity';
 import { DeleteResult, FindConditions, In, Not } from 'typeorm';
 import { mySQLError } from '../../shared/error/my-sql-error';

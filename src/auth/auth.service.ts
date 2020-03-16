@@ -1,9 +1,9 @@
-import { AuthRegisterDto } from './user/dto/register';
+import { AuthRegisterDto } from './user/dto/register.dto';
 import { User } from './user/user.entity';
 import { UserRepository } from './user/user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { AuthCredentialsDto } from './user/dto/credentials';
+import { AuthCredentialsDto } from './user/dto/credentials.dto';
 
 export class AuthService {
   constructor(

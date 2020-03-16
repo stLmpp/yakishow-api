@@ -4,6 +4,7 @@ import { getEnvVar, getHost, isProd } from './util/env';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { version } from '../package.json';
 import { patchClassValidatorMessages } from './config/class-validator-messages';
+import { ValidationPipe } from '@nestjs/common';
 
 patchClassValidatorMessages();
 
@@ -13,10 +14,11 @@ const HOST = getHost();
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+  app.useGlobalPipes(new ValidationPipe());
   if (!isProd) {
     app.enableCors();
     const options = new DocumentBuilder()
-      .setTitle('Goals api')
+      .setTitle('Yakishow api')
       .setVersion(version)
       .build();
     const document = SwaggerModule.createDocument(app, options);

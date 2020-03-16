@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { PedidoRepository } from './pedido.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pedido } from './pedido.entity';
-import { PedidoAddDto } from './dto/add';
+import { PedidoAddDto } from './dto/add.dto';
 import { PedidoStatusEnum } from './pedido-status.enum';
 import { PedidoItemRepository } from './pedido-item/pedido-item.repository';
 import { mySQLError } from '../shared/error/my-sql-error';
-import { PedidoUpdateDto } from './dto/update';
+import { PedidoUpdateDto } from './dto/update.dto';
 import { Raw, UpdateResult } from 'typeorm';
 import { format } from 'date-fns';
 

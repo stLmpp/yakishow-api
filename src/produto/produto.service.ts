@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { ProdutoRepository } from './produto.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Produto } from './produto.entity';
-import { ProdutoAddDto } from './dto/add';
+import { ProdutoAddDto } from './dto/add.dto';
 import { mySQLError } from '../shared/error/my-sql-error';
-import { ProdutoUpdateDto } from './dto/update';
+import { ProdutoUpdateDto } from './dto/update.dto';
 import { FindConditions, Not, Raw, UpdateResult } from 'typeorm';
 
 @Injectable()

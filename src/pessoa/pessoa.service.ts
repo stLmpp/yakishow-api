@@ -4,8 +4,8 @@ import { FindConditions, In, Not } from 'typeorm';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
-import { PessoaAddDto } from './dto/add';
-import { PessoaUpdateDto } from './dto/update';
+import { PessoaAddDto } from './dto/add.dto';
+import { PessoaUpdateDto } from './dto/update.dto';
 import { PessoaTipoService } from './pessoa-tipo/pessoa-tipo.service';
 
 @Injectable()

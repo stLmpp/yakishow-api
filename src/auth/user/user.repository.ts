@@ -2,8 +2,8 @@ import { EntityRepository, Repository } from 'typeorm';
 import { genSalt, hash } from 'bcryptjs';
 import { UnauthorizedException } from '@nestjs/common';
 import { User } from './user.entity';
-import { AuthRegisterDto } from './dto/register';
-import { AuthCredentialsDto } from './dto/credentials';
+import { AuthRegisterDto } from './dto/register.dto';
+import { AuthCredentialsDto } from './dto/credentials.dto';
 import { mySQLError } from '../../shared/error/my-sql-error';
 
 @EntityRepository(User)

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { TipoPessoaRepository } from './tipo-pessoa.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TipoPessoa } from './tipo-pessoa.entity';
-import { TipoPessoaAddDto } from './dto/add';
+import { TipoPessoaAddDto } from './dto/add.dto';
 
 @Injectable()
 export class TipoPessoaService {

@@ -1,10 +1,8 @@
 import { IsDefined, IsNotEmpty, IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
 
-export class SearchTermDto {
+export class TipoPessoaAddDto {
   @IsString()
   @IsDefined()
   @IsNotEmpty()
-  @ApiProperty()
-  term: string;
+  nome: string;
 }

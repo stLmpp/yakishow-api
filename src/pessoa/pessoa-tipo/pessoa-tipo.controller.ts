@@ -4,40 +4,35 @@ import {
   Delete,
   Get,
   Param,
+  ParseArrayPipe,
   Put,
   Query,
-  ValidationPipe,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
-import { ApiResponse } from '@nestjs/swagger';
 import { PessoaTipoService } from './pessoa-tipo.service';
-import { PessoaTipoAddDto } from './dto/add';
+import { PessoaTipoAddDto } from './dto/add.dto';
 import { PessoaTipo } from './pessoa-tipo.entity';
-import { ParseIntPipe } from '../../shared/pipe/parse-int-pipe';
-import { ParseArrayPipe } from '../../shared/pipe/parse-array.pipe';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('pessoa-tipo')
 export class PessoaTipoController {
   constructor(private pessoaTipoService: PessoaTipoService) {}
 
   @Put()
-  @ApiResponse({ status: 200, type: PessoaTipoAddDto })
-  async add(@Body(ValidationPipe) dto: PessoaTipoAddDto): Promise<PessoaTipo> {
+  async add(@Body() dto: PessoaTipoAddDto): Promise<PessoaTipo> {
     return this.pessoaTipoService.add(dto);
   }
 
   @Delete()
-  @ApiResponse({ status: 200, type: DeleteResult })
   async remove(@Body() ids: number[]): Promise<DeleteResult> {
     return this.pessoaTipoService.remove(ids);
   }
 
   @Get('pessoaId/:pessoaId')
-  @ApiResponse({ status: 200, type: PessoaTipo, isArray: true })
+  @ApiQuery({ name: 'notTipoPessoaIds', isArray: true, type: Number })
   async findByPessoaId(
-    @Param('pessoaId', ParseIntPipe) pessoaId: number,
-    @Query('notTipoPessoaIds', new ParseArrayPipe('number'))
-    notTipoPessoaIds: number[]
+    @Param('pessoaId') pessoaId: number,
+    @Query('notTipoPessoaIds', ParseArrayPipe) notTipoPessoaIds: number[]
   ): Promise<PessoaTipo[]> {
     return this.pessoaTipoService.findByPessoaId(pessoaId, notTipoPessoaIds);
   }

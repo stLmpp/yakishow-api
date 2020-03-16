@@ -6,7 +6,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
 import { Pessoa } from '../pessoa.entity';
 import { TipoPessoa } from '../tipo-pessoa/tipo-pessoa.entity';
 
@@ -14,11 +13,9 @@ import { TipoPessoa } from '../tipo-pessoa/tipo-pessoa.entity';
 @Index(['tipoPessoaId', 'pessoaId'], { unique: true })
 export class PessoaTipo extends CommonHistory {
   @PrimaryGeneratedColumn()
-  @ApiProperty()
   id: number;
 
   @Column()
-  @ApiProperty()
   pessoaId: number;
 
   @ManyToOne(
@@ -28,7 +25,6 @@ export class PessoaTipo extends CommonHistory {
   pessoa: Pessoa;
 
   @Column()
-  @ApiProperty()
   tipoPessoaId: number;
 
   @ManyToOne(() => TipoPessoa)

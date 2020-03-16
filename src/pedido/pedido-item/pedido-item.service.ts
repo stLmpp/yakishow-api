@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { PedidoItemRepository } from './pedido-item.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PedidoItem } from './pedido-item.entity';
-import { PedidoItemAddDto } from './dto/add';
+import { PedidoItemAddDto } from './dto/add.dto';
 import { mySQLError } from '../../shared/error/my-sql-error';
-import { PedidoItemUpdateDto } from './dto/update';
+import { PedidoItemUpdateDto } from './dto/update.dto';
 import { UpdateResult } from 'typeorm';
 
 @Injectable()
