@@ -10,6 +10,8 @@ import { PedidoUpdateDto } from './dto/update.dto';
 import { Raw, UpdateResult } from 'typeorm';
 import { format } from 'date-fns';
 
+const relationsPedido = ['pedidoItems', 'cliente', 'pedidoItems.produto'];
+
 @Injectable()
 export class PedidoService {
   constructor(
@@ -24,15 +26,9 @@ export class PedidoService {
     try {
       if (!dto.status) dto.status = PedidoStatusEnum.pendente;
       const pedido = await this.pedidoRepository.save(dto);
-      if (dto.pedidoItems?.length) {
-        pedido.pedidoItems = await this.pedidoItemRepository.save(
-          dto.pedidoItems.map(pedidoItem => {
-            pedidoItem.pedidoId = pedido.id;
-            return pedidoItem;
-          })
-        );
-      }
-      return pedido;
+      return await this.pedidoRepository.findOne(pedido.id, {
+        relations: relationsPedido,
+      });
     } catch (err) {
       throw mySQLError(err, 'Erro ao tentar salvar o pedido');
     }
@@ -55,7 +51,7 @@ export class PedidoService {
 
   async findByDay(day?: Date): Promise<Pedido[]> {
     return await this.pedidoRepository.find({
-      relations: ['pedidoItems', 'cliente'],
+      relations: relationsPedido,
       where: {
         creationDate: Raw(
           alias =>
@@ -66,5 +62,15 @@ export class PedidoService {
         ),
       },
     });
+  }
+
+  async findById(id: number): Promise<Pedido> {
+    try {
+      return await this.pedidoRepository.findOneOrFail(id, {
+        relations: relationsPedido,
+      });
+    } catch (err) {
+      throw mySQLError(err, 'Erro ao tentar procurar o pedido');
+    }
   }
 }

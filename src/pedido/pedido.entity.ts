@@ -35,7 +35,10 @@ export class Pedido extends CommonHistory {
 
   @OneToMany(
     () => PedidoItem,
-    item => item.pedido
+    item => item.pedido,
+    {
+      cascade: true,
+    }
   )
   pedidoItems: PedidoItem[];
 }

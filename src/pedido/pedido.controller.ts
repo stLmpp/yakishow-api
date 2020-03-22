@@ -41,6 +41,11 @@ export class PedidoController {
     return this.pedidoService.update(id, dto);
   }
 
+  @Get('id/:id')
+  async findById(@Param('id') id: number): Promise<Pedido> {
+    return this.pedidoService.findById(id);
+  }
+
   @Get('status')
   @ApiQuery({ name: 'status', enum: PedidoStatusEnum })
   async findByStatus(
