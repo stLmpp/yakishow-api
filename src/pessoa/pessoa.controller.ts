@@ -86,4 +86,22 @@ export class PessoaController {
   async findByCelular(@Query('celular') celular: string): Promise<Pessoa> {
     return this.pessoaService.findByCelular(celular);
   }
+
+  @Get('search/autocomplete')
+  @ApiQuery({
+    name: 'term',
+    required: true,
+    description: 'Termo da pesquisa do cliente',
+  })
+  @ApiQuery({
+    name: 'withPedido',
+    required: false,
+    description: 'Somente trazer clientes que já tem pedidos',
+  })
+  async findByTermAutocomplete(
+    @Query('term') term: string,
+    @Query('withPedido') withPedido?: boolean
+  ): Promise<Pessoa[]> {
+    return this.pessoaService.findByTermAutoComplete(term, withPedido);
+  }
 }

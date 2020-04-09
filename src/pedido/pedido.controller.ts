@@ -19,6 +19,7 @@ import { ParseDatePipe } from '../shared/pipe/parse-date.pipe';
 import { PedidoItemService } from './pedido-item/pedido-item.service';
 import { PedidoItem } from './pedido-item/pedido-item.entity';
 import { PedidoItemAddDto } from './pedido-item/dto/add.dto';
+import { NormalizePipe } from '../shared/pipe/normalize.pipe';
 
 @Controller('pedido')
 @WithAuthGuard()
@@ -74,5 +75,30 @@ export class PedidoController {
     @Body() dto: PedidoItemAddDto
   ): Promise<PedidoItem> {
     return this.pedidoItemService.add(idPedido, dto);
+  }
+
+  @Get('params')
+  @ApiQuery({ name: 'dataCriacao', required: false })
+  @ApiQuery({ name: 'dataFinalizado', required: false })
+  @ApiQuery({ name: 'status', required: false })
+  @ApiQuery({ name: 'clienteId', required: false })
+  @ApiQuery({ name: 'produto', required: false })
+  @ApiQuery({ name: 'produtoId', required: false })
+  async findByParams(
+    @Query('dataCriacao', ParseDatePipe) dataCriacao?: Date,
+    @Query('dataFinalizado', ParseDatePipe) dataFinalizado?: Date,
+    @Query('status') status?: PedidoStatusEnum,
+    @Query('clienteId') clienteId?: number,
+    @Query('produto', NormalizePipe) produto?: string,
+    @Query('produtoId') produtoId?: number
+  ): Promise<Pedido[]> {
+    return this.pedidoService.findByParams({
+      dataFinalizado,
+      dataCriacao,
+      clienteId,
+      status,
+      produto,
+      produtoId,
+    });
   }
 }

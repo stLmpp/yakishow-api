@@ -50,19 +50,16 @@ export class ProdutoService {
     return await this.produtoRepository.findByDescricao(descricao);
   }
 
-  async findByParams(descricao: string, codigo: string): Promise<Produto[]> {
-    const rawFac = (value: any) =>
-      Raw(alias => `upper(${alias}) like upper('%${value}%')`);
-    return await this.produtoRepository.find({
-      where: [
-        {
-          codigo: rawFac(codigo),
-        },
-        {
-          descricao: rawFac(descricao),
-        },
-      ],
-    });
+  async findByParams(
+    descricao: string,
+    codigo: string,
+    withPedido?: boolean
+  ): Promise<Produto[]> {
+    return await this.produtoRepository.findByParams(
+      descricao,
+      codigo,
+      withPedido
+    );
   }
 
   async existsByCodigo(codigo: string, id?: number): Promise<boolean> {
@@ -82,5 +79,13 @@ export class ProdutoService {
       },
       take: 5,
     });
+  }
+
+  async findBySearch(
+    term: string,
+    withPedido: boolean,
+    limit: number
+  ): Promise<Produto[]> {
+    return this.produtoRepository.findBySearch(term, withPedido, limit);
   }
 }

@@ -54,11 +54,27 @@ export class ProdutoController {
   }
 
   @Get('params')
+  @ApiQuery({
+    name: 'descricao',
+    required: false,
+    description: 'Descrição do produto',
+  })
+  @ApiQuery({
+    name: 'codigo',
+    required: false,
+    description: 'Código do produto',
+  })
+  @ApiQuery({
+    name: 'withPedido',
+    required: false,
+    description: 'Buscar somente produtos com pedidos',
+  })
   async findByParams(
     @Query('descricao') descricao: string,
-    @Query('codigo') codigo: string
+    @Query('codigo') codigo: string,
+    @Query('withPedido') withPedido?: boolean
   ): Promise<Produto[]> {
-    return this.produtoService.findByParams(descricao, codigo);
+    return this.produtoService.findByParams(descricao, codigo, withPedido);
   }
 
   @Get('exists/codigo')
@@ -80,5 +96,29 @@ export class ProdutoController {
     @Query('codigo') codigo: string
   ): Promise<Produto[]> {
     return this.produtoService.findBySimilarityCodigo(codigo);
+  }
+
+  @Get('search')
+  @ApiQuery({
+    name: 'term',
+    required: true,
+    description: 'Termo a ser pesquisado (código e descrição)',
+  })
+  @ApiQuery({
+    name: 'withPedido',
+    required: false,
+    description: 'Buscar somente com pedidos',
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    description: 'Limite de linhas para buscar',
+  })
+  async findBySearch(
+    @Query('term') term: string,
+    @Query('withPedido') withPedido?: boolean,
+    @Query('limit') limit?: number
+  ): Promise<Produto[]> {
+    return this.produtoService.findBySearch(term, withPedido, limit);
   }
 }

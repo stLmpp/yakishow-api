@@ -41,4 +41,7 @@ export class Pedido extends CommonHistory {
     }
   )
   pedidoItems: PedidoItem[];
+
+  @Column({ nullable: true })
+  dataFinalizado: Date;
 }

@@ -98,4 +98,11 @@ export class PessoaService {
       throw mySQLError(error, 'Erro ao tentar encontrar a pessoa');
     }
   }
+
+  async findByTermAutoComplete(
+    term: string,
+    withPedido?: boolean
+  ): Promise<Pessoa[]> {
+    return await this.pessoaRepository.findByParams(term, null, withPedido, 8);
+  }
 }

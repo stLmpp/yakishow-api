@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { PedidoRepository } from './pedido.repository';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { PedidodFindByParams, PedidoRepository } from './pedido.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pedido } from './pedido.entity';
 import { PedidoAddDto } from './dto/add.dto';
@@ -72,5 +72,12 @@ export class PedidoService {
     } catch (err) {
       throw mySQLError(err, 'Erro ao tentar procurar o pedido');
     }
+  }
+
+  async findByParams(params: PedidodFindByParams): Promise<Pedido[]> {
+    if (Object.values(params).every(o => !o)) {
+      throw new BadRequestException('Precisa de pelo menos 1 parametro');
+    }
+    return this.pedidoRepository.findByParams(params);
   }
 }
