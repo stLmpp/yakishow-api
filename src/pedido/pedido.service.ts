@@ -7,8 +7,9 @@ import { PedidoStatusEnum } from './pedido-status.enum';
 import { PedidoItemRepository } from './pedido-item/pedido-item.repository';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { PedidoUpdateDto } from './dto/update.dto';
-import { Raw, UpdateResult } from 'typeorm';
-import { format } from 'date-fns';
+import { DeepPartial, Raw } from 'typeorm';
+import { addDays, format, isBefore } from 'date-fns';
+import { removeNullObject } from '../util/util';
 
 const relationsPedido = ['pedidoItems', 'cliente', 'pedidoItems.produto'];
 
@@ -34,9 +35,10 @@ export class PedidoService {
     }
   }
 
-  async update(id: number, dto: PedidoUpdateDto): Promise<UpdateResult> {
+  async update(id: number, dto: PedidoUpdateDto): Promise<Pedido> {
     try {
-      return await this.pedidoRepository.update(id, dto);
+      await this.pedidoRepository.update(id, dto);
+      return await this.pedidoRepository.findOne(id);
     } catch (err) {
       throw mySQLError(err, 'Erro ao tentar atualizar o pedido');
     }
@@ -75,9 +77,36 @@ export class PedidoService {
   }
 
   async findByParams(params: PedidodFindByParams): Promise<Pedido[]> {
+    params = removeNullObject(params, 'loose');
     if (Object.values(params).every(o => !o)) {
       throw new BadRequestException('Precisa de pelo menos 1 parametro');
     }
     return this.pedidoRepository.findByParams(params);
+  }
+
+  async updateStatus(id: number, status: PedidoStatusEnum): Promise<Pedido> {
+    const pedido = await this.pedidoRepository.findOne(id);
+    if (pedido.dataFinalizado) {
+      if (isBefore(pedido.dataFinalizado, addDays(new Date(), -5))) {
+        throw new BadRequestException(
+          'Pedido já foi finalizado/cancelado à 5 dias',
+          'Não poderá mais alterar o status'
+        );
+      }
+    }
+    const partial: DeepPartial<Pedido> = { id, status };
+    if (
+      [PedidoStatusEnum.finalizado, PedidoStatusEnum.cancelado].includes(status)
+    ) {
+      partial.dataFinalizado = new Date().toISOString();
+    } else {
+      partial.dataFinalizado = null;
+    }
+    try {
+      await this.pedidoRepository.update(id, partial);
+      return await this.pedidoRepository.findOne(id);
+    } catch (err) {
+      throw mySQLError(err, 'Erro ao tentar atualizar o status do pedido');
+    }
   }
 }

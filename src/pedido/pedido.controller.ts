@@ -5,14 +5,14 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { Pedido } from './pedido.entity';
 import { PedidoAddDto } from './dto/add.dto';
-import { UpdateResult } from 'typeorm';
 import { PedidoUpdateDto } from './dto/update.dto';
-import { ApiBody, ApiQuery } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { PedidoStatusEnum } from './pedido-status.enum';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 import { ParseDatePipe } from '../shared/pipe/parse-date.pipe';
@@ -38,8 +38,17 @@ export class PedidoController {
   async update(
     @Param('id') id: number,
     @Body() dto: PedidoUpdateDto
-  ): Promise<UpdateResult> {
+  ): Promise<Pedido> {
     return this.pedidoService.update(id, dto);
+  }
+
+  @Put(':id/status/:status')
+  @ApiParam({ name: 'status', enum: PedidoStatusEnum })
+  updateStatus(
+    @Param('id') id: number,
+    @Param('status') status: PedidoStatusEnum
+  ): Promise<Pedido> {
+    return this.pedidoService.updateStatus(id, status);
   }
 
   @Get('id/:id')
@@ -81,6 +90,7 @@ export class PedidoController {
   @ApiQuery({ name: 'dataCriacao', required: false })
   @ApiQuery({ name: 'dataFinalizado', required: false })
   @ApiQuery({ name: 'status', required: false })
+  @ApiQuery({ name: 'cliente', required: false })
   @ApiQuery({ name: 'clienteId', required: false })
   @ApiQuery({ name: 'produto', required: false })
   @ApiQuery({ name: 'produtoId', required: false })
@@ -88,6 +98,7 @@ export class PedidoController {
     @Query('dataCriacao', ParseDatePipe) dataCriacao?: Date,
     @Query('dataFinalizado', ParseDatePipe) dataFinalizado?: Date,
     @Query('status') status?: PedidoStatusEnum,
+    @Query('cliente', NormalizePipe) cliente?: string,
     @Query('clienteId') clienteId?: number,
     @Query('produto', NormalizePipe) produto?: string,
     @Query('produtoId') produtoId?: number
@@ -95,6 +106,7 @@ export class PedidoController {
     return this.pedidoService.findByParams({
       dataFinalizado,
       dataCriacao,
+      cliente,
       clienteId,
       status,
       produto,

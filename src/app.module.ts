@@ -9,9 +9,6 @@ import { AppController } from './app.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ExternalModule } from './external/external.module';
-import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { CreateInstancePipe } from './shared/pipe/create-instance.pipe';
-import { DestroyInstanceInterceptor } from './shared/interceptors/destroy-instance.interceptor';
 
 @Module({
   imports: [
@@ -26,15 +23,6 @@ import { DestroyInstanceInterceptor } from './shared/interceptors/destroy-instan
     ExternalModule,
   ],
   controllers: [AppController],
-  providers: [
-    {
-      provide: APP_PIPE,
-      useClass: CreateInstancePipe,
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: DestroyInstanceInterceptor,
-    },
-  ],
+  providers: [],
 })
 export class AppModule {}

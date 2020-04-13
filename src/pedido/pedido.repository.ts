@@ -7,6 +7,7 @@ import { isNil } from '../util/util';
 export interface PedidodFindByParams {
   dataCriacao?: Date;
   dataFinalizado?: Date;
+  cliente?: string;
   clienteId?: number;
   status?: PedidoStatusEnum;
   produto?: string;
@@ -27,13 +28,13 @@ export class PedidoRepository extends Repository<Pedido> {
     }
     if (params.dataFinalizado) {
       qb.andWhere(
-        `time_format(pedido.dataFinalizado, '%H:%i') <= :dataFinalizado`,
+        `(time_format(pedido.dataFinalizado, '%H:%i') <= :dataFinalizado or pedido.dataFinalizado is null)`,
         {
           dataFinalizado: format(params.dataFinalizado, 'HH:mm'),
         }
       );
     }
-    if (params.produto) {
+    if (params.produto && !params.produtoId) {
       qb.andWhere(`upper(produto.descricao) like upper(:descricao)`, {
         descricao: `%${params.produto}%`,
       });
@@ -43,6 +44,11 @@ export class PedidoRepository extends Repository<Pedido> {
     }
     if (!isNil(params.status)) {
       qb.andWhere('pedido.status = :status', { status: params.status });
+    }
+    if (params.cliente && params.clienteId) {
+      qb.andWhere(`upper(cliente.nome) like upper(:cliente)`, {
+        cliente: `%${params.cliente}%`,
+      });
     }
     if (params.clienteId) {
       qb.andWhere('pedido.clienteId = :clienteId', {

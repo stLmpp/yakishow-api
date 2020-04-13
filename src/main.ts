@@ -14,7 +14,7 @@ const HOST = getHost();
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
   if (!isProd) {
     app.enableCors();
     const options = new DocumentBuilder()
