@@ -65,4 +65,8 @@ export class PedidoItemService {
       throw mySQLError(err, 'Erro ao tentar atualizar o item do pedido');
     }
   }
+
+  async existsProduto(idProduto: number): Promise<boolean> {
+    return await this.pedidoItemRepository.exists({ produtoId: idProduto });
+  }
 }

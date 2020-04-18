@@ -4,7 +4,7 @@ import { CanActivate } from '@nestjs/common/interfaces';
 import { AuthGuard } from '@nestjs/passport';
 
 export function WithAuthGuard(
-  ...guards: Array<CanActivate | ((...args: any[]) => any)>
+  ...guards: (CanActivate | ((...args: any[]) => any))[]
 ): (target: any) => any {
   return (target: any) => {
     if (isProd) {

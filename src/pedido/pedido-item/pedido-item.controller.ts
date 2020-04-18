@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
 import { PedidoItemService } from './pedido-item.service';
 import { UpdateResult } from 'typeorm';
 import { PedidoItemUpdateDto } from './dto/update.dto';
@@ -22,5 +22,10 @@ export class PedidoItemController {
     @Body() dto: PedidoItemUpdateDto
   ): Promise<UpdateResult> {
     return this.pedidoItemService.update(id, dto);
+  }
+
+  @Get('exists/produto')
+  async existsProduto(@Query('idProduto') idProduto: number): Promise<boolean> {
+    return this.pedidoItemService.existsProduto(idProduto);
   }
 }

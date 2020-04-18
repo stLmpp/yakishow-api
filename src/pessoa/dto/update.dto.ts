@@ -21,7 +21,7 @@ export class PessoaUpdateDto {
 
   @IsOptional()
   @IsString()
-  @MaxLength(12)
+  @MaxLength(11)
   celular?: string;
 
   @IsOptional()

@@ -19,7 +19,7 @@ export class PessoaAddDto {
   nome: string;
 
   @IsString()
-  @MaxLength(12)
+  @MaxLength(11)
   @IsOptional()
   @IsNumberString()
   celular?: string;
