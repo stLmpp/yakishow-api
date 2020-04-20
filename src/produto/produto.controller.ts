@@ -11,13 +11,14 @@ import {
 import { ProdutoService } from './produto.service';
 import { Produto } from './produto.entity';
 import { ProdutoAddDto } from './dto/add.dto';
-import { UpdateResult } from 'typeorm';
 import { ProdutoUpdateDto } from './dto/update.dto';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { UpdateResult } from '../util/types';
 
 @Controller('produto')
 @WithAuthGuard()
+@ApiTags('Produto')
 export class ProdutoController {
   constructor(private produtoService: ProdutoService) {}
 
@@ -26,16 +27,16 @@ export class ProdutoController {
     return this.produtoService.add(dto);
   }
 
-  @Patch(':id')
+  @Patch(':idProduto')
   async update(
-    @Param('id') id: number,
+    @Param('idProduto') id: number,
     @Body() dto: ProdutoUpdateDto
   ): Promise<UpdateResult> {
     return this.produtoService.update(id, dto);
   }
 
-  @Get('id/:id')
-  async findById(@Param('id') id: number): Promise<Produto> {
+  @Get('id/:idProduto')
+  async findById(@Param('idProduto') id: number): Promise<Produto> {
     return this.produtoService.findById(id);
   }
 

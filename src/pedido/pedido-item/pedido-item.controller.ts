@@ -1,11 +1,13 @@
 import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
 import { PedidoItemService } from './pedido-item.service';
-import { UpdateResult } from 'typeorm';
 import { PedidoItemUpdateDto } from './dto/update.dto';
 import { WithAuthGuard } from '../../auth/with-auth-guard.decorator';
+import { ApiTags } from '@nestjs/swagger';
+import { UpdateResult } from '../../util/types';
 
 @Controller('pedido-item')
 @WithAuthGuard()
+@ApiTags('Pedido item')
 export class PedidoItemController {
   constructor(private pedidoItemService: PedidoItemService) {}
 
@@ -16,9 +18,9 @@ export class PedidoItemController {
     return this.pedidoItemService.updateBatch(dto);
   }
 
-  @Patch(':id')
+  @Patch(':idPedidoItem')
   async update(
-    @Param('id') id: number,
+    @Param('idPedidoItem') id: number,
     @Body() dto: PedidoItemUpdateDto
   ): Promise<UpdateResult> {
     return this.pedidoItemService.update(id, dto);

@@ -2,9 +2,9 @@ import { Inject, Injectable, Scope } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { User } from './user.entity';
 import { ThemesEnum } from './themes.enum';
-import { UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
+import { UpdateResult } from '../../util/types';
 
 export interface MyRequest extends Request {
   user: User;
@@ -13,8 +13,7 @@ export interface MyRequest extends Request {
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
   constructor(
-    @Inject(REQUEST)
-    private request: MyRequest,
+    @Inject(REQUEST) private request: MyRequest,
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
 
@@ -22,7 +21,10 @@ export class UserService {
     return this.request.user;
   }
 
-  async updateTheme(id: number, theme: ThemesEnum): Promise<UpdateResult> {
-    return await this.userRepository.update(id, { theme });
+  async updateTheme(
+    idUsuario: number,
+    theme: ThemesEnum
+  ): Promise<UpdateResult> {
+    return await this.userRepository.update(idUsuario, { theme });
   }
 }

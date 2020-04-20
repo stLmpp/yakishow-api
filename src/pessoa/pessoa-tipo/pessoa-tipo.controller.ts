@@ -12,9 +12,12 @@ import { DeleteResult } from 'typeorm';
 import { PessoaTipoService } from './pessoa-tipo.service';
 import { PessoaTipoAddDto } from './dto/add.dto';
 import { PessoaTipo } from './pessoa-tipo.entity';
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { WithAuthGuard } from '../../auth/with-auth-guard.decorator';
 
 @Controller('pessoa-tipo')
+@WithAuthGuard()
+@ApiTags('Pessoa tipo')
 export class PessoaTipoController {
   constructor(private pessoaTipoService: PessoaTipoService) {}
 
@@ -28,10 +31,10 @@ export class PessoaTipoController {
     return this.pessoaTipoService.remove(ids);
   }
 
-  @Get('pessoaId/:pessoaId')
+  @Get('idPessoa/:idPessoa')
   @ApiQuery({ name: 'notTipoPessoaIds', isArray: true, type: Number })
   async findByPessoaId(
-    @Param('pessoaId') pessoaId: number,
+    @Param('idPessoa') pessoaId: number,
     @Query('notTipoPessoaIds', ParseArrayPipe) notTipoPessoaIds: number[]
   ): Promise<PessoaTipo[]> {
     return this.pessoaTipoService.findByPessoaId(pessoaId, notTipoPessoaIds);

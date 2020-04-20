@@ -8,7 +8,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PessoaService } from './pessoa.service';
 import { PessoaAddDto } from './dto/add.dto';
 import { Pessoa } from './pessoa.entity';
@@ -17,6 +17,7 @@ import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 
 @Controller('pessoa')
 @WithAuthGuard()
+@ApiTags('Pessoa')
 export class PessoaController {
   constructor(private pessoaService: PessoaService) {}
 
@@ -25,16 +26,16 @@ export class PessoaController {
     return this.pessoaService.add(dto);
   }
 
-  @Patch(':id')
+  @Patch(':idPessoa')
   async update(
     @Body() dto: PessoaUpdateDto,
-    @Param('id') id: number
+    @Param('idPessoa') id: number
   ): Promise<Pessoa> {
     return this.pessoaService.update(id, dto);
   }
 
-  @Get('id/:id')
-  async findById(@Param('id') id: number): Promise<Pessoa> {
+  @Get('id/:idPessoa')
+  async findById(@Param('idPessoa') id: number): Promise<Pessoa> {
     return this.pessoaService.findById(id);
   }
 

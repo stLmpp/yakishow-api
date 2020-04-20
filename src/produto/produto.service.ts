@@ -5,7 +5,8 @@ import { Produto } from './produto.entity';
 import { ProdutoAddDto } from './dto/add.dto';
 import { mySQLError } from '../shared/error/my-sql-error';
 import { ProdutoUpdateDto } from './dto/update.dto';
-import { FindConditions, Not, Raw, UpdateResult } from 'typeorm';
+import { FindConditions, Not, Raw } from 'typeorm';
+import { UpdateResult } from '../util/types';
 
 @Injectable()
 export class ProdutoService {

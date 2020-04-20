@@ -5,7 +5,7 @@ import { PedidoItem } from './pedido-item.entity';
 import { PedidoItemAddDto } from './dto/add.dto';
 import { mySQLError } from '../../shared/error/my-sql-error';
 import { PedidoItemUpdateDto } from './dto/update.dto';
-import { UpdateResult } from 'typeorm';
+import { UpdateResult } from '../../util/types';
 
 @Injectable()
 export class PedidoItemService {

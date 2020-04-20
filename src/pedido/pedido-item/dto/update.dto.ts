@@ -1,11 +1,6 @@
-import { IsDefined, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class PedidoItemUpdateDto {
-  @IsDefined()
-  @IsNotEmpty()
-  @IsNumber()
-  pedidoId: number;
-
   @IsOptional()
   @IsNumber()
   id?: number;
@@ -21,4 +16,8 @@ export class PedidoItemUpdateDto {
   @IsOptional()
   @IsNumber()
   quantidade?: number;
+
+  @IsOptional()
+  @IsString()
+  observacao?: string;
 }

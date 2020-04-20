@@ -1,9 +1,12 @@
 import {
+  ArgumentMetadata,
   Body,
   Controller,
   Get,
+  Injectable,
   Param,
   Patch,
+  PipeTransform,
   Post,
   Put,
   Query,
@@ -12,7 +15,7 @@ import { PedidoService } from './pedido.service';
 import { Pedido } from './pedido.entity';
 import { PedidoAddDto } from './dto/add.dto';
 import { PedidoUpdateDto } from './dto/update.dto';
-import { ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PedidoStatusEnum } from './pedido-status.enum';
 import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 import { ParseDatePipe } from '../shared/pipe/parse-date.pipe';
@@ -20,9 +23,11 @@ import { PedidoItemService } from './pedido-item/pedido-item.service';
 import { PedidoItem } from './pedido-item/pedido-item.entity';
 import { PedidoItemAddDto } from './pedido-item/dto/add.dto';
 import { NormalizePipe } from '../shared/pipe/normalize.pipe';
+import { ParseEnumPipe } from '../shared/pipe/parse-enum.pipe';
 
 @Controller('pedido')
 @WithAuthGuard()
+@ApiTags('Pedido')
 export class PedidoController {
   constructor(
     private pedidoService: PedidoService,
@@ -34,32 +39,32 @@ export class PedidoController {
     return this.pedidoService.add(dto);
   }
 
-  @Patch(':id')
+  @Patch(':idPedido')
   async update(
-    @Param('id') id: number,
+    @Param('idPedido') id: number,
     @Body() dto: PedidoUpdateDto
   ): Promise<Pedido> {
     return this.pedidoService.update(id, dto);
   }
 
-  @Put(':id/status/:status')
+  @Put(':idPedido/status/:pedidoStatusEnum')
   @ApiParam({ name: 'status', enum: PedidoStatusEnum })
   updateStatus(
-    @Param('id') id: number,
-    @Param('status') status: PedidoStatusEnum
+    @Param('idPedido') id: number,
+    @Param('pedidoStatusEnum') status: PedidoStatusEnum
   ): Promise<Pedido> {
     return this.pedidoService.updateStatus(id, status);
   }
 
-  @Get('id/:id')
-  async findById(@Param('id') id: number): Promise<Pedido> {
+  @Get('id/:idPedido')
+  async findById(@Param('idPedido') id: number): Promise<Pedido> {
     return this.pedidoService.findById(id);
   }
 
   @Get('status')
   @ApiQuery({ name: 'status', enum: PedidoStatusEnum })
   async findByStatus(
-    @Query('status') status: PedidoStatusEnum
+    @Query('status', ParseEnumPipe) status: PedidoStatusEnum
   ): Promise<Pedido[]> {
     return this.pedidoService.findByStatus(status);
   }
@@ -97,7 +102,7 @@ export class PedidoController {
   async findByParams(
     @Query('dataCriacao', ParseDatePipe) dataCriacao?: Date,
     @Query('dataFinalizado', ParseDatePipe) dataFinalizado?: Date,
-    @Query('status') status?: PedidoStatusEnum,
+    @Query('status', ParseEnumPipe) status?: PedidoStatusEnum,
     @Query('cliente', NormalizePipe) cliente?: string,
     @Query('clienteId') clienteId?: number,
     @Query('produto', NormalizePipe) produto?: string,
