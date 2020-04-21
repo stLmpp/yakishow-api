@@ -35,7 +35,7 @@ export class ProdutoRepository extends RepositoryCustom<Produto> {
           .select('1')
           .from(Pedido, 'pedido')
           .innerJoin('pedido.pedidoItems', 'pedidoItem')
-          .andWhere('pedidoItem.produtoId = produto.id')
+          .andWhere('pedidoItem.idProduto = produto.id')
           .getQuery();
         return `EXISTS ${subQuery}`;
       });
@@ -62,7 +62,7 @@ export class ProdutoRepository extends RepositoryCustom<Produto> {
           .select('1')
           .from(Pedido, 'pedido')
           .innerJoin('pedido.pedidoItems', 'pedidoItem')
-          .andWhere('pedidoItem.produtoId = produto.id')
+          .andWhere('pedidoItem.idProduto = produto.id')
           .limit(1)
           .getQuery();
         return `EXISTS ${query}`;

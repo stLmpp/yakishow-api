@@ -32,11 +32,11 @@ export class PessoaTipoController {
   }
 
   @Get('idPessoa/:idPessoa')
-  @ApiQuery({ name: 'notTipoPessoaIds', isArray: true, type: Number })
+  @ApiQuery({ name: 'notIdsTipoPessoa', isArray: true, type: Number })
   async findByPessoaId(
-    @Param('idPessoa') pessoaId: number,
-    @Query('notTipoPessoaIds', ParseArrayPipe) notTipoPessoaIds: number[]
+    @Param('idPessoa') idPessoa: number,
+    @Query('notIdsTipoPessoa', ParseArrayPipe) notIdsTipoPessoa: number[]
   ): Promise<PessoaTipo[]> {
-    return this.pessoaTipoService.findByPessoaId(pessoaId, notTipoPessoaIds);
+    return this.pessoaTipoService.findByPessoaId(idPessoa, notIdsTipoPessoa);
   }
 }

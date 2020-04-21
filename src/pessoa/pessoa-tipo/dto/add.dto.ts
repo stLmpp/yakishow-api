@@ -4,10 +4,10 @@ export class PessoaTipoAddDto {
   @IsDefined()
   @IsNumber()
   @IsNotEmpty()
-  pessoaId: number;
+  idPessoa: number;
 
   @IsDefined()
   @IsNumber()
   @IsNotEmpty()
-  tipoPessoaId: number;
+  idTipoPessoa: number;
 }

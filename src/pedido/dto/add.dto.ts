@@ -18,11 +18,11 @@ export class PedidoAddDto {
   @IsNumber()
   @IsDefined()
   @IsNotEmpty()
-  clienteId: number;
+  idCliente: number;
 
   @IsNumber()
   @IsOptional()
-  entregadorId?: number;
+  idEntregador?: number;
 
   @IsOptional()
   @IsArray()

@@ -10,11 +10,11 @@ export class PedidoItemAddDto {
   @IsNumber()
   @IsDefined()
   @IsNotEmpty()
-  produtoId: number;
+  idProduto: number;
 
   @IsOptional()
   @IsNumber()
-  pedidoId?: number;
+  idPedido?: number;
 
   @IsOptional()
   @IsNumber()

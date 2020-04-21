@@ -3,7 +3,7 @@ import { ProdutoRepository } from './produto.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Produto } from './produto.entity';
 import { ProdutoAddDto } from './dto/add.dto';
-import { mySQLError } from '../shared/error/my-sql-error';
+import { handleError } from '../shared/error/handle-error';
 import { ProdutoUpdateDto } from './dto/update.dto';
 import { FindConditions, Not, Raw } from 'typeorm';
 import { UpdateResult } from '../util/types';
@@ -19,7 +19,7 @@ export class ProdutoService {
     try {
       return await this.produtoRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar inserir o produto');
+      handleError(err, 'Erro ao tentar inserir o produto');
     }
   }
 
@@ -27,7 +27,7 @@ export class ProdutoService {
     try {
       return await this.produtoRepository.update(id, dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualizar o produto');
+      handleError(err, 'Erro ao tentar atualizar o produto');
     }
   }
 
@@ -35,7 +35,7 @@ export class ProdutoService {
     try {
       return await this.produtoRepository.findOneOrFail(id);
     } catch (err) {
-      throw mySQLError(err, 'Produto não encontrado');
+      handleError(err, 'Produto não encontrado');
     }
   }
 
@@ -43,7 +43,7 @@ export class ProdutoService {
     try {
       return await this.produtoRepository.findOneOrFail({ codigo });
     } catch (err) {
-      throw mySQLError(err, 'Produto não encontrado');
+      handleError(err, 'Produto não encontrado');
     }
   }
 

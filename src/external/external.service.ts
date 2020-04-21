@@ -1,7 +1,7 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { ViaCEP } from './models/via-cep';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class ExternalService {

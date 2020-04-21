@@ -15,14 +15,14 @@ export class PedidoItem extends CommonHistory {
   id: number;
 
   @Column({ nullable: true })
-  produtoId: number;
+  idProduto: number;
 
   @ManyToOne(() => Produto)
   @JoinColumn()
   produto: Produto;
 
   @Column()
-  pedidoId: number;
+  idPedido: number;
 
   @ManyToOne(
     () => Pedido,

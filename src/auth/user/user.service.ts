@@ -5,6 +5,7 @@ import { ThemesEnum } from './themes.enum';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
 import { UpdateResult } from '../../util/types';
+import { handleError } from '../../shared/error/handle-error';
 
 export interface MyRequest extends Request {
   user: User;
@@ -25,6 +26,10 @@ export class UserService {
     idUsuario: number,
     theme: ThemesEnum
   ): Promise<UpdateResult> {
-    return await this.userRepository.update(idUsuario, { theme });
+    try {
+      return await this.userRepository.update(idUsuario, { theme });
+    } catch (err) {
+      handleError(err, 'Erro ao tentar atualizar o tema');
+    }
   }
 }

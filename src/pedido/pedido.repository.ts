@@ -8,10 +8,10 @@ export interface PedidodFindByParams {
   dataCriacao?: Date;
   dataFinalizado?: Date;
   cliente?: string;
-  clienteId?: number;
+  idCliente?: number;
   status?: PedidoStatusEnum;
   produto?: string;
-  produtoId?: number;
+  idProduto?: number;
 }
 
 @EntityRepository(Pedido)
@@ -34,25 +34,25 @@ export class PedidoRepository extends Repository<Pedido> {
         }
       );
     }
-    if (params.produto && !params.produtoId) {
+    if (params.produto && !params.idProduto) {
       qb.andWhere(`upper(produto.descricao) like upper(:descricao)`, {
         descricao: `%${params.produto}%`,
       });
     }
-    if (params.produtoId) {
-      qb.andWhere('produto.id = :produtoId', { produtoId: params.produtoId });
+    if (params.idProduto) {
+      qb.andWhere('produto.id = :idProduto', { idProduto: params.idProduto });
     }
     if (!isNil(params.status)) {
       qb.andWhere('pedido.status = :status', { status: params.status });
     }
-    if (params.cliente && params.clienteId) {
+    if (params.cliente && params.idCliente) {
       qb.andWhere(`upper(cliente.nome) like upper(:cliente)`, {
         cliente: `%${params.cliente}%`,
       });
     }
-    if (params.clienteId) {
-      qb.andWhere('pedido.clienteId = :clienteId', {
-        clienteId: params.clienteId,
+    if (params.idCliente) {
+      qb.andWhere('pedido.idCliente = :idCliente', {
+        idCliente: params.idCliente,
       });
     }
     return qb.getMany();

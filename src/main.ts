@@ -20,6 +20,11 @@ async function bootstrap(): Promise<void> {
     const options = new DocumentBuilder()
       .setTitle('Yakishow api')
       .setVersion(version)
+      .setContact(
+        'Guilherme Pais',
+        'https://github.com/stLmpp',
+        'gui.stlmpp@hotmail.com'
+      )
       .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('help', app, document);

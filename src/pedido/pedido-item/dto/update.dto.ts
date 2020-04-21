@@ -7,7 +7,7 @@ export class PedidoItemUpdateDto {
 
   @IsOptional()
   @IsNumber()
-  produtoId?: number;
+  idProduto?: number;
 
   @IsOptional()
   @IsNumber()

@@ -10,13 +10,13 @@ import { Pessoa } from '../pessoa.entity';
 import { TipoPessoa } from '../tipo-pessoa/tipo-pessoa.entity';
 
 @Entity()
-@Index(['tipoPessoaId', 'pessoaId'], { unique: true })
+@Index(['idTipoPessoa', 'idPessoa'], { unique: true })
 export class PessoaTipo extends CommonHistory {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  pessoaId: number;
+  idPessoa: number;
 
   @ManyToOne(
     () => Pessoa,
@@ -25,7 +25,7 @@ export class PessoaTipo extends CommonHistory {
   pessoa: Pessoa;
 
   @Column()
-  tipoPessoaId: number;
+  idTipoPessoa: number;
 
   @ManyToOne(() => TipoPessoa)
   tipoPessoa: TipoPessoa;

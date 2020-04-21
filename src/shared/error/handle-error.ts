@@ -2,6 +2,7 @@ import { MySQLError, MySQLErrorResponse } from './my-sql-error.model';
 import {
   BadRequestException,
   ConflictException,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 
@@ -10,7 +11,7 @@ export interface TypeormError {
   message: string;
 }
 
-export function mySQLError(
+export function getHandleError(
   err: MySQLError | TypeormError,
   message?: string
 ): any {
@@ -39,8 +40,19 @@ export function mySQLError(
     case 1062:
       return new ConflictException(msg);
     case 1048:
+    case 1054:
+    case 1265:
       return new BadRequestException(msg);
+    default:
+      return new InternalServerErrorException(msg);
   }
+}
+
+export function handleError(
+  err: MySQLError | TypeormError,
+  message?: string
+): any {
+  throw getHandleError(err, message);
 }
 
 function formatMsg(

@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { getEnvVar, isProd } from '../util/env';
+import { YkNamingStategy } from './naming-strategy';
 
 export const DB_TYPEORM_CONFIG: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -12,4 +13,5 @@ export const DB_TYPEORM_CONFIG: TypeOrmModuleOptions = {
   synchronize: getEnvVar('DB_SYNC'),
   logging: !isProd ? 'all' : false,
   bigNumberStrings: false,
+  namingStrategy: new YkNamingStategy(),
 };

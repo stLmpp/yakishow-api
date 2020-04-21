@@ -8,9 +8,9 @@ export class PedidoUpdateDto {
 
   @IsOptional()
   @IsNumber()
-  clienteId?: number;
+  idCliente?: number;
 
   @IsOptional()
   @IsNumber()
-  entregadorId?: number;
+  idEntregador?: number;
 }

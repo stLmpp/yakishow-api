@@ -5,7 +5,7 @@ import { Pedido } from './pedido.entity';
 import { PedidoAddDto } from './dto/add.dto';
 import { PedidoStatusEnum } from './pedido-status.enum';
 import { PedidoItemRepository } from './pedido-item/pedido-item.repository';
-import { mySQLError } from '../shared/error/my-sql-error';
+import { handleError } from '../shared/error/handle-error';
 import { PedidoUpdateDto } from './dto/update.dto';
 import { DeepPartial, Raw } from 'typeorm';
 import { addDays, format, isBefore } from 'date-fns';
@@ -31,7 +31,7 @@ export class PedidoService {
         relations: relationsPedido,
       });
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar salvar o pedido');
+      handleError(err, 'Erro ao tentar salvar o pedido');
     }
   }
 
@@ -40,30 +40,38 @@ export class PedidoService {
       await this.pedidoRepository.update(id, dto);
       return await this.pedidoRepository.findOne(id);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualizar o pedido');
+      handleError(err, 'Erro ao tentar atualizar o pedido');
     }
   }
 
   async findByStatus(status: PedidoStatusEnum): Promise<Pedido[]> {
-    return await this.pedidoRepository.find({
-      relations: ['pedidoItems'],
-      where: { status },
-    });
+    try {
+      return await this.pedidoRepository.find({
+        relations: ['pedidoItems'],
+        where: { status },
+      });
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar os pedidos');
+    }
   }
 
   async findByDay(day?: Date): Promise<Pedido[]> {
-    return await this.pedidoRepository.find({
-      relations: relationsPedido,
-      where: {
-        creationDate: Raw(
-          alias =>
-            `date_format(${alias}, '%d/%m/%Y') = '${format(
-              day ?? new Date(),
-              'dd/MM/yyyy'
-            )}'`
-        ),
-      },
-    });
+    try {
+      return await this.pedidoRepository.find({
+        relations: relationsPedido,
+        where: {
+          creationDate: Raw(
+            alias =>
+              `date_format(${alias}, '%d/%m/%Y') = '${format(
+                day ?? new Date(),
+                'dd/MM/yyyy'
+              )}'`
+          ),
+        },
+      });
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async findById(id: number): Promise<Pedido> {
@@ -72,7 +80,7 @@ export class PedidoService {
         relations: relationsPedido,
       });
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar procurar o pedido');
+      handleError(err, 'Erro ao tentar procurar o pedido');
     }
   }
 
@@ -81,7 +89,11 @@ export class PedidoService {
     if (Object.values(params).every(o => !o)) {
       throw new BadRequestException('Precisa de pelo menos 1 parametro');
     }
-    return this.pedidoRepository.findByParams(params);
+    try {
+      return await this.pedidoRepository.findByParams(params);
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar os pedidos');
+    }
   }
 
   async updateStatus(id: number, status: PedidoStatusEnum): Promise<Pedido> {
@@ -106,7 +118,7 @@ export class PedidoService {
       await this.pedidoRepository.update(id, partial);
       return await this.pedidoRepository.findOne(id);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualizar o status do pedido');
+      handleError(err, 'Erro ao tentar atualizar o status do pedido');
     }
   }
 }

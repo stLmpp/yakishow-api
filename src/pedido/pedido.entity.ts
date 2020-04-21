@@ -20,14 +20,14 @@ export class Pedido extends CommonHistory {
   status: PedidoStatusEnum;
 
   @Column()
-  clienteId: number;
+  idCliente: number;
 
   @ManyToOne(() => Pessoa)
   @JoinColumn()
   cliente: Pessoa;
 
   @Column({ nullable: true })
-  entregadorId: number;
+  idEntregador: number;
 
   @ManyToOne(() => Pessoa)
   @JoinColumn()

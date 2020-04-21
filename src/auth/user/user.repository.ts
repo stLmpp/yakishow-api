@@ -4,7 +4,7 @@ import { UnauthorizedException } from '@nestjs/common';
 import { User } from './user.entity';
 import { AuthRegisterDto } from './dto/register.dto';
 import { AuthCredentialsDto } from './dto/credentials.dto';
-import { mySQLError } from '../../shared/error/my-sql-error';
+import { handleError } from '../../shared/error/handle-error';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -18,7 +18,7 @@ export class UserRepository extends Repository<User> {
       newUser.salt = null;
       return newUser;
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar registar o usuário');
+      handleError(err, 'Erro ao tentar registar o usuário');
     }
   }
 

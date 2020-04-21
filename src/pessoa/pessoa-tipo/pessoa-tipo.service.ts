@@ -4,7 +4,7 @@ import { PessoaTipoRepository } from './pessoa-tipo.repository';
 import { PessoaTipoAddDto } from './dto/add.dto';
 import { PessoaTipo } from './pessoa-tipo.entity';
 import { DeleteResult, FindConditions, In, Not } from 'typeorm';
-import { mySQLError } from '../../shared/error/my-sql-error';
+import { handleError } from '../../shared/error/handle-error';
 
 @Injectable()
 export class PessoaTipoService {
@@ -17,7 +17,7 @@ export class PessoaTipoService {
     try {
       return await this.pessoaTipoRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar salvar o tipo');
+      handleError(err, 'Erro ao tentar salvar o tipo');
     }
   }
 
@@ -25,7 +25,7 @@ export class PessoaTipoService {
     try {
       return await this.pessoaTipoRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar salvar os tipos');
+      handleError(err, 'Erro ao tentar salvar os tipos');
     }
   }
 
@@ -33,17 +33,17 @@ export class PessoaTipoService {
     try {
       return await this.pessoaTipoRepository.delete(ids);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar deletar o tipo');
+      handleError(err, 'Erro ao tentar deletar o tipo');
     }
   }
 
   async findByPessoaId(
-    pessoaId: number,
-    notTipoPessoaIds?: number[]
+    idPessoa: number,
+    notIdsTipoPessoa?: number[]
   ): Promise<PessoaTipo[]> {
-    const where: FindConditions<PessoaTipo> = { pessoaId };
-    if (notTipoPessoaIds?.length) {
-      where.tipoPessoaId = Not(In(notTipoPessoaIds));
+    const where: FindConditions<PessoaTipo> = { idPessoa };
+    if (notIdsTipoPessoa?.length) {
+      where.idTipoPessoa = Not(In(notIdsTipoPessoa));
     }
     return await this.pessoaTipoRepository.find({ where });
   }

@@ -36,8 +36,8 @@ export class PessoaRepository extends RepositoryCustom<Pessoa> {
           .subQuery()
           .addSelect('1')
           .from(PessoaTipo, 'pt')
-          .andWhere('pt.pessoaId = pessoa.id')
-          .andWhere('pt.tipoPessoaId in (:...tipos)', { tipos })
+          .andWhere('pt.idPessoa = pessoa.id')
+          .andWhere('pt.idTipoPessoa in (:...tipos)', { tipos })
           .getQuery();
         return `EXISTS ${subQuery}`;
       });
@@ -48,7 +48,7 @@ export class PessoaRepository extends RepositoryCustom<Pessoa> {
           .subQuery()
           .addSelect('1')
           .from(Pedido, 'pedido')
-          .andWhere('pedido.clienteId = pessoa.id')
+          .andWhere('pedido.idCliente = pessoa.id')
           .limit(1)
           .getQuery();
         return `EXISTS ${subQuery}`;

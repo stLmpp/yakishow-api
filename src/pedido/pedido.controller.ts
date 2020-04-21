@@ -1,15 +1,14 @@
 import {
-  ArgumentMetadata,
   Body,
   Controller,
   Get,
-  Injectable,
   Param,
+  ParseIntPipe,
   Patch,
-  PipeTransform,
   Post,
   Put,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { Pedido } from './pedido.entity';
@@ -24,6 +23,11 @@ import { PedidoItem } from './pedido-item/pedido-item.entity';
 import { PedidoItemAddDto } from './pedido-item/dto/add.dto';
 import { NormalizePipe } from '../shared/pipe/normalize.pipe';
 import { ParseEnumPipe } from '../shared/pipe/parse-enum.pipe';
+import { ApiImplicitQuery } from '@nestjs/swagger/dist/decorators/api-implicit-query.decorator';
+import {
+  HandleError,
+  HandleErrorInterceptor,
+} from '../shared/inteceptors/handle-error.interceptor';
 
 @Controller('pedido')
 @WithAuthGuard()
@@ -62,7 +66,11 @@ export class PedidoController {
   }
 
   @Get('status')
-  @ApiQuery({ name: 'status', enum: PedidoStatusEnum })
+  @ApiQuery({
+    name: 'status',
+    enum: PedidoStatusEnum,
+    enumName: 'PedidoStatusEnum',
+  })
   async findByStatus(
     @Query('status', ParseEnumPipe) status: PedidoStatusEnum
   ): Promise<Pedido[]> {
@@ -70,6 +78,7 @@ export class PedidoController {
   }
 
   @Get('day')
+  @ApiQuery({ name: 'day', required: false })
   async findByDay(@Query('day', ParseDatePipe) day?: Date): Promise<Pedido[]> {
     return this.pedidoService.findByDay(day);
   }
@@ -94,28 +103,28 @@ export class PedidoController {
   @Get('params')
   @ApiQuery({ name: 'dataCriacao', required: false })
   @ApiQuery({ name: 'dataFinalizado', required: false })
-  @ApiQuery({ name: 'status', required: false })
+  @ApiQuery({ name: 'status', required: false, enum: PedidoStatusEnum })
   @ApiQuery({ name: 'cliente', required: false })
-  @ApiQuery({ name: 'clienteId', required: false })
+  @ApiQuery({ name: 'idCliente', required: false })
   @ApiQuery({ name: 'produto', required: false })
-  @ApiQuery({ name: 'produtoId', required: false })
+  @ApiQuery({ name: 'idProduto', required: false })
   async findByParams(
     @Query('dataCriacao', ParseDatePipe) dataCriacao?: Date,
     @Query('dataFinalizado', ParseDatePipe) dataFinalizado?: Date,
     @Query('status', ParseEnumPipe) status?: PedidoStatusEnum,
     @Query('cliente', NormalizePipe) cliente?: string,
-    @Query('clienteId') clienteId?: number,
+    @Query('idCliente') idCliente?: number,
     @Query('produto', NormalizePipe) produto?: string,
-    @Query('produtoId') produtoId?: number
+    @Query('idProduto') idProduto?: number
   ): Promise<Pedido[]> {
     return this.pedidoService.findByParams({
       dataFinalizado,
       dataCriacao,
       cliente,
-      clienteId,
+      idCliente,
       status,
       produto,
-      produtoId,
+      idProduto,
     });
   }
 }

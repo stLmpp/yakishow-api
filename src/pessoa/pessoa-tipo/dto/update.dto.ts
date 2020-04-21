@@ -7,9 +7,9 @@ export class PessoaTipoUpdateDto {
 
   @IsNumber()
   @IsOptional()
-  pessoaId?: number;
+  idPessoa?: number;
 
   @IsNumber()
   @IsDefined()
-  tipoPessoaId: number;
+  idTipoPessoa: number;
 }
