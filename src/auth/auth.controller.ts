@@ -5,7 +5,7 @@ import { User } from './user/user.entity';
 import { AuthCredentialsDto } from './user/dto/credentials.dto';
 import { GetUser } from './get-user.decorator';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -24,7 +24,6 @@ export class AuthController {
 
   @Get('auto-login')
   @UseGuards(AuthGuard())
-  @ApiBearerAuth('Token')
   async autoLogin(@GetUser() user: User): Promise<User> {
     user.password = null;
     user.salt = null;

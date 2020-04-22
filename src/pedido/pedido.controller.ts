@@ -3,12 +3,10 @@ import {
   Controller,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Put,
   Query,
-  UseInterceptors,
 } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { Pedido } from './pedido.entity';
@@ -23,11 +21,6 @@ import { PedidoItem } from './pedido-item/pedido-item.entity';
 import { PedidoItemAddDto } from './pedido-item/dto/add.dto';
 import { NormalizePipe } from '../shared/pipe/normalize.pipe';
 import { ParseEnumPipe } from '../shared/pipe/parse-enum.pipe';
-import { ApiImplicitQuery } from '@nestjs/swagger/dist/decorators/api-implicit-query.decorator';
-import {
-  HandleError,
-  HandleErrorInterceptor,
-} from '../shared/inteceptors/handle-error.interceptor';
 
 @Controller('pedido')
 @WithAuthGuard()

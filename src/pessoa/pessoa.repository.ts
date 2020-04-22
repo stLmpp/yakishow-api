@@ -6,7 +6,7 @@ import { Pedido } from '../pedido/pedido.entity';
 
 @EntityRepository(Pessoa)
 export class PessoaRepository extends RepositoryCustom<Pessoa> {
-  async findRandom(length: number = 20): Promise<Pessoa[]> {
+  async findRandom(length = 20): Promise<Pessoa[]> {
     return this.createQueryBuilder('pessoa')
       .innerJoinAndSelect('pessoa.tipos', 'pessoaTipo')
       .orderBy('rand()')

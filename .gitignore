@@ -35,3 +35,5 @@ lerna-debug.log*
 
 .prettierignore
 package.json.yarn
+
+.env

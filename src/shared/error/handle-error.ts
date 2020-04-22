@@ -11,6 +11,18 @@ export interface TypeormError {
   message: string;
 }
 
+function formatMsg(
+  { message, errno, code }: MySQLError,
+  msg?: string
+): MySQLErrorResponse {
+  return {
+    sqlCode: code,
+    sqlErrono: errno,
+    sqlMessage: message,
+    message: msg,
+  };
+}
+
 export function getHandleError(
   err: MySQLError | TypeormError,
   message?: string
@@ -53,16 +65,4 @@ export function handleError(
   message?: string
 ): any {
   throw getHandleError(err, message);
-}
-
-function formatMsg(
-  { message, errno, code }: MySQLError,
-  msg?: string
-): MySQLErrorResponse {
-  return {
-    sqlCode: code,
-    sqlErrono: errno,
-    sqlMessage: message,
-    message: msg,
-  };
 }

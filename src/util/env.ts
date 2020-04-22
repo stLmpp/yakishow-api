@@ -1,6 +1,8 @@
 import { get } from 'config';
 import { networkInterfaces } from 'os';
 
+export const LOCALE_ID = 'pt-BR';
+
 export function getEnvVar(property: string): any {
   try {
     return get(property);
@@ -8,6 +10,8 @@ export function getEnvVar(property: string): any {
     return process.env[property];
   }
 }
+
+export const isProd = getEnvVar('NODE_ENV') === 'production';
 
 export function getHost(): string {
   return isProd
@@ -18,6 +22,3 @@ export function getHost(): string {
         networkInterfaces()['Wi-Fi']
       )?.find(o => o.family === 'IPv4').address ?? getEnvVar('HOST');
 }
-
-export const isProd = getEnvVar('NODE_ENV') === 'production';
-export const LOCALE_ID = 'pt-BR';

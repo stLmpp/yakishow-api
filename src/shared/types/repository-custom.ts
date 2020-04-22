@@ -12,7 +12,7 @@ export class RepositoryCustom<T> extends Repository<T> {
     }
   }
 
-  async findRandom(length: number = 20, select?: (keyof T)[]): Promise<T[]> {
+  async findRandom(length = 20, select?: (keyof T)[]): Promise<T[]> {
     const queryBuilder = this.createQueryBuilder()
       .orderBy('rand()')
       .limit(length);
