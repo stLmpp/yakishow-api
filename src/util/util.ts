@@ -30,3 +30,7 @@ export function removeNullObject<T = any>(
     return obj;
   }, {}) as T;
 }
+
+export function sumBy<T>(values: T[], key: keyof T): number {
+  return values.reduce((acc, item) => acc + (item?.[key as string] ?? 0), 0);
+}

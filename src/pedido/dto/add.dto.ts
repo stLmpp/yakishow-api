@@ -28,4 +28,8 @@ export class PedidoAddDto {
   @IsArray()
   @ValidateNested({ each: true })
   pedidoItems?: PedidoItemAddDto[];
+
+  @IsOptional()
+  @IsNumber()
+  valorReceber?: number;
 }

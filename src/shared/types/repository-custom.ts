@@ -1,5 +1,4 @@
-import { FindConditions, Repository } from 'typeorm';
-import { ObjectLiteral } from 'typeorm/common/ObjectLiteral';
+import { FindConditions, Repository, ObjectLiteral } from 'typeorm';
 
 export class RepositoryCustom<T> extends Repository<T> {
   async exists(

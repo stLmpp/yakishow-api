@@ -9,7 +9,7 @@ import { handleError } from '../shared/error/handle-error';
 import { PedidoUpdateDto } from './dto/update.dto';
 import { DeepPartial, Raw } from 'typeorm';
 import { addDays, format, isBefore } from 'date-fns';
-import { removeNullObject } from '../util/util';
+import { removeNullObject, sumBy } from '../util/util';
 
 const relationsPedido = ['pedidoItems', 'cliente', 'pedidoItems.produto'];
 
@@ -26,6 +26,7 @@ export class PedidoService {
     if (!dto.status) dto.status = PedidoStatusEnum.pendente;
     try {
       if (!dto.status) dto.status = PedidoStatusEnum.pendente;
+      if (!dto.valorReceber) dto.valorReceber = sumBy(dto.pedidoItems, 'total');
       const pedido = await this.pedidoRepository.save(dto);
       return await this.pedidoRepository.findOne(pedido.id, {
         relations: relationsPedido,

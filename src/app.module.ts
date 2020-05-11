@@ -13,7 +13,7 @@ import { ExternalModule } from './external/external.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', '..', 'client2', 'dist'),
+      rootPath: join(__dirname, '..', '..', '..', 'client2', 'dist', 'client'),
     }),
     TypeOrmModule.forRoot(DB_TYPEORM_CONFIG),
     AuthModule,

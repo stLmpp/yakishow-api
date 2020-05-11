@@ -37,6 +37,6 @@ export class PedidoItem extends CommonHistory {
   @Column('decimal', { precision: 10, scale: 2, nullable: true })
   total: number;
 
-  @Column({ length: 500 })
+  @Column({ length: 500, nullable: true })
   observacao: string;
 }

@@ -44,4 +44,7 @@ export class Pedido extends CommonHistory {
 
   @Column({ nullable: true })
   dataFinalizado: Date;
+
+  @Column({ nullable: true })
+  valorReceber: number;
 }
