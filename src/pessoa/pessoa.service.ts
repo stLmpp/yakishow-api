@@ -1,72 +1,128 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  FindConditions,
-  FindManyOptions,
-  Like,
-  Not,
-  UpdateResult,
-} from 'typeorm';
-import { mySQLError } from '../shared/error/my-sql-error';
+import { FindConditions, In, Not } from 'typeorm';
+import { handleError } from '../shared/error/handle-error';
 import { PessoaRepository } from './pessoa.repository';
 import { Pessoa } from './pessoa.entity';
-import { PessoaAddDto } from './dto/add';
-import { PessoaUpdateDto } from './dto/update';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
+import { PessoaAddDto } from './dto/add.dto';
+import { PessoaUpdateDto } from './dto/update.dto';
+import { PessoaTipoService } from './pessoa-tipo/pessoa-tipo.service';
 
 @Injectable()
 export class PessoaService {
   constructor(
     @InjectRepository(PessoaRepository)
-    private pessoaRepository: PessoaRepository
+    private pessoaRepository: PessoaRepository,
+    private pessoaTipoService: PessoaTipoService
   ) {}
 
   async add(dto: PessoaAddDto): Promise<Pessoa> {
     try {
       return await this.pessoaRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar inserir a pessoa');
+      handleError(err, 'Erro ao tentar inserir a pessoa');
     }
   }
 
-  async update(id: number, dto: PessoaUpdateDto): Promise<UpdateResult> {
+  async update(id: number, dto: PessoaUpdateDto): Promise<Pessoa> {
     try {
-      return await this.pessoaRepository.update(id, dto);
+      dto.id = id;
+      if (dto.tipos?.length) {
+        dto.tipos = dto.tipos.map(tipo => ({ ...tipo, idPessoa: id }));
+        const removeTipos =
+          (
+            await this.pessoaTipoService.findByPessoaId(
+              id,
+              dto.tipos.map(o => o.idTipoPessoa)
+            )
+          )?.map(o => o.id) ?? [];
+        if (removeTipos.length) {
+          await this.pessoaTipoService.remove(removeTipos);
+        }
+      }
+      return await this.pessoaRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualziar a pessoa');
+      handleError(err, 'Erro ao tentar atualizar a pessoa');
     }
   }
 
   async findById(id: number): Promise<Pessoa> {
     try {
-      return await this.pessoaRepository.findOneOrFail(id);
+      return await this.pessoaRepository.findOneOrFail(id, {
+        relations: ['tipos'],
+      });
     } catch (err) {
-      throw new NotFoundException('Pessoa não encontrado!');
+      handleError(err, 'Pessoa não encontrado!');
     }
   }
 
-  async findByParams(term: string, tipo?: TipoPessoaEnum): Promise<Pessoa[]> {
-    let _tipo = {};
-    if (tipo !== TipoPessoaEnum.todos) _tipo = { tipo };
-    term = `%${term}%`;
-    return await this.pessoaRepository.find({
-      where: [{ celular: Like(term), ..._tipo }, { nome: Like(term) }],
-    });
+  async findByParams(term?: string, tipos?: number[]): Promise<Pessoa[]> {
+    try {
+      return await this.pessoaRepository.findByParams(term, tipos);
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar as pessoas');
+    }
   }
 
-  async findByTipo(tipo: TipoPessoaEnum): Promise<Pessoa[]> {
-    let options: FindManyOptions<Pessoa> = {};
-    if (tipo !== TipoPessoaEnum.todos) options = { where: { tipo }, take: 15 };
-    return await this.pessoaRepository.find(options);
+  async findByTipos(tipos: number[]): Promise<Pessoa[]> {
+    try {
+      return await this.pessoaRepository.find({
+        take: 20,
+        where: { tipos: In(tipos) },
+        relations: ['tipos'],
+      });
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar os pessoas');
+    }
   }
 
   async existsByCelular(celular: string, id?: number): Promise<boolean> {
     const findConditions: FindConditions<Pessoa> = { celular };
     if (id) findConditions.id = Not(id);
+    try {
+      return await this.pessoaRepository.exists(findConditions);
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar as pessoas');
+    }
+  }
+
+  async findAll(): Promise<Pessoa[]> {
+    try {
+      return await this.pessoaRepository.find({ relations: ['tipos'] });
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar as pessoas');
+    }
+  }
+
+  async findRandom(length: number): Promise<Pessoa[]> {
+    try {
+      return await this.pessoaRepository.findRandom(length);
+    } catch (err) {
+      handleError(err, 'Erro ao tentar buscar as pessoas');
+    }
+  }
+
+  async existsByEmail(email: string, id?: number): Promise<boolean> {
+    const findConditions: FindConditions<Pessoa> = { email };
+    if (id) findConditions.id = Not(id);
     return await this.pessoaRepository.exists(findConditions);
   }
 
-  async findSimilarBairro(bairro: string): Promise<string[]> {
-    return await this.pessoaRepository.findSimilarBairro(bairro);
+  async findByCelular(celular: string): Promise<Pessoa> {
+    try {
+      return await this.pessoaRepository.findOneOrFail({
+        where: { celular },
+        relations: ['tipos'],
+      });
+    } catch (error) {
+      handleError(error, 'Erro ao tentar encontrar a pessoa');
+    }
+  }
+
+  async findByTermAutoComplete(
+    term: string,
+    withPedido?: boolean
+  ): Promise<Pessoa[]> {
+    return await this.pessoaRepository.findByParams(term, null, withPedido, 8);
   }
 }

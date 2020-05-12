@@ -8,39 +8,26 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Pessoa } from '../pessoa/pessoa.entity';
-import { ApiProperty } from '@nestjs/swagger';
 import { PedidoStatusEnum } from './pedido-status.enum';
 import { PedidoItem } from './pedido-item/pedido-item.entity';
 
 @Entity()
 export class Pedido extends CommonHistory {
   @PrimaryGeneratedColumn()
-  @ApiProperty()
   id: number;
 
-  @Column()
-  @ApiProperty({ enum: PedidoStatusEnum })
+  @Column({ type: 'enum', enum: PedidoStatusEnum })
   status: PedidoStatusEnum;
 
   @Column()
-  @ApiProperty({ type: String, description: 'Date' })
-  dataInicio: Date;
-
-  @Column({ nullable: true })
-  @ApiProperty({ type: String, description: 'Date' })
-  dataFinalizado: Date;
-
-  @Column()
-  @ApiProperty()
-  clienteId: number;
+  idCliente: number;
 
   @ManyToOne(() => Pessoa)
   @JoinColumn()
   cliente: Pessoa;
 
   @Column({ nullable: true })
-  @ApiProperty()
-  entregadorId: number;
+  idEntregador: number;
 
   @ManyToOne(() => Pessoa)
   @JoinColumn()
@@ -48,7 +35,16 @@ export class Pedido extends CommonHistory {
 
   @OneToMany(
     () => PedidoItem,
-    item => item.pedido
+    item => item.pedido,
+    {
+      cascade: true,
+    }
   )
   pedidoItems: PedidoItem[];
+
+  @Column({ nullable: true })
+  dataFinalizado: Date;
+
+  @Column({ nullable: true })
+  valorReceber: number;
 }

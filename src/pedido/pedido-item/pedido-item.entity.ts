@@ -6,26 +6,23 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CommonHistory } from '../../shared/super-entities/common-history';
-import { ApiProperty } from '@nestjs/swagger';
 import { Produto } from '../../produto/produto.entity';
 import { Pedido } from '../pedido.entity';
 
 @Entity()
 export class PedidoItem extends CommonHistory {
   @PrimaryGeneratedColumn()
-  @ApiProperty()
   id: number;
 
   @Column({ nullable: true })
-  @ApiProperty()
-  produtoId: number;
+  idProduto: number;
 
   @ManyToOne(() => Produto)
   @JoinColumn()
   produto: Produto;
 
   @Column()
-  pedidoId: number;
+  idPedido: number;
 
   @ManyToOne(
     () => Pedido,
@@ -34,11 +31,12 @@ export class PedidoItem extends CommonHistory {
   @JoinColumn()
   pedido: Pedido;
 
+  @Column()
+  quantidade: number;
+
   @Column('decimal', { precision: 10, scale: 2, nullable: true })
-  @ApiProperty()
   total: number;
 
-  @Column()
-  @ApiProperty()
-  quantidade: number;
+  @Column({ length: 500, nullable: true })
+  observacao: string;
 }

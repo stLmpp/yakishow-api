@@ -8,15 +8,19 @@ import { PedidoModule } from './pedido/pedido.module';
 import { AppController } from './app.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ExternalModule } from './external/external.module';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', '..', '..', 'client', 'dist') }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', '..', 'client2', 'dist', 'client'),
+    }),
     TypeOrmModule.forRoot(DB_TYPEORM_CONFIG),
     AuthModule,
     ProdutoModule,
     PessoaModule,
     PedidoModule,
+    ExternalModule,
   ],
   controllers: [AppController],
   providers: [],

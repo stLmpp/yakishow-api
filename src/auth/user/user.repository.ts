@@ -1,10 +1,10 @@
-import { Repository, EntityRepository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { genSalt, hash } from 'bcryptjs';
 import { UnauthorizedException } from '@nestjs/common';
 import { User } from './user.entity';
-import { AuthRegisterDto } from './dto/register';
-import { AuthCredentialsDto } from './dto/credentials';
-import { mySQLError } from '../../shared/error/my-sql-error';
+import { AuthRegisterDto } from './dto/register.dto';
+import { AuthCredentialsDto } from './dto/credentials.dto';
+import { handleError } from '../../shared/error/handle-error';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -18,21 +18,22 @@ export class UserRepository extends Repository<User> {
       newUser.salt = null;
       return newUser;
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar registar o usuário');
+      handleError(err, 'Erro ao tentar registar o usuário');
     }
   }
 
   async login(dto: AuthCredentialsDto): Promise<User> {
     const { username, password } = dto;
-    const user = await this.createQueryBuilder('user')
-      .andWhere('user.username = :username', { username })
-      .getOne();
+    const user = await this.findOne({
+      where: [{ username }, { email: username }],
+    });
+    const errorMessage = 'Login ou senha inválidos';
     if (!user) {
-      throw new UnauthorizedException('Usuário / Email ou senha inválida');
+      throw new UnauthorizedException(errorMessage);
     }
     const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Usuário / Email ou senha inválida');
+      throw new UnauthorizedException(errorMessage);
     }
     user.password = null;
     user.salt = null;

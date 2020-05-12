@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { PedidoItemRepository } from './pedido-item.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PedidoItem } from './pedido-item.entity';
-import { PedidoItemAddDto } from './dto/add';
-import { mySQLError } from '../../shared/error/my-sql-error';
-import { PedidoItemUpdateDto } from './dto/update';
-import { UpdateResult } from 'typeorm';
+import { PedidoItemAddDto } from './dto/add.dto';
+import { handleError } from '../../shared/error/handle-error';
+import { PedidoItemUpdateDto } from './dto/update.dto';
+import { UpdateResult } from '../../util/types';
 
 @Injectable()
 export class PedidoItemService {
@@ -21,21 +21,21 @@ export class PedidoItemService {
     try {
       return await this.pedidoItemRepository.save(
         dto.map(item => {
-          item.pedidoId = idPedido;
+          item.idPedido = idPedido;
           return item;
         })
       );
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar adicionar os items no pedido');
+      handleError(err, 'Erro ao tentar adicionar os items no pedido');
     }
   }
 
   async add(idPedido: number, dto: PedidoItemAddDto): Promise<PedidoItem> {
-    dto.pedidoId = idPedido;
+    dto.idPedido = idPedido;
     try {
       return await this.pedidoItemRepository.save(dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar adicionar o item no pedido');
+      handleError(err, 'Erro ao tentar adicionar o item no pedido');
     }
   }
 
@@ -51,7 +51,7 @@ export class PedidoItemService {
       }
       return updateResults;
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualizar os items do pedido');
+      handleError(err, 'Erro ao tentar atualizar os items do pedido');
     }
   }
 
@@ -62,7 +62,11 @@ export class PedidoItemService {
     try {
       return await this.pedidoItemRepository.update(idPedidoItem, dto);
     } catch (err) {
-      throw mySQLError(err, 'Erro ao tentar atualizar o item do pedido');
+      handleError(err, 'Erro ao tentar atualizar o item do pedido');
     }
+  }
+
+  async existsProduto(idProduto: number): Promise<boolean> {
+    return await this.pedidoItemRepository.exists({ idProduto });
   }
 }

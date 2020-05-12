@@ -1,4 +1,5 @@
 yarn.lock
 .prettierignore
-/dist
+dist
 .gitignore
+package.json.yarn

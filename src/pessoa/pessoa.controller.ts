@@ -3,83 +3,106 @@ import {
   Controller,
   Get,
   Param,
+  ParseArrayPipe,
   Patch,
   Post,
   Query,
-  UseGuards,
-  ValidationPipe,
 } from '@nestjs/common';
-import { ApiParam, ApiQuery, ApiResponse } from '@nestjs/swagger';
-import { UpdateHistoryPipe } from '../auth/update-history.pipe';
-import { UpdateResult } from 'typeorm';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PessoaService } from './pessoa.service';
-import { PessoaAddDto } from './dto/add';
+import { PessoaAddDto } from './dto/add.dto';
 import { Pessoa } from './pessoa.entity';
-import { PessoaUpdateDto } from './dto/update';
-import { TipoPessoaEnum } from './tipo-pessoa.enum';
-import { ParseIntPipe } from '../shared/pipe/parse-int-pipe';
-import { AuthGuard } from '@nestjs/passport';
+import { PessoaUpdateDto } from './dto/update.dto';
+import { WithAuthGuard } from '../auth/with-auth-guard.decorator';
 
 @Controller('pessoa')
-@UseGuards(AuthGuard())
+@WithAuthGuard()
+@ApiTags('Pessoa')
 export class PessoaController {
   constructor(private pessoaService: PessoaService) {}
 
   @Post()
-  @ApiResponse({ status: 200, type: Pessoa })
-  async add(
-    @Body(ValidationPipe, UpdateHistoryPipe) dto: PessoaAddDto
-  ): Promise<Pessoa> {
+  async add(@Body() dto: PessoaAddDto): Promise<Pessoa> {
     return this.pessoaService.add(dto);
   }
 
-  @Patch(':id')
-  @ApiResponse({ status: 200, type: UpdateResult })
+  @Patch(':idPessoa')
   async update(
-    @Body(ValidationPipe, UpdateHistoryPipe)
-    dto: PessoaUpdateDto,
-    @Param('id', ParseIntPipe) id: number
-  ): Promise<UpdateResult> {
+    @Body() dto: PessoaUpdateDto,
+    @Param('idPessoa') id: number
+  ): Promise<Pessoa> {
     return this.pessoaService.update(id, dto);
   }
 
-  @Get('id/:id')
-  @ApiResponse({ status: 200, type: Pessoa })
-  async findById(@Param('id', ParseIntPipe) id: number): Promise<Pessoa> {
+  @Get('id/:idPessoa')
+  async findById(@Param('idPessoa') id: number): Promise<Pessoa> {
     return this.pessoaService.findById(id);
   }
 
-  @Get('/search')
-  @ApiResponse({ status: 200, type: Pessoa, isArray: true })
-  @ApiQuery({ name: 'tipo', enum: TipoPessoaEnum })
+  @Get('search')
+  @ApiQuery({ name: 'tipos', type: Number, isArray: true, required: false })
+  @ApiQuery({ name: 'term', type: String, required: false })
   async findByParams(
-    @Query('term') term: string,
-    @Query('tipo', ParseIntPipe) tipo?: TipoPessoaEnum
+    @Query('term') term?: string,
+    @Query('tipos', ParseArrayPipe) tipos?: number[]
   ): Promise<Pessoa[]> {
-    return this.pessoaService.findByParams(term, tipo);
+    return this.pessoaService.findByParams(term, tipos);
   }
 
-  @Get('/tipo/:tipo')
-  @ApiResponse({ status: 200, type: Pessoa, isArray: true })
-  @ApiParam({ name: 'tipo', enum: TipoPessoaEnum })
+  @Get('tipo')
+  @ApiQuery({ name: 'tipos', type: Number, isArray: true })
   async findByTipo(
-    @Param('tipo', ParseIntPipe) tipo: TipoPessoaEnum
+    @Query('tipos', ParseArrayPipe) tipos: number[]
   ): Promise<Pessoa[]> {
-    return this.pessoaService.findByTipo(tipo);
+    return this.pessoaService.findByTipos(tipos);
   }
 
-  @Get('/celular/:celular')
-  @ApiResponse({ status: 200, type: Boolean })
-  async existsByTelefone(
-    @Param('celular') celular: string,
-    @Query('id', ParseIntPipe) id: number
+  @Get('exists/celular')
+  async existsByCelular(
+    @Query('celular') celular: string,
+    @Query('id') id?: number
   ): Promise<boolean> {
     return this.pessoaService.existsByCelular(celular, id);
   }
 
-  @Get('/similarity/bairro/:bairro')
-  @ApiResponse({ status: 200, type: String, isArray: true })
-  async findSimilarBairro(@Param('bairro') bairro: string): Promise<string[]> {
-    return this.pessoaService.findSimilarBairro(bairro);
+  @Get('all')
+  async findAll(): Promise<Pessoa[]> {
+    return this.pessoaService.findAll();
+  }
+
+  @Get('random')
+  async findRandom15(@Query('length') length: number): Promise<Pessoa[]> {
+    return this.pessoaService.findRandom(length);
+  }
+
+  @Get('exists/email')
+  async existsByEmail(
+    @Query('email') email: string,
+    @Query('id') id?: number
+  ): Promise<boolean> {
+    return this.pessoaService.existsByEmail(email, id);
+  }
+
+  @Get('celular')
+  async findByCelular(@Query('celular') celular: string): Promise<Pessoa> {
+    return this.pessoaService.findByCelular(celular);
+  }
+
+  @Get('search/autocomplete')
+  @ApiQuery({
+    name: 'term',
+    required: true,
+    description: 'Termo da pesquisa do cliente',
+  })
+  @ApiQuery({
+    name: 'withPedido',
+    required: false,
+    description: 'Somente trazer clientes que já tem pedidos',
+  })
+  async findByTermAutocomplete(
+    @Query('term') term: string,
+    @Query('withPedido') withPedido?: boolean
+  ): Promise<Pessoa[]> {
+    return this.pessoaService.findByTermAutoComplete(term, withPedido);
   }
 }
